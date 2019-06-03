@@ -1,0 +1,95 @@
+<form nz-form [nzLayout]="'inline'" #staffForm="ngForm" (ngSubmit)="saveStaff()" > <!--(createStaff)="eventSaveForm(staffForm)"-->  
+    <div nz-row>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-control>
+              <label for="documentType">Tipo Documento</label><br>
+              <nz-select ([ngModel])="staff.idTipoDocumento" style="width: 200px;" [nzSize]="size" required nzShowSearch>
+                <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.nombreTipoDocumento"
+                  [nzValue]="document.idTipoDocumento"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="firstName" class="ant-form-item-required letter-label-style">Primer nombre</label>
+            <input [(ngModel)]="staff.primerNombre" #firstName name="firstName" nz-input placeholder="Ingrese el primer nombre" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="surname" class="ant-form-item-required letter-label-style">Primer apellido</label>
+            <input [(ngModel)]="staff.primerApellido" #surname name="surname" nz-input placeholder="Ingrese el primer apellido" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="email">Email</label>
+            <input ([ngModel])="staff.correoElectronico" #email name="email" nz-input placeholder="Ingrese su Email" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="municipality" class="ant-form-item-required letter-label-style">Municipio</label><br>
+            <nz-select (ngModelChange)="locationChange($event)" [(ngModel)]="staff.idMunicipio" #municipality name="municipality" style="width: 200px;" [nzSize]="size" nzShowSearch required>
+              <nz-option *ngFor="let municipy of resDepartament" [nzLabel]="municipy.departamento"
+                [nzValue]="municipy.idDepartamento"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <label for="document" class="ant-form-item-required letter-label-style">Documento</label>
+            <input [(ngModel)]="staff.documento" #document name="document" nz-input placeholder="Ingrese número documento" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="secondName">Segundo nombre</label>
+            <input [(ngModel)]="staff.segundoNombre" #secondName name="secondName" nz-input  placeholder="Ingrese segundo nombre" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="secondSurname">Segundo apellido</label>
+            <input [(ngModel)]="staff.segundoApellido" #secondSurname name="secondSurname" nz-input placeholder="Ingrese segundo apellido" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="mobile" class="ant-form-item-required letter-label-style">Celular</label>
+            <input [(ngModel)]="staff.celular" #mobile name="mobile" nz-input  required placeholder="Ingrese el número celular" required/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <label for="city" class="ant-form-item-required letter-label-style">Ciudad</label>
+            <nz-select [(ngModel)]="staff.city" #city name="city" style="width: 200px;" [nzSize]="size" required nzShowSearch>
+                <nz-option *ngFor="let location of locations" [nzLabel]="location.municipio"
+                  [nzValue]="location.idMunicipio"></nz-option>
+              </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-control>
+            <label for="address" class="ant-form-item-required letter-label-style">Dirección</label>
+            <input [(ngModel)]="staff.address" #adress name="address" nz-input placeholder="Ingrese la dirección de residencia" required/>
+          </nz-form-control>
+        </nz-form-item>
+      </div>  
+      <div nz-col nzSpan="6">
+        <nz-form-item>
+          <nz-form-control [nzSpan]="5" [nzOffset]="5">
+            <br>                        
+            <button nz-button nzType="primary" [disabled]="!staffForm.valid" >Guardar</button>            
+          </nz-form-control>
+        </nz-form-item>
+      </div>            
+    </div>  
+</form>

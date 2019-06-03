@@ -1,0 +1,57 @@
+<div nz-row class="tableStaff">
+    <div nz-col nzSpan="12">
+        <h1 class="text">Personal</h1>
+    </div>
+    <div nz-col nzSpan="12">
+        <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateStaff()">
+            <i nz-icon type="plus"></i>
+            Crear Personal
+        </button>
+    </div>
+    <nz-divider [nzType]="vertical"></nz-divider>
+</div>
+<nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
+    <thead>
+        <tr>
+            <th>Tipo documento</th>
+            <th>Documento</th>
+            <th>Primer nombre</th>
+            <th>Segundo nombre</th>
+            <th>Primer apellido</th>
+            <th>Segundo apellido</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of resData">
+            <td>{{ data.idTipoDocumento.nombreTipoDocumento}}</td>
+            <td>{{ data.documento}}</td>
+            <td>{{ data.primerNombre}}</td>
+            <td>{{ data.segundoNombre}}</td>
+            <td>{{ data.primerApellido}}</td>
+            <td>{{ data.segundoApellido}}</td>
+            <td>{{ data.celular}}</td>
+            <td>
+                <a>
+                    <i nz-icon type="edit"></i>
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>
+                    <i nz-icon type="delete"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+
+
+<nz-modal  nzFooter=" "
+    nzTitle="Crear Personal" [(nzVisible)]="isModalVisible">
+    <app-createstaff
+    (childSubmit)="parentSubmit($event)">
+    </app-createstaff>
+    <!--(isSave)="saveEmitStaff($event)"-->
+</nz-modal>
