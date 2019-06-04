@@ -13,6 +13,8 @@ import en from '@angular/common/locales/en';
 import { HomeComponent } from './components/home/home.component';
 import { StaffComponent } from './components/staff/staff.component'
 import { CreatestaffComponent } from './components/staff/createstaff/createstaff.component';
+import { SalaryComponent } from './components/salary/salary.component';
+import { CreatesalaryComponent } from './components/salary/createsalary/createsalary.component';
 
 
 registerLocaleData(en);
@@ -23,6 +25,8 @@ registerLocaleData(en);
     HomeComponent,
     CreatestaffComponent,
     StaffComponent,
+    SalaryComponent,
+    CreatesalaryComponent,
   ],
   imports: [
     BrowserModule,
