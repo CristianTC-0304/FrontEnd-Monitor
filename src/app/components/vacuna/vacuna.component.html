@@ -1,0 +1,52 @@
+<div nz-row class="tableStaff">
+    <div nz-col nzSpan="12">
+        <h1 class="text">Vacuna</h1>
+    </div>
+    <div nz-col nzSpan="12">
+        <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateVacuna()">
+          <i nz-icon type="plus"></i>
+          Crear Vacuna
+      </button>
+    </div>
+    <nz-divider [nzType]="vertical"></nz-divider>
+</div>
+<nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
+    <thead>
+        <tr>
+            <th>Nombre Vacuna</th>
+            <th>Valor</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Cantidad</th>
+            <th>Presentación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of resData">
+            <td>{{ data.nombreVacuna}}</td>
+            <td>{{ data.valor | currency}}</td>
+            <td>{{ data.fechaVencimiento | date}}</td>
+            <td>{{ data.cantidad }}</td>
+            <td>{{data.idPresentacion.nombrePresentacion}}</td>
+            <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td>
+            <td>
+                <a>
+                    <i nz-icon type="edit" (click)="editVacuna(data)"></i>
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+
+                <a>
+                    <i nz-icon type="delete" (click)="eliminarVacuna(data.idprecioAlimento)"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+
+
+<nz-modal nzFooter=" " nzTitle="Crear Alimento" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
+    <app-crear-vacuna (isResult)="handleCancelTop()">
+    </app-crear-vacuna>
+</nz-modal>
