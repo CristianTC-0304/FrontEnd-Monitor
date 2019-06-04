@@ -1,0 +1,43 @@
+<form nz-form [nzLayout]="'inline'" #salaryForm="ngForm" (ngSubmit)="saveSalary()">
+  <!--(createStaff)="eventSaveForm(staffForm)"-->
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control>
+          <label for="salaryBasic" class="ant-form-item-required letter-label-style">Salario básico</label>
+          <input [(ngModel)]="salary.salario" #salaryBasic name="salaryBasic" nz-input placeholder="Ingrese el salario basico" required/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <label for="auxilioTransporte" class="ant-form-item-required letter-label-style">Auxilio de transporte</label>
+          <input [(ngModel)]="salary.auxilioTransporte" #auxilioTransporte name="auxilioTransporte" nz-input placeholder="Ingrese valor auxilio de transporte" required/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control>
+          <label for="prestacionSocial" class="ant-form-item-required letter-label-style ">Prestación social</label>
+          <input [(ngModel)]="salary.prestacionesSociales" #prestacionSocial name="prestacionSocial" nz-input placeholder="Ingrese valor social" required/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <label for="year" class="ant-form-item-required letter-label-style">Año</label>
+          <input [(ngModel)]="salary.periodo" #year name="year" nz-input placeholder="Ingrese el año"
+            required/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+   
+    <div nz-col nzSpan="6">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="5" [nzOffset]="5">
+          <br>
+          <button nz-button nzType="primary" [disabled]="!salaryForm.valid">Guardar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
