@@ -13,6 +13,10 @@ import en from '@angular/common/locales/en';
 import { HomeComponent } from './components/home/home.component';
 import { StaffComponent } from './components/staff/staff.component'
 import { CreatestaffComponent } from './components/staff/createstaff/createstaff.component';
+import { AlimentoComponent } from './components/alimento/alimento.component';
+import { CreateAlimentoComponent } from './components/alimento/create-alimento/create-alimento.component';
+import { VacunaComponent } from './components/vacuna/vacuna.component';
+import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
 
 
 registerLocaleData(en);
@@ -23,6 +27,10 @@ registerLocaleData(en);
     HomeComponent,
     CreatestaffComponent,
     StaffComponent,
+    AlimentoComponent,
+    CreateAlimentoComponent,
+    VacunaComponent,
+    CrearVacunaComponent,
   ],
   imports: [
     BrowserModule,
