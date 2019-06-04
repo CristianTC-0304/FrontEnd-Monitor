@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { VacunaService } from '../../services/vacuna.service';
 
+// let vacunaList;
 
 @Component({
   selector: 'app-vacuna',
@@ -34,11 +35,11 @@ export class VacunaComponent implements OnInit {
 
   ngOnInit() {
     this.getDataVacuna();
+    // window["vacunaLista"] = this;
   }
 
   getDataVacuna() {
-    this.vacunaServices.getVacuna().subscribe((data : any) => {
-      console.log("Data==>", data);
+    this.vacunaServices.getVacuna().subscribe((data : any) => {      
       this.resData = data.filter(item => item.estado == 1);      
     });
   }
@@ -53,8 +54,9 @@ export class VacunaComponent implements OnInit {
   }
 
 
-  handleCancelTop(){
-      this.isModalVisible = false;
+  handleCancelTop() {
+      this.isModalVisible = false;      
+      this.getDataVacuna();
   }
 
   editVacuna(obj: any){

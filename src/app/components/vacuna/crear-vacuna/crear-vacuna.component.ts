@@ -46,24 +46,32 @@ export class CrearVacunaComponent implements OnInit {
     });
   }  
 
-  savealiment(){        
+  savealiment(){            
       this.vacunaService.createVacuna(this.vacuna).subscribe((result: any) => {           
           this.isAlertVisible = true;
-          setInterval(()=>{
-            this.vacuna = new Object();
-            this.isResult.emit(true);          
-          },1000)                  
+          // this.getData();
+          let entorno = this;
+          setTimeout(function (){ entorno.vacuna = new Object();            
+            entorno.isResult.emit(true); }, 1000);
+          
       })
   }
 
+  
+  // getData(){
+  //   window["vacunaLista"].getDataVacuna();
+  // }
+
   /**Cargar Información a la modal */
   infoEdit(dataEdit: any){
-      // this.vacuna = new Object();
-      // this.aliment.nombre =  dataEdit.nombre;
-      // this.aliment.estado =  dataEdit.estado;
-      // this.aliment.costoAlimento =  dataEdit.costoAlimento;
-      // this.aliment.idTipoAlimento =  dataEdit.idTipoAlimento.idtipoAlimento;
-      // this.aliment.idUnidadMedida =  dataEdit.idUnidadMedida.idUnidadMedida;
-      // this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;      
+      this.vacuna = new Object();
+      // console.log("INFO A EDITAR", dataEdit);
+      this.vacuna.idDrogaVacuna = dataEdit.idDrogaVacuna;
+      this.vacuna.nombreVacuna = dataEdit.nombreVacuna;
+      this.vacuna.valor = dataEdit.valor;
+      this.vacuna.fechaVencimiento = dataEdit.fechaVencimiento;
+      this.vacuna.cantidad = dataEdit.cantidad;
+      this.vacuna.estado = dataEdit.estado;    
+      this.vacuna.idPresentacion = dataEdit.idPresentacion.idPresentacion;       
   }   
 }

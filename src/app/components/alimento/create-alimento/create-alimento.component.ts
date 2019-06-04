@@ -60,10 +60,9 @@ export class CreateAlimentoComponent implements OnInit {
   savealiment(){        
       this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
           this.isAlertVisible = true;
-          setInterval(()=>{
-            this.aliment = new Object();
-            this.isResult.emit(true);          
-          },1000)                  
+          let entorno = this;
+          setTimeout(function (){ entorno.aliment = new Object();            
+            entorno.isResult.emit(true); }, 1000);
       })
   }
 

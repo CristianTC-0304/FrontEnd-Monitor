@@ -58,11 +58,9 @@ export class AlimentoComponent implements OnInit {
   }
 
 
-  handleCancelTop(){
-      // this.resData= [];
-      // this.getDataAlimento();
+  handleCancelTop(){           
       this.isModalVisible = false;
-
+      this.getDataAlimento();
   }
 
   editAlimento(obj: any){
