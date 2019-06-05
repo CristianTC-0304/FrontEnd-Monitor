@@ -12,7 +12,10 @@ export class SalaryComponent implements OnInit {
   resData = [];
   isModalVisible = false;
 
-  
+  numTable: number;
+  isSaveVisible = true;
+  dataSave = [];
+  dataEdit: any = new Object();
 
   constructor(
     private route: ActivatedRoute,
@@ -24,13 +27,32 @@ export class SalaryComponent implements OnInit {
   }
 
   getDataSalary() {
-    this.salaryService.getSalary().subscribe(data => {
-      this.resData = data;
+    this.salaryService.getSalary().subscribe((data:any) => {
+      this.resData = data.filter(item => item.estado == 1);   
     });
   }
 
   showFormCreateSalary() {
+    window["domModalSalario"].isAlertVisible = false;
+    window["domModalSalario"].salary = new Object();
     this.isModalVisible = true;
   }
+
+  handleCancelTop() {
+    this.isModalVisible = false;
+    this.getDataSalary();
+  }
+
+  editSalary(obj: any) {
+    this.dataEdit = obj;
+    this.isModalVisible = true;
+    window["domModalSalario"].infoEdit(this.dataEdit);
+  }
+
+  eliminarSalary(id:any){
+    this.salaryService.deleteSalary(id).subscribe(result=>{
+      this.getDataSalary();
+    });      
+}
 
 }

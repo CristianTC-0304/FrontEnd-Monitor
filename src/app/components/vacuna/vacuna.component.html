@@ -18,7 +18,7 @@
             <th>Fecha de Vencimiento</th>
             <th>Cantidad</th>
             <th>Presentación</th>
-            <th>Estado</th>
+            <!-- <th>Estado</th> -->
             <th>Acciones</th>
         </tr>
     </thead>
@@ -29,7 +29,7 @@
             <td>{{ data.fechaVencimiento | date}}</td>
             <td>{{ data.cantidad }}</td>
             <td>{{data.idPresentacion.nombrePresentacion}}</td>
-            <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td>
+            <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
             <td>
                 <a>
                     <i nz-icon type="edit" (click)="editVacuna(data)"></i>
@@ -37,7 +37,7 @@
                 <nz-divider nzType="vertical"></nz-divider>
 
                 <a>
-                    <i nz-icon type="delete" (click)="eliminarVacuna(data.idprecioAlimento)"></i>
+                    <i nz-icon type="delete" (click)="eliminarVacuna(data.idDrogaVacuna)"></i>
                 </a>
             </td>
         </tr>

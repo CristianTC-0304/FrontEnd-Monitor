@@ -47,19 +47,19 @@ export class AlimentoComponent implements OnInit {
   }
 
   showFormCreateAlimento() {
+    window["domModalAlimento"].isAlertVisible = false;
+    window["domModalAlimento"].alimento = new Object();
     this.isModalVisible = true;
   }
 
-  saveEmitAlimento(event) {
-    // console.log('event data', event.data);
+  saveEmitAlimento(event) {    
     this.isSaveVisible = event.showButtonSave;
-    this.dataSave = event.data;
-    // console.log('dataSave', this.dataSave);
+    this.dataSave = event.data;    
   }
 
 
   handleCancelTop(){           
-      this.isModalVisible = false;
+      this.isModalVisible = false;      
       this.getDataAlimento();
   }
 

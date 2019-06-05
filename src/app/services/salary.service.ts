@@ -18,9 +18,9 @@ export class SalaryService {
 
   getSalary(): Observable<Array<Salary>> {
     return this.http.get<Array<Salary>>(this.url)
-    .pipe(
-      catchError(this.handleError<Salary[]>('getSalary', []))
-    );
+      .pipe(
+        catchError(this.handleError<Salary[]>('getSalary', []))
+      );
   }
 
   getSalaryId(id: number): Observable<Salary> {
@@ -35,14 +35,20 @@ export class SalaryService {
     console.log('data create Salary', data);
     return this.http.post<Salary>(this.url, data).pipe(response => response);
   }
-  
+
+  deleteSalary(id): Observable<Salary> {
+    const url = `${this.url}/${id}`;
+    return this.http.put<Salary>(url, {}).pipe(result => result);
+  }
+
+
   /**
  * Handle Http operation that failed.
  * Let the app continue.
  * @param operation - name of the operation that failed
  * @param result - optional value to return as the observable result
  */
-private handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error); // log to console instead
       this.log(`${operation} failed: ${error.message}`);
