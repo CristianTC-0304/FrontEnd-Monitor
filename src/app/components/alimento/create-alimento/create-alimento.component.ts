@@ -39,7 +39,7 @@ export class CreateAlimentoComponent implements OnInit {
     this.getTipoAlimento();
     this.getUnidadMedida();
     console.log("Info a editar==>",this.eventEdit);
-    window["domModalAlimento"] = this;    
+    window["domModalAlimento"] = this;
   }
 
   getTipoAlimento() {
@@ -57,11 +57,11 @@ export class CreateAlimentoComponent implements OnInit {
   }
 
 
-  savealiment(){        
-      this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
+  savealiment(){
+      this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {
           this.isAlertVisible = true;
           let entorno = this;
-          setTimeout(function (){ entorno.aliment = new Object();            
+          setTimeout(function (){ entorno.aliment = new Object();
             entorno.isResult.emit(true); }, 1000);
       })
   }
@@ -74,7 +74,7 @@ export class CreateAlimentoComponent implements OnInit {
       this.aliment.costoAlimento =  dataEdit.costoAlimento;
       this.aliment.idTipoAlimento =  dataEdit.idTipoAlimento.idtipoAlimento;
       this.aliment.idUnidadMedida =  dataEdit.idUnidadMedida.idUnidadMedida;
-      this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;      
+      this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;
   }
 
 

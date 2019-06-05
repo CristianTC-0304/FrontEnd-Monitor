@@ -34,24 +34,18 @@
             <td>{{ data.celular}}</td>
             <td>
                 <a>
-                    <i nz-icon type="edit"></i>
+                    <i nz-icon type="edit" (click)="editStaff(data)"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <nz-divider nzType="vertical"></nz-divider>
                 <a>
-                    <i nz-icon type="delete"></i>
+                    <i nz-icon type="delete" (click)="deleteStaff(data.idPersonal)"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </nz-table>
-
-
-
-<nz-modal  nzFooter=" "
-    nzTitle="Crear Personal" [(nzVisible)]="isModalVisible">
-    <app-createstaff
-    (childSubmit)="parentSubmit($event)">
+<nz-modal nzFooter=" " nzTitle="Crear Personal" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
+    <app-createstaff (isResult)="handleCancelTop()">
     </app-createstaff>
-    <!--(isSave)="saveEmitStaff($event)"-->
 </nz-modal>

@@ -1,4 +1,4 @@
 export class Position {
-    idCargo: string
-    nombreCargo: string
+    idCargo: string;
+    nombreCargo: string;
 }

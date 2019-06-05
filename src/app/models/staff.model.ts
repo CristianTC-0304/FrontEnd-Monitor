@@ -11,4 +11,3 @@ export class Staff {
     idMunicipio: object;
     idTipoDocumento: object;
 }
-

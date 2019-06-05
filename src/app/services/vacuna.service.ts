@@ -38,13 +38,13 @@ export class VacunaService {
     );
   }
 
-  createVacuna(data): Observable<Vacuna> {    
+  createVacuna(data): Observable<Vacuna> {  
     return this.http.post<Vacuna>(this.url, data).pipe(response => response);
   }
 
-  deleteVacuna(id): Observable<Vacuna>{
+  deleteVacuna(id): Observable<Vacuna> {
       const url = `${this.url}/${id}`;
-      return this.http.put<Vacuna>(url,{}).pipe(result => result);
+      return this.http.put<Vacuna>(url, {}).pipe(result => result);
   }
 
   /**
