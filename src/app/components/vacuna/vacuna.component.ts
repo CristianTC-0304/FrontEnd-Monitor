@@ -45,6 +45,8 @@ export class VacunaComponent implements OnInit {
   }
 
   showFormCreateVacuna() {
+    window["domModalVacuna"].isAlertVisible = false;
+    window["domModalVacuna"].vacuna = new Object();
     this.isModalVisible = true;
   }
 

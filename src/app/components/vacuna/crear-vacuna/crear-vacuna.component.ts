@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
 import { UnidadMedidaService } from '../../../services/unidadMedida.service';
 import { VacunaService }  from '../../../services/vacuna.service'
+import swal from 'sweetalert';
 
 let domModalVacuna;
 
@@ -47,9 +48,24 @@ export class CrearVacunaComponent implements OnInit {
   }  
 
   savealiment(){            
+      this.vacuna.estado = 1;
+
+      if(isNaN(this.vacuna.cantidad)){
+        swal("Advertencia!", "Campo cantidad solo permite numero.", "warning");
+        return false;
+      } else {
+          this.vacuna.cantidad = Number(this.vacuna.cantidad);
+      }       
+
+      if(isNaN(this.vacuna.valor)){
+        swal("Advertencia!", "Campo valor solo permite numero.", "warning");
+        return false;
+      } else {
+          this.vacuna.valor = Number(this.vacuna.valor);
+      }       
+                 
       this.vacunaService.createVacuna(this.vacuna).subscribe((result: any) => {           
-          this.isAlertVisible = true;
-          // this.getData();
+          this.isAlertVisible = true;          
           let entorno = this;
           setTimeout(function (){ entorno.vacuna = new Object();            
             entorno.isResult.emit(true); }, 1000);
@@ -57,15 +73,9 @@ export class CrearVacunaComponent implements OnInit {
       })
   }
 
-  
-  // getData(){
-  //   window["vacunaLista"].getDataVacuna();
-  // }
-
   /**Cargar Información a la modal */
   infoEdit(dataEdit: any){
-      this.vacuna = new Object();
-      // console.log("INFO A EDITAR", dataEdit);
+      this.vacuna = new Object();      
       this.vacuna.idDrogaVacuna = dataEdit.idDrogaVacuna;
       this.vacuna.nombreVacuna = dataEdit.nombreVacuna;
       this.vacuna.valor = dataEdit.valor;

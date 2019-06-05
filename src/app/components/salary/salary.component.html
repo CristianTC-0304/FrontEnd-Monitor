@@ -1,49 +1,47 @@
 <div nz-row class="tableSalary">
-  <div nz-col nzSpan="16">
-    <h1 class="text">Salario</h1>
-  </div>
-  <div nz-col nzSpan="8">
-    <button nz-button [disabled]="false" [nzType]="'primary'" class="btnsalary" (click)="showFormCreateSalary()">
+    <div nz-col nzSpan="16">
+        <h1 class="text">Salario</h1>
+    </div>
+    <div nz-col nzSpan="8">
+        <button nz-button [disabled]="false" [nzType]="'primary'" class="btnsalary" (click)="showFormCreateSalary()">
       <i nz-icon type="plus"></i>
       Crear Salario
     </button>
-  </div>
-  <nz-divider [nzType]="vertical"></nz-divider>
+    </div>
+    <nz-divider [nzType]="vertical"></nz-divider>
 </div>
 <nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
-  <thead>
-    <tr>
-      <th>Salario básico</th>
-      <th>Auxilio transporte</th>
-      <th>Prestaciones sociales</th>
-      <th>Año</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of resData">
-      <td>{{ data.salario}}</td>
-      <td>{{ data.auxilioTransporte}}</td>
-      <td>{{ data.prestacionesSociales}}</td>
-      <td>{{ data.periodo}}</td>
-      <td>
-        <a>
-          <i nz-icon type="edit"></i>
-        </a>
-        <nz-divider nzType="vertical"></nz-divider>
-        <nz-divider nzType="vertical"></nz-divider>
-        <a>
-          <i nz-icon type="delete"></i>
-        </a>
-      </td>
-    </tr>
-  </tbody>
+    <thead>
+        <tr>
+            <th>Salario básico</th>
+            <th>Auxilio transporte</th>
+            <th>Prestaciones sociales</th>
+            <th>Año</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of resData">
+            <td>{{ data.salario}}</td>
+            <td>{{ data.auxilioTransporte}}</td>
+            <td>{{ data.prestacionesSociales}}</td>
+            <td>{{ data.periodo}}</td>
+            <td>
+                <a>
+                    <i nz-icon type="edit" (click)="editSalary(data)"></i>
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a>
+                    <i nz-icon type="delete" (click)="eliminarSalary(data.idsalario)"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
 </nz-table>
 
 
 
-<nz-modal nzFooter=" " nzTitle="Crear Salario" [(nzVisible)]="isModalVisible">
- <app-createsalary>
-  </app-createsalary>
-  <!--(isSave)="saveEmitStaff($event)"-->
+<nz-modal nzFooter=" " nzTitle="Crear Salario" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
+    <app-createsalary (isResult)="handleCancelTop()">
+    </app-createsalary>
 </nz-modal>

@@ -4,6 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
 import { UnidadMedidaService } from '../../../services/unidadMedida.service';
 import { AlimentoService }  from '../../../services/alimento.service'
+import swal from 'sweetalert';
+
 
 let domModalAlimento;
 
@@ -58,10 +60,17 @@ export class CreateAlimentoComponent implements OnInit {
 
 
   savealiment(){        
+    this.aliment.estado = 1;
+    if(isNaN(this.aliment.costoAlimento)){
+      swal("Advertencia!", "Campo costo alimento solo permite numero.", "warning");
+    } else {
+      this.aliment.costoAlimento = Number(this.aliment.costoAlimento);
+    }        
       this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
           this.isAlertVisible = true;
           let entorno = this;
-          setTimeout(function (){ entorno.aliment = new Object();            
+          setTimeout(function (){ entorno.aliment = new Object();      
+            // this.isAlertVisible = false;      
             entorno.isResult.emit(true); }, 1000);
       })
   }
