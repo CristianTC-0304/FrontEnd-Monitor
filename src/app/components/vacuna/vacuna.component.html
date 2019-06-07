@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of resData">
+        <tr *ngFor="let data of smallTable.data">
             <td>{{ data.nombreVacuna}}</td>
             <td>{{ data.valor | currency}}</td>
             <td>{{ data.fechaVencimiento | date}}</td>

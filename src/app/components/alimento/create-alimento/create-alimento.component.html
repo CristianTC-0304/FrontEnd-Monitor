@@ -11,7 +11,7 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="costoAlimento" class="ant-form-item-required letter-label-style">Costo Alimento</label>
-                    <input [(ngModel)]="aliment.costoAlimento" #costoAlimento name="costoAlimento" nz-input placeholder="Ingrese el costo del alimento" required/>
+                    <input [(ngModel)]="aliment.costoAlimento" #costoAlimento name="costoAlimento" nz-input placeholder="Ingrese el costo del alimento" required (ngModelChange)="onChange($event)" (blur)="onBlur()" />
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -57,4 +57,4 @@
     </div>
 </form>
 <br>
-<nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert>
+<!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->
