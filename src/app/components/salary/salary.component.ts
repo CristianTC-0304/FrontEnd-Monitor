@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalaryService } from '../../services/salary.service';
+import  swal from 'sweetalert';
 
 @Component({
   selector: 'app-salary',
@@ -33,7 +34,7 @@ export class SalaryComponent implements OnInit {
   }
 
   showFormCreateSalary() {
-    window["domModalSalario"].isAlertVisible = false;
+    // window["domModalSalario"].isAlertVisible = false;
     window["domModalSalario"].salary = new Object();
     this.isModalVisible = true;
   }
@@ -50,8 +51,10 @@ export class SalaryComponent implements OnInit {
   }
 
   eliminarSalary(id:any){
-    this.salaryService.deleteSalary(id).subscribe(result=>{
-      this.getDataSalary();
+    this.salaryService.deleteSalary(id).subscribe(result=>{      
+      swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
+        this.getDataSalary();
+    });        
     });      
 }
 

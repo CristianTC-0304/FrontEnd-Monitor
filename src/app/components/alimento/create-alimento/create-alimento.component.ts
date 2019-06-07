@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter , ViewChild, ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
@@ -19,11 +19,12 @@ export class CreateAlimentoComponent implements OnInit {
   resTipoAlimento = [];
   resUnidadMedida = [];
   aliment: any = new Object();
-  isAlertVisible = false;
-  // locations = [];
+  isAlertVisible = false;  
+  value = '';
 
   @Input() eventEdit = new Object();
   @Output() isResult = new EventEmitter();
+  @ViewChild('costoAlimento') inputElement: ElementRef;
 
   validateForm: FormControl;
 
@@ -67,11 +68,11 @@ export class CreateAlimentoComponent implements OnInit {
       this.aliment.costoAlimento = Number(this.aliment.costoAlimento);
     }
       this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
-          this.isAlertVisible = true;
-          let entorno = this;
-          setTimeout(function (){ entorno.aliment = new Object();      
-            // this.isAlertVisible = false;      
-            entorno.isResult.emit(true); }, 1000);
+        let entorno = this;
+        swal("Petición correcta!","","success").then(()=>{
+            entorno.aliment = new Object();
+            entorno.isResult.emit(true);
+        });
       })
   }
 
@@ -84,5 +85,26 @@ export class CreateAlimentoComponent implements OnInit {
       this.aliment.idTipoAlimento =  dataEdit.idTipoAlimento.idtipoAlimento;
       this.aliment.idUnidadMedida =  dataEdit.idUnidadMedida.idUnidadMedida;
       this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;
-  }  
+  }
+
+
+
+  onChange(value: string): void {
+    this.updateValue(value);
+  }
+
+  // '.' at the end or only '-' in the input box.
+  onBlur(): void {
+    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
+      this.updateValue(this.value.slice(0, -1));
+    }
+  }
+
+  updateValue(value: string): void {
+    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
+      this.value = value;
+    }
+    this.inputElement.nativeElement.value = this.value;
+  }
 }

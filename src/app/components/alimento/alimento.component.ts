@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter , ViewChild} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter , ViewChild, ElementRef} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -13,6 +13,7 @@ import { AlimentoService } from '../../services/alimento.service';
 import { DocumentTypeService } from '../../services/documentType.service';
 import { CreateAlimentoComponent } from './create-alimento/create-alimento.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import swal from 'sweetalert';
 
 
 @Component({
@@ -22,14 +23,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class AlimentoComponent implements OnInit {
   
-  resData = [];
-
+  resData = [];  
   numTable: number;
   isModalVisible = false;
   isSaveVisible = true;
   dataSave = [];
-  dataEdit: any = new Object();
-
+  dataEdit: any = new Object();  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -47,7 +46,7 @@ export class AlimentoComponent implements OnInit {
   }
 
   showFormCreateAlimento() {
-    window["domModalAlimento"].isAlertVisible = false;
+    // window["domModalAlimento"].isAlertVisible = false;
     window["domModalAlimento"].alimento = new Object();
     this.isModalVisible = true;
   }
@@ -69,10 +68,12 @@ export class AlimentoComponent implements OnInit {
       window["domModalAlimento"].infoEdit(this.dataEdit);
   }
 
-  eliminarAlimento(id: any) {
-      this.alimentoServices.deleteAlimento(id).subscribe(result => {
-        this.getDataAlimento();
-      });
+  eliminarAlimento(id:any){
+      this.alimentoServices.deleteAlimento(id).subscribe(result=>{
+        swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
+          this.getDataAlimento();
+        });        
+      });      
   }
 
 }

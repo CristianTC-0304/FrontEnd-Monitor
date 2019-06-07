@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges,ElementRef , Output, Input, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
@@ -19,10 +19,13 @@ export class CrearVacunaComponent implements OnInit {
   resTipoPresentacion = [];  
   vacuna: any = new Object();
   isAlertVisible = false;
-  // locations = [];
+  value = '';  
+  // title = 'Cantidad';
 
   @Input() eventEdit = new Object();
   @Output() isResult = new EventEmitter();
+  @ViewChild('cantidad') inputElement: ElementRef;
+  @ViewChild('valor') valorElement: ElementRef;
 
   validateForm: FormControl;
 
@@ -36,6 +39,7 @@ export class CrearVacunaComponent implements OnInit {
 
   ngOnInit() {
     this.getPresentacion();    
+
     console.log("Info a editar==>",this.eventEdit);
     window["domModalVacuna"] = this;    
   }
@@ -49,26 +53,17 @@ export class CrearVacunaComponent implements OnInit {
 
   savealiment(){            
       this.vacuna.estado = 1;
-
-      if(isNaN(this.vacuna.cantidad)){
-        swal("Advertencia!", "Campo cantidad solo permite numero.", "warning");
-        return false;
-      } else {
-          this.vacuna.cantidad = Number(this.vacuna.cantidad);
-      }       
-
-      if(isNaN(this.vacuna.valor)){
-        swal("Advertencia!", "Campo valor solo permite numero.", "warning");
-        return false;
-      } else {
-          this.vacuna.valor = Number(this.vacuna.valor);
-      }       
-                 
+      this.vacuna.valor = Number(this.vacuna.valor);
+      this.vacuna.cantidad = Number(this.vacuna.cantidad);                 
       this.vacunaService.createVacuna(this.vacuna).subscribe((result: any) => {           
-          this.isAlertVisible = true;          
+          // this.isAlertVisible = true;          
           let entorno = this;
-          setTimeout(function (){ entorno.vacuna = new Object();            
-            entorno.isResult.emit(true); }, 1000);
+          swal("Petición correcta!","","success").then(()=>{
+              entorno.vacuna = new Object();
+              entorno.isResult.emit(true);
+          });
+          // setTimeout(function (){ entorno.vacuna = new Object();            
+          //   entorno.isResult.emit(true); }, 1000);
           
       })
   }
@@ -84,4 +79,43 @@ export class CrearVacunaComponent implements OnInit {
       this.vacuna.estado = dataEdit.estado;    
       this.vacuna.idPresentacion = dataEdit.idPresentacion.idPresentacion;       
   }   
+
+  onChange(value: string): void {
+    this.updateValue(value);
+  }
+
+  onChangeValor(value: string): void {
+    this.updateValueValor(value);
+  }
+
+  // '.' at the end or only '-' in the input box.
+  onBlur(): void {
+    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
+      this.updateValue(this.value.slice(0, -1));
+    }
+  }
+
+  onBlurValor(): void {
+    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
+      this.updateValueValor(this.value.slice(0, -1));
+    }
+  }
+
+  updateValue(value: string): void {
+    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
+      this.value = value;
+    }
+    this.inputElement.nativeElement.value = this.value;   
+  }  
+  
+  updateValueValor(value: string): void {
+    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
+      this.value = value;
+    }
+    this.valorElement.nativeElement.value = this.value;   
+  }
+
+
 }

@@ -11,7 +11,7 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="valor" class="ant-form-item-required letter-label-style">Valor:</label>
-                    <input [(ngModel)]="vacuna.valor" #valor name="valor" nz-input placeholder="Ingrese el valor" required/>
+                    <input [(ngModel)]="vacuna.valor" #valor name="valor" nz-input placeholder="Ingrese el valor" required (ngModelChange)="onChangeValor($event)" (blur)="onBlurValor()" />
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -25,7 +25,7 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="cantidad" class="ant-form-item-required letter-label-style">Cantidad:</label>
-                    <input [(ngModel)]="vacuna.cantidad" #cantidad name="cantidad" nz-input placeholder="Ingrese la cantidad" required/>
+                    <input [(ngModel)]="vacuna.cantidad" #cantidad name="cantidad" nz-input placeholder="Ingrese la cantidad" required (ngModelChange)="onChange($event)" (blur)="onBlur()" />
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -59,4 +59,4 @@
     </div>
 </form>
 <br>
-<nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert>
+<!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { VacunaService } from '../../services/vacuna.service';
+import swal from 'sweetalert';
 
 // let vacunaList;
 
@@ -45,7 +46,7 @@ export class VacunaComponent implements OnInit {
   }
 
   showFormCreateVacuna() {
-    window["domModalVacuna"].isAlertVisible = false;
+    // window["domModalVacuna"].isAlertVisible = false;    
     window["domModalVacuna"].vacuna = new Object();
     this.isModalVisible = true;
   }
@@ -68,8 +69,10 @@ export class VacunaComponent implements OnInit {
   }
 
   eliminarVacuna(id:any){
-      this.vacunaServices.deleteVacuna(id).subscribe(result=>{
-        this.getDataVacuna();
+      this.vacunaServices.deleteVacuna(id).subscribe(result=>{        
+        swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
+            this.getDataVacuna();
+        });        
       });      
   }
 

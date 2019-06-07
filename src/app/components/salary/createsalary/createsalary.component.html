@@ -5,13 +5,13 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="salaryBasic" class="ant-form-item-required letter-label-style">Salario básico</label>
-                    <input [(ngModel)]="salary.salario" #salaryBasic name="salaryBasic" nz-input placeholder="Ingrese el salario basico" required/>
+                    <input [(ngModel)]="salary.salario" #salaryBasic name="salaryBasic" nz-input placeholder="Ingrese el salario basico" required (ngModelChange)="onChange($event,1)" (blur)="onBlur()" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
                     <label for="auxilioTransporte" class="ant-form-item-required letter-label-style">Auxilio de transporte</label>
-                    <input [(ngModel)]="salary.auxilioTransporte" #auxilioTransporte name="auxilioTransporte" nz-input placeholder="Ingrese valor auxilio de transporte" required/>
+                    <input [(ngModel)]="salary.auxilioTransporte" #auxilioTransporte name="auxilioTransporte" nz-input placeholder="Ingrese valor auxilio de transporte" required (ngModelChange)="onChange($event,2)" (blur)="onBlur()" />
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -19,13 +19,13 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="prestacionSocial" class="ant-form-item-required letter-label-style ">Prestación social</label>
-                    <input [(ngModel)]="salary.prestacionesSociales" #prestacionSocial name="prestacionSocial" nz-input placeholder="Ingrese valor social" required/>
+                    <input [(ngModel)]="salary.prestacionesSociales" #prestacionSocial name="prestacionSocial" nz-input placeholder="Ingrese valor social" required (ngModelChange)="onChange($event,3)" (blur)="onBlur()" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
                     <label for="year" class="ant-form-item-required letter-label-style">Año</label>
-                    <input [(ngModel)]="salary.periodo" #year name="year" nz-input placeholder="Ingrese el año" required/>
+                    <nz-year-picker [nzFormat]="yyyy" [nzPlaceHolder]="2019"></nz-year-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -41,4 +41,4 @@
     </div>
 </form>
 <br>
-<nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert>
+<!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->
