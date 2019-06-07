@@ -30,6 +30,7 @@ export class StaffComponent implements OnInit {
   isModalVisible = false;
   isSaveVisible = true;
   dataSave = [];
+  dataEdit: any = new Object();
 
   constructor(
     private route: ActivatedRoute,
@@ -42,26 +43,42 @@ export class StaffComponent implements OnInit {
   }
 
   getDataStaff() {
-    this.staffServices.getStaff().subscribe(data => {
-      this.resData = data;
+    console.log('cuantas veces entra');
+    this.staffServices.getStaff().subscribe((data: any) => {
+      this.resData = data.filter(item => item.estado === 1);
     });
   }
 
   showFormCreateStaff() {
+    window['domModalStaff'].isAlertVisible = false;
+    window['domModalStaff'].staff = new Object();
     this.isModalVisible = true;
-  }
-
-  saveEmitStaff(event) {
-    console.log('event data', event.data);
-    this.isSaveVisible = event.showButtonSave;
-    this.dataSave = event.data;
-    console.log('dataSave', this.dataSave);
   }
 
   saveStaff() {
     console.log("Entro");
     // this.createStaff.emit('example');
     this.childSubmit.emit();
+  }
+
+  editStaff(obj: any) {
+    console.log('info Object', obj);
+    this.dataEdit = obj;
+    this.isModalVisible = true;
+    window['domModalStaff'].infoEdit(this.dataEdit);
+}
+
+  handleCancelTop() {
+    console.log('cuando entro');
+    this.isModalVisible = false;
+    this.getDataStaff();
+  }
+
+  deleteStaff(idStaff) {
+    this.staffServices.deleteStaff(idStaff).subscribe(result => {
+      this.getDataStaff();
+    });
+    console.log('idStaff', idStaff);
   }
 
 }

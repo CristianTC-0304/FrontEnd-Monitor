@@ -64,8 +64,8 @@ export class AlimentoComponent implements OnInit {
 
   editAlimento(obj: any){
       this.dataEdit = obj;
-      this.isModalVisible = true;       
-      window["domModalAlimento"].infoEdit(this.dataEdit); 
+      this.isModalVisible = true;
+      window["domModalAlimento"].infoEdit(this.dataEdit);
   }
 
   eliminarAlimento(id:any){

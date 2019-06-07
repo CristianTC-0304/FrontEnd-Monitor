@@ -42,7 +42,7 @@ export class CreateAlimentoComponent implements OnInit {
     this.getTipoAlimento();
     this.getUnidadMedida();
     console.log("Info a editar==>",this.eventEdit);
-    window["domModalAlimento"] = this;    
+    window["domModalAlimento"] = this;
   }
 
   getTipoAlimento() {
@@ -84,7 +84,7 @@ export class CreateAlimentoComponent implements OnInit {
       this.aliment.costoAlimento =  dataEdit.costoAlimento;
       this.aliment.idTipoAlimento =  dataEdit.idTipoAlimento.idtipoAlimento;
       this.aliment.idUnidadMedida =  dataEdit.idUnidadMedida.idUnidadMedida;
-      this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;      
+      this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;
   }
 
 

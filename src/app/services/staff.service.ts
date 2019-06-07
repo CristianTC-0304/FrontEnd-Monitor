@@ -35,6 +35,11 @@ export class StaffService {
     return this.http.post<Staff>(this.url, data).pipe(response => response);
   }
 
+  deleteStaff(id): Observable<Staff> {
+    const url =  `${this.url}/${id}`;
+    return this.http.put<Staff>(url, {}).pipe(result => result);
+  }
+
   /**
  * Handle Http operation that failed.
  * Let the app continue.
