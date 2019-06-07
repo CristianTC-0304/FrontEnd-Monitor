@@ -65,7 +65,7 @@ export class CreateAlimentoComponent implements OnInit {
       swal("Advertencia!", "Campo costo alimento solo permite numero.", "warning");
     } else {
       this.aliment.costoAlimento = Number(this.aliment.costoAlimento);
-    }        
+    }
       this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
           this.isAlertVisible = true;
           let entorno = this;
@@ -84,10 +84,5 @@ export class CreateAlimentoComponent implements OnInit {
       this.aliment.idTipoAlimento =  dataEdit.idTipoAlimento.idtipoAlimento;
       this.aliment.idUnidadMedida =  dataEdit.idUnidadMedida.idUnidadMedida;
       this.aliment.idprecioAlimento =  dataEdit.idprecioAlimento;
-  }
-
-
-
-
-   
+  }  
 }
