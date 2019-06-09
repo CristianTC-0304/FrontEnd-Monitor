@@ -100,7 +100,7 @@ export class CreatestaffComponent implements OnInit {
     this.staff.celular = dataEdit.celular;
     this.staff.idMunicipio = dataEdit.idMunicipio.dto.idMunicipio;
     this.staff.direccion = dataEdit.direccion;
-    this.staff.telefono = 'sada';
+    this.staff.telefono = dataEdit.telefono;
     this.staff.estado = 1;
 }
 }

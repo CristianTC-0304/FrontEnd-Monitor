@@ -16,7 +16,7 @@ export class CreatesalaryComponent implements OnInit {
   value = '';
   salary: any = new Object();
   isAlertVisible = false;
-  date: any;
+  date: any = new Date();
   @Input() eventEdit = new Object();
   @Output() isResult = new EventEmitter();
   @ViewChild('salaryBasic') salaryBasicElement: ElementRef;
@@ -28,14 +28,17 @@ export class CreatesalaryComponent implements OnInit {
     private salaryService: SalaryService) { }
 
   ngOnInit() {
-    this.date = new Date();
     this.date = this.date.getUTCFullYear();
     console.log('example', this.date);
     console.log("Info a editar==>", this.eventEdit);
     window["domModalSalario"] = this;
+    this.salary.periodo = this.date;
+    console.log('salary', this.salary);
   }
 
   saveSalary() {
+
+    console.log('full date', this.salary.periodo);
 
     if(isNaN(this.salary.salario )) {
       swal("Advertencia!", "Campo salario solo permite numero.", "warning");
@@ -116,11 +119,10 @@ export class CreatesalaryComponent implements OnInit {
         break;
         case 4:
             this.yearElement.nativeElement.value = this.value;
-        break;    
+        break;
       default:
         break;
     }
-    
   }
 
 
