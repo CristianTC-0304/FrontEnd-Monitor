@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Output, Input, EventEmitter } from '@angular/core';
+import { Component, ElementRef, OnInit, OnChanges, Output, Input, ViewChild, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DocumentTypeService } from '../../../services/documentType.service';
@@ -22,6 +22,7 @@ export class CreatestaffComponent implements OnInit {
 
   @Input() eventSave = new EventEmitter();
   @Output() isResult = new EventEmitter();
+  //@ViewChild('inputElement') inputElement: ElementRef;
 
   validateForm: FormControl;
 
@@ -40,6 +41,19 @@ export class CreatestaffComponent implements OnInit {
      this.getDepartament();
      this.getPosition();
      window['domModalStaff'] = this;
+  }
+
+  onChange(value: string): void {
+    this.validateInputNumeric(value);
+  }
+
+  validateInputNumeric(value): void {
+    console.log('isValue', value)
+    const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
+     
+    }
+    //this.inputElement.nativeElement.value = this.staff.documento;
   }
 
   locationChange(event) {

@@ -3,7 +3,7 @@
       <div nz-col nzSpan="12">
         <nz-form-item>
           <nz-form-control>
-              <label for="idTipoDocumento">Tipo Documento</label><br>
+              <label for="idTipoDocumento" class="ant-form-item-required letter-label-style">Tipo Documento</label><br>
               <nz-select [(ngModel)]="staff.idTipoDocumento" #idTipoDocumento name="idTipoDocumento" style="width: 200px;" [nzSize]="size" required>
                 <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.nombreTipoDocumento"
                   [nzValue]="document.idTipoDocumento"></nz-option>
@@ -51,7 +51,7 @@
         <nz-form-item>
           <nz-form-control>
             <label for="documento" class="ant-form-item-required letter-label-style">Documento</label>
-            <input [(ngModel)]="staff.documento" #documento name="documento" nz-input placeholder="Ingrese número documento" required/>
+            <input pattern="[0-9]*" [(ngModel)]="staff.documento" #documento name="documento" nz-input placeholder="Ingrese número documento" digitOnly required/>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>

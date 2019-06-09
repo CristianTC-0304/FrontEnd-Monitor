@@ -45,6 +45,7 @@ export class StaffComponent implements OnInit {
   getDataStaff() {
     console.log('cuantas veces entra');
     this.staffServices.getStaff().subscribe((data: any) => {
+      console.log('data staff', data);
       this.resData = data.filter(item => item.estado === 1);
     });
   }

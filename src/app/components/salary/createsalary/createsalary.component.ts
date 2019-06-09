@@ -58,12 +58,12 @@ export class CreatesalaryComponent implements OnInit {
       this.salary.prestacionesSociales = Number(this.salary.prestacionesSociales);
     }
 
-    if(isNaN(this.salary.periodo)){
+    /*if(isNaN(this.salary.periodo)){
       swal("Advertencia!", "Campo año solo permite numero.", "warning");
       return false;
     } else {
       this.salary.periodo = Number(this.salary.periodo);
-    }     
+    }*/     
 
     this.salaryService.createSalary(this.salary).subscribe((result: any) => {
       // this.isAlertVisible = true;
