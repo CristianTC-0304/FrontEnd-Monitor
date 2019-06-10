@@ -25,11 +25,10 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="year" class="ant-form-item-required letter-label-style">Año</label>
-                    <nz-year-picker [nzFormat]="yyyy" [nzPlaceHolder]="2019"></nz-year-picker>
+                    <nz-year-picker [nzPlaceHolder]="2019" [nzFormat]="yyyy" [(ngModel)]="salary.periodo" #periodo name="periodo"></nz-year-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>
-
         <div nz-col nzSpan="6">
             <nz-form-item>
                 <nz-form-control [nzSpan]="5" [nzOffset]="5">
