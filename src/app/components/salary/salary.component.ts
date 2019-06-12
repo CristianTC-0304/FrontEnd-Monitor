@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SalaryService } from '../../services/salary.service';
-import  swal from 'sweetalert';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-salary',
@@ -28,8 +28,8 @@ export class SalaryComponent implements OnInit {
   }
 
   getDataSalary() {
-    this.salaryService.getSalary().subscribe((data:any) => {
-      this.resData = data.filter(item => item.estado == 1);   
+    this.salaryService.getSalary().subscribe((data: any) => {
+      this.resData = data.filter(item => item.estado == 1);
     });
   }
 
@@ -50,12 +50,24 @@ export class SalaryComponent implements OnInit {
     window["domModalSalario"].infoEdit(this.dataEdit);
   }
 
-  eliminarSalary(id:any){
-    this.salaryService.deleteSalary(id).subscribe(result=>{      
-      swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
-        this.getDataSalary();
-    });        
-    });      
-}
+  eliminarSalary(id: any) {
+
+    swal({
+      title: "Alerta",
+      text: "¿Esta seguro de eliminar el registro?",
+      icon: "warning",
+      dangerMode: true,
+      closeOnClickOutside: true,
+      closeOnEsc: false
+    }).then(willDelete => {
+      if (willDelete) {
+        this.salaryService.deleteSalary(id).subscribe(result => {
+          swal("Petición correcta!", "Se elimino correctamente", "success").then(() => {
+            this.getDataSalary();
+          });
+        });
+      }
+    });
+  }
 
 }
