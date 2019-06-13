@@ -21,7 +21,7 @@ export class CreateAlimentoComponent implements OnInit {
   aliment: any = new Object();
   isAlertVisible = false;  
   value = '';
-
+  title = 'Este campo es numerico';
   @Input() eventEdit = new Object();
   @Output() isResult = new EventEmitter();
   @ViewChild('costoAlimento') inputElement: ElementRef;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter , ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -22,26 +22,26 @@ import swal from 'sweetalert';
   styleUrls: ['./alimento.component.css']
 })
 export class AlimentoComponent implements OnInit {
-  
-  resData = [];  
+
+  resData = [];
   numTable: number;
   isModalVisible = false;
   isSaveVisible = true;
   dataSave = [];
-  dataEdit: any = new Object();  
+  dataEdit: any = new Object();
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private alimentoServices: AlimentoService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getDataAlimento();
   }
 
   getDataAlimento() {
-    this.alimentoServices.getAlimento().subscribe((data : any) => {
-      this.resData = data.filter(item => item.estado == 1);      
+    this.alimentoServices.getAlimento().subscribe((data: any) => {
+      this.resData = data.filter(item => item.estado == 1);
     });
   }
 
@@ -51,29 +51,41 @@ export class AlimentoComponent implements OnInit {
     this.isModalVisible = true;
   }
 
-  saveEmitAlimento(event) {    
+  saveEmitAlimento(event) {
     this.isSaveVisible = event.showButtonSave;
-    this.dataSave = event.data;    
+    this.dataSave = event.data;
   }
 
 
-  handleCancelTop(){           
-      this.isModalVisible = false;      
-      this.getDataAlimento();
+  handleCancelTop() {
+    this.isModalVisible = false;
+    this.getDataAlimento();
   }
 
-  editAlimento(obj: any){
-      this.dataEdit = obj;
-      this.isModalVisible = true;
-      window["domModalAlimento"].infoEdit(this.dataEdit);
+  editAlimento(obj: any) {
+    this.dataEdit = obj;
+    this.isModalVisible = true;
+    window["domModalAlimento"].infoEdit(this.dataEdit);
   }
 
-  eliminarAlimento(id:any){
-      this.alimentoServices.deleteAlimento(id).subscribe(result=>{
-        swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
-          this.getDataAlimento();
-        });        
-      });      
+  eliminarAlimento(id: any) {
+
+    swal({
+      title: "Alerta",
+      text: "¿Esta seguro de eliminar el registro?",
+      icon: "warning",
+      dangerMode: true,
+      closeOnClickOutside: true,
+      closeOnEsc: false
+    }).then(willDelete => {
+      if (willDelete) {
+        this.alimentoServices.deleteAlimento(id).subscribe(result => {
+          swal("Petición correcta!", "Se elimino correctamente", "success").then(() => {
+            this.getDataAlimento();
+          });
+        });
+      }
+    });
   }
 
 }

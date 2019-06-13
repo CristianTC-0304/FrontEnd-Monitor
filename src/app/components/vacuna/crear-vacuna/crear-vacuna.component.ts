@@ -21,7 +21,7 @@ export class CrearVacunaComponent implements OnInit {
   isAlertVisible = false;
   value = '';  
   // title = 'Cantidad';
-
+  title = 'Este campo es numerico';
   @Input() eventEdit = new Object();
   @Output() isResult = new EventEmitter();
   @ViewChild('cantidad') inputElement: ElementRef;

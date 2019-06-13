@@ -12,7 +12,7 @@ let domModalSalario;
 })
 export class CreatesalaryComponent implements OnInit {
 
-
+  title = 'Este campo es numerico';
   value = '';
   salary: any = new Object();
   isAlertVisible = false;

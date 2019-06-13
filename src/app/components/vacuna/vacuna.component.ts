@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -19,7 +19,7 @@ import swal from 'sweetalert';
   styleUrls: ['./vacuna.component.css']
 })
 export class VacunaComponent implements OnInit {
-  
+
   resData = [];
 
   numTable: number;
@@ -32,7 +32,7 @@ export class VacunaComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private vacunaServices: VacunaService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getDataVacuna();
@@ -40,8 +40,8 @@ export class VacunaComponent implements OnInit {
   }
 
   getDataVacuna() {
-    this.vacunaServices.getVacuna().subscribe((data : any) => {      
-      this.resData = data.filter(item => item.estado == 1);      
+    this.vacunaServices.getVacuna().subscribe((data: any) => {
+      this.resData = data.filter(item => item.estado == 1);
     });
   }
 
@@ -51,29 +51,44 @@ export class VacunaComponent implements OnInit {
     this.isModalVisible = true;
   }
 
-  saveEmitVacuna(event) {    
+  saveEmitVacuna(event) {
     this.isSaveVisible = event.showButtonSave;
-    this.dataSave = event.data;    
+    this.dataSave = event.data;
   }
 
 
   handleCancelTop() {
-      this.isModalVisible = false;      
-      this.getDataVacuna();
+    this.isModalVisible = false;
+    this.getDataVacuna();
   }
 
-  editVacuna(obj: any){
-      this.dataEdit = obj;
-      this.isModalVisible = true;       
-      window["domModalVacuna"].infoEdit(this.dataEdit); 
+  editVacuna(obj: any) {
+    this.dataEdit = obj;
+    this.isModalVisible = true;
+    window["domModalVacuna"].infoEdit(this.dataEdit);
   }
 
-  eliminarVacuna(id:any){
-      this.vacunaServices.deleteVacuna(id).subscribe(result=>{        
-        swal("Petición correcta!","Se elimino correctamente","success").then(()=>{
-            this.getDataVacuna();
-        });        
-      });      
+  eliminarVacuna(id: any) {
+
+    swal({
+      title: "Alerta",
+      text: "¿Esta seguro de eliminar el registro?",
+      icon: "warning",
+      dangerMode: true,
+      closeOnClickOutside: true,
+      closeOnEsc: false
+    }).then(willDelete => {
+        if (willDelete) {
+          this.vacunaServices.deleteVacuna(id).subscribe(result => {
+            swal("Petición correcta!", "Se elimino correctamente", "success").then(() => {
+              this.getDataVacuna();
+            });
+          });
+        }
+      });
   }
+
+
+
 
 }

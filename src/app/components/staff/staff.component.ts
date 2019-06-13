@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter , ViewChild} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 import { StaffService } from '../../services/staff.service';
 import { DocumentTypeService } from '../../services/documentType.service';
 import { CreatestaffComponent } from './createstaff/createstaff.component';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-staff',
@@ -36,7 +37,7 @@ export class StaffComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private staffServices: StaffService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getDataStaff();
@@ -67,7 +68,7 @@ export class StaffComponent implements OnInit {
     this.dataEdit = obj;
     this.isModalVisible = true;
     window['domModalStaff'].infoEdit(this.dataEdit);
-}
+  }
 
   handleCancelTop() {
     console.log('cuando entro');
@@ -76,10 +77,25 @@ export class StaffComponent implements OnInit {
   }
 
   deleteStaff(idStaff) {
-    this.staffServices.deleteStaff(idStaff).subscribe(result => {
-      this.getDataStaff();
-    });
-    console.log('idStaff', idStaff);
+
+    swal({
+      title: "Alerta",
+      text: "¿Esta seguro de eliminar el registro?",
+      icon: "warning",
+      dangerMode: true,
+      closeOnClickOutside: true,
+      closeOnEsc: false
+    }).then(willDelete => {
+        if (willDelete) {
+          this.staffServices.deleteStaff(idStaff).subscribe(result => {
+            swal("Petición correcta!", "Se elimino correctamente", "success").then(() => {
+              this.getDataStaff();
+            });
+          });
+        }
+      });
+    
+    // console.log('idStaff', idStaff);
   }
 
 }
