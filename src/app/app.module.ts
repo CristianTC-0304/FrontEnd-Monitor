@@ -20,6 +20,7 @@ import { CreateAlimentoComponent } from './components/alimento/create-alimento/c
 import { VacunaComponent } from './components/vacuna/vacuna.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
 import { GraphicComponent } from './components/graphic/graphic.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 registerLocaleData(en);
@@ -37,6 +38,7 @@ registerLocaleData(en);
     VacunaComponent,
     CrearVacunaComponent,
     GraphicComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
