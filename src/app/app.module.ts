@@ -19,7 +19,7 @@ import { AlimentoComponent } from './components/alimento/alimento.component';
 import { CreateAlimentoComponent } from './components/alimento/create-alimento/create-alimento.component';
 import { VacunaComponent } from './components/vacuna/vacuna.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
-
+import { GraphifComponent } from './components/graphif/graphif.component';
 
 registerLocaleData(en);
 
@@ -35,6 +35,7 @@ registerLocaleData(en);
     CreateAlimentoComponent,
     VacunaComponent,
     CrearVacunaComponent,
+    GraphifComponent
   ],
   imports: [
     BrowserModule,
