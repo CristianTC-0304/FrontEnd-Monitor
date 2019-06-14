@@ -20,6 +20,7 @@ export class CrearVacunaComponent implements OnInit {
   vacuna: any = new Object();
   isAlertVisible = false;
   value = '';  
+  valueCantidad = '';  
   // title = 'Cantidad';
   title = 'Este campo es numerico';
   @Input() eventEdit = new Object();
@@ -52,6 +53,8 @@ export class CrearVacunaComponent implements OnInit {
   }  
 
   savealiment(){            
+
+    if(this.vacuna.fechaVencimiento != "" && this.vacuna.fechaVencimiento != null && typeof  this.vacuna.fechaVencimiento != "undefined"){
       this.vacuna.estado = 1;
       this.vacuna.valor = Number(this.vacuna.valor);
       this.vacuna.cantidad = Number(this.vacuna.cantidad);                 
@@ -66,6 +69,7 @@ export class CrearVacunaComponent implements OnInit {
           //   entorno.isResult.emit(true); }, 1000);
           
       })
+    }    
   }
 
   /**Cargar Información a la modal */
@@ -96,8 +100,8 @@ export class CrearVacunaComponent implements OnInit {
   }
 
   onBlurValor(): void {
-    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
-      this.updateValueValor(this.value.slice(0, -1));
+    if (this.valueCantidad.charAt(this.valueCantidad.length - 1) === '.' || this.valueCantidad === '-') {
+      this.updateValueValor(this.valueCantidad.slice(0, -1));
     }
   }
 
@@ -112,9 +116,9 @@ export class CrearVacunaComponent implements OnInit {
   updateValueValor(value: string): void {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
-      this.value = value;
+      this.valueCantidad = value;
     }
-    this.valorElement.nativeElement.value = this.value;   
+    this.valorElement.nativeElement.value = this.valueCantidad;   
   }
 
 

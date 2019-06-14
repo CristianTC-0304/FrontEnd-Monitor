@@ -20,7 +20,9 @@ export class CreatestaffComponent implements OnInit {
   staff: any = new Object();
   locations = [];
   isAlertVisible = false;
-  value = '';
+  valueDocumento = '';
+  valueTelefono = '';
+  valueCelular = '';
   title = 'Este campo es numerico';
   @Input() eventSave = new EventEmitter();
   @Output() isResult = new EventEmitter();
@@ -94,17 +96,23 @@ export class CreatestaffComponent implements OnInit {
   saveStaff() {
     if (this.validar_email(this.staff.correoElectronico)) {
       console.log('example data', this.staff);
-      this.staffService.createStaff(this.staff).subscribe((result: any) => {
-        // this.isAlertVisible = true;
-        // let entorno = this;
-        //   setTimeout(function () { 
-        //      }, 1000);
-        let entorno = this;
-        swal("Petición correcta!", "", "success").then(() => {
-          entorno.staff = new Object();
-          entorno.isResult.emit(true);
-        });
-      });
+
+      if(this.staff.idTipoDocumento != null && typeof this.staff.idTipoDocumento != "undefined" && this.staff.idTipoDocumento != ""
+         && this.staff.idDepartamento != null && typeof this.staff.idDepartamento != "undefined" && this.staff.idDepartamento != ""
+         && this.staff.idCargo != null && typeof this.staff.idCargo != "undefined" && this.staff.idCargo != ""
+         && this.staff.idMunicipio != null && typeof this.staff.idMunicipio != "undefined" && this.staff.idMunicipio != ""){        
+          this.staffService.createStaff(this.staff).subscribe((result: any) => {
+            // this.isAlertVisible = true;
+            // let entorno = this;
+            //   setTimeout(function () { 
+            //      }, 1000);
+            let entorno = this;
+            swal("Petición correcta!", "", "success").then(() => {
+              entorno.staff = new Object();
+              entorno.isResult.emit(true);
+            });
+          });
+      }      
     }
     else {
       swal("La dirección de email es incorrecta.", "", "warning").then(() => {
@@ -148,45 +156,45 @@ export class CreatestaffComponent implements OnInit {
   }
 
   onBlur(): void {
-    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
-      this.updateValue(this.value.slice(0, -1));
+    if (this.valueTelefono.charAt(this.valueTelefono.length - 1) === '.' || this.valueTelefono === '-') {
+      this.updateValue(this.valueTelefono.slice(0, -1));
     }
   }
 
   onBlurDocumento(): void {
-    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
-      this.updateValueDocumento(this.value.slice(0, -1));
+    if (this.valueDocumento.charAt(this.valueDocumento.length - 1) === '.' || this.valueDocumento === '-') {
+      this.updateValueDocumento(this.valueDocumento.slice(0, -1));
     }
   }
 
   onBlurCelular(): void {
-    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
-      this.updateValueCelular(this.value.slice(0, -1));
+    if (this.valueCelular.charAt(this.valueCelular.length - 1) === '.' || this.valueCelular === '-') {
+      this.updateValueCelular(this.valueCelular.slice(0, -1));
     }
   }
 
   updateValue(value: string): void {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
-      this.value = value;
+      this.valueTelefono = value;
     }
-    this.inputElement.nativeElement.value = this.value;
+    this.inputElement.nativeElement.value = this.valueTelefono;
   }
 
   updateValueDocumento(value: string): void {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
-      this.value = value;
+      this.valueDocumento = value;
     }
-    this.documentoElement.nativeElement.value = this.value;
+    this.documentoElement.nativeElement.value = this.valueDocumento;
   }
 
   updateValueCelular(value: string): void {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
-      this.value = value;
+      this.valueCelular = value;
     }
-    this.celularElement.nativeElement.value = this.value;
+    this.celularElement.nativeElement.value = this.valueCelular;
   }
 
   validar_email(email) {

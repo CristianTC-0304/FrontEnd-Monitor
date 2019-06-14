@@ -1,130 +1,114 @@
 <form nz-form [nzLayout]="'inline'" #staffForm="ngForm" (ngSubmit)="saveStaff()">
-  <!--(createStaff)="eventSaveForm(staffForm)"-->
-  <div nz-row>
-    <div nz-col nzSpan="12">
-      <nz-form-item>
-        <nz-form-control>
-          <label for="idTipoDocumento" class="ant-form-item-required letter-label-style">Tipo Documento</label><br>
-          <nz-select [(ngModel)]="staff.idTipoDocumento" nzPlaceHolder="Seleccion tipo documento" #idTipoDocumento
-            name="idTipoDocumento" style="width: 200px;" [nzSize]="size" required>
-            <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.nombreTipoDocumento"
-              [nzValue]="document.idTipoDocumento"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="primerNombre" class="ant-form-item-required letter-label-style">Primer nombre</label>
-          <input [(ngModel)]="staff.primerNombre" #primerNombre name="primerNombre" nz-input
-            placeholder="Ingrese el primer nombre" required />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="primerApellido" class="ant-form-item-required letter-label-style">Primer apellido</label>
-          <input [(ngModel)]="staff.primerApellido" #primerApellido name="primerApellido" nz-input
-            placeholder="Ingrese el primer apellido" required />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="telefono">Teléfono</label>
-          <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-            <input [(ngModel)]="staff.telefono" maxlength="7" (ngModelChange)="onChange($event)" (blur)="onBlur()" nz-tooltip #telefono name="telefono" nz-input
-              placeholder="Ingrese su teléfono" />
-          </nz-tooltip>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="idMunicipio" class="ant-form-item-required letter-label-style">Municipio</label><br>
-          <nz-select (ngModelChange)="locationChange($event)" nzPlaceHolder="Seleccion Municipio"
-            [(ngModel)]="staff.idDepartamento" #idMunicipio name="idMunicipio" style="width: 200px;" [nzSize]="size"
-            required>
-            <nz-option *ngFor="let municipy of resDepartament" [nzLabel]="municipy.departamento"
-              [nzValue]="municipy.idDepartamento"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="idCargo" class="ant-form-item-required letter-label-style">Cargo</label><br>
-          <nz-select [(ngModel)]="staff.idCargo" nzPlaceHolder="Seleccion Cargo" #idCargo name="idCargo"
-            style="width: 200px;" [nzSize]="size" required>
-            <nz-option *ngFor="let positions of position" [nzLabel]="positions.nombreCargo"
-              [nzValue]="positions.idCargo"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="correoElectronico" class="ant-form-item-required letter-label-style">Email</label>
-          <input [(ngModel)]="staff.correoElectronico"  #correoElectronico name="correoElectronico" nz-input
-            placeholder="Ingrese su Email" required />
-        </nz-form-control>
-      </nz-form-item>
+    <!--(createStaff)="eventSaveForm(staffForm)"-->
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="idTipoDocumento" class="ant-form-item-required letter-label-style">Tipo Documento</label><br>
+                    <nz-select [(ngModel)]="staff.idTipoDocumento" nzPlaceHolder="Seleccion tipo documento" #idTipoDocumento name="idTipoDocumento" style="width: 200px;" [nzSize]="size">
+                        <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.nombreTipoDocumento" [nzValue]="document.idTipoDocumento"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="primerNombre" class="ant-form-item-required letter-label-style">Primer nombre</label>
+                    <input [(ngModel)]="staff.primerNombre" #primerNombre name="primerNombre" nz-input placeholder="Ingrese el primer nombre" required style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="primerApellido" class="ant-form-item-required letter-label-style">Primer apellido</label>
+                    <input [(ngModel)]="staff.primerApellido" #primerApellido name="primerApellido" nz-input placeholder="Ingrese el primer apellido" required style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="telefono">Teléfono</label>
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="staff.telefono" maxlength="7" (ngModelChange)="onChange($event)" (blur)="onBlur()" nz-tooltip #telefono name="telefono" nz-input placeholder="Ingrese su teléfono" style="border: 1px solid #d9d9d9 !important" />
+                    </nz-tooltip>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="idMunicipio" class="ant-form-item-required letter-label-style">Municipio</label><br>
+                    <nz-select (ngModelChange)="locationChange($event)" nzPlaceHolder="Seleccion Municipio" [(ngModel)]="staff.idDepartamento" #idMunicipio name="idMunicipio" style="width: 200px;" [nzSize]="size">
+                        <nz-option *ngFor="let municipy of resDepartament" [nzLabel]="municipy.departamento" [nzValue]="municipy.idDepartamento"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="idCargo" class="ant-form-item-required letter-label-style">Cargo</label><br>
+                    <nz-select [(ngModel)]="staff.idCargo" nzPlaceHolder="Seleccion Cargo" #idCargo name="idCargo" style="width: 200px;" [nzSize]="size" required>
+                        <nz-option *ngFor="let positions of position" [nzLabel]="positions.nombreCargo" [nzValue]="positions.idCargo"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="correoElectronico" class="ant-form-item-required letter-label-style">Email</label>
+                    <input [(ngModel)]="staff.correoElectronico" #correoElectronico name="correoElectronico" nz-input placeholder="Ingrese su Email" required style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="documento" class="ant-form-item-required letter-label-style">Documento</label>
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input pattern="[0-9]*" [(ngModel)]="staff.documento" (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #documento name="documento" nz-input placeholder="Ingrese número documento" digitOnly required style="border: 1px solid #d9d9d9 !important"
+                        />
+                    </nz-tooltip>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="segundoNombre">Segundo nombre</label>
+                    <input [(ngModel)]="staff.segundoNombre" #segundoNombre name="segundoNombre" nz-input placeholder="Ingrese segundo nombre" style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="segundoApellido">Segundo apellido</label>
+                    <input [(ngModel)]="staff.segundoApellido" #segundoApellido name="segundoApellido" nz-input placeholder="Ingrese segundo apellido" style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="celular" class="ant-form-item-required letter-label-style">Celular</label>
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="staff.celular" maxlength="10" (ngModelChange)="onChangeCelular($event)" (blur)="onBlurCelular()" nz-tooltip #celular name="celular" nz-input required placeholder="Ingrese el número celular" required style="border: 1px solid #d9d9d9 !important"
+                        />
+                    </nz-tooltip>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="ciudad" class="ant-form-item-required letter-label-style">Ciudad</label>
+                    <nz-select [(ngModel)]="staff.idMunicipio" nzPlaceHolder="Seleccion Ciudad" #ciudad name="ciudad" style="width: 200px;" [nzSize]="size" required nzShowSearch>
+                        <nz-option *ngFor="let location of locations" [nzLabel]="location.municipio" [nzValue]="location.idMunicipio"></nz-option>
+                    </nz-select>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-control>
+                    <label for="direccion" class="ant-form-item-required letter-label-style">Dirección</label>
+                    <input [(ngModel)]="staff.direccion" #direccion name="direccion" nz-input placeholder="Ingrese la dirección de residencia" required style="border: 1px solid #d9d9d9 !important" />
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col nzSpan="6">
+            <nz-form-item>
+                <nz-form-control [nzSpan]="5" [nzOffset]="5">
+                    <br>
+                    <button nz-button nzType="primary" [disabled]="!staffForm.valid">Guardar</button>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
     </div>
-    <div nz-col nzSpan="12">
-      <nz-form-item>
-        <nz-form-control>
-          <label for="documento" class="ant-form-item-required letter-label-style">Documento</label>
-          <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-            <input pattern="[0-9]*" [(ngModel)]="staff.documento"  (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #documento name="documento" nz-input
-              placeholder="Ingrese número documento" digitOnly required />
-          </nz-tooltip>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="segundoNombre">Segundo nombre</label>
-          <input [(ngModel)]="staff.segundoNombre" #segundoNombre name="segundoNombre" nz-input
-            placeholder="Ingrese segundo nombre" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="segundoApellido">Segundo apellido</label>
-          <input [(ngModel)]="staff.segundoApellido" #segundoApellido name="segundoApellido" nz-input
-            placeholder="Ingrese segundo apellido" />
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="celular" class="ant-form-item-required letter-label-style">Celular</label>
-          <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-          <input [(ngModel)]="staff.celular" maxlength="10" (ngModelChange)="onChangeCelular($event)" (blur)="onBlurCelular()" nz-tooltip #celular name="celular" nz-input required
-            placeholder="Ingrese el número celular" required />
-          </nz-tooltip>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <label for="ciudad" class="ant-form-item-required letter-label-style">Ciudad</label>
-          <nz-select [(ngModel)]="staff.idMunicipio" nzPlaceHolder="Seleccion Ciudad" #ciudad name="ciudad"
-            style="width: 200px;" [nzSize]="size" required nzShowSearch>
-            <nz-option *ngFor="let location of locations" [nzLabel]="location.municipio"
-              [nzValue]="location.idMunicipio"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col nzSpan="12">
-      <nz-form-item>
-        <nz-form-control>
-          <label for="direccion" class="ant-form-item-required letter-label-style">Dirección</label>
-          <input [(ngModel)]="staff.direccion" #direccion name="direccion" nz-input
-            placeholder="Ingrese la dirección de residencia" required />
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-    <div nz-col nzSpan="6">
-      <nz-form-item>
-        <nz-form-control [nzSpan]="5" [nzOffset]="5">
-          <br>
-          <button nz-button nzType="primary" [disabled]="!staffForm.valid">Guardar</button>
-        </nz-form-control>
-      </nz-form-item>
-    </div>
-  </div>
 </form>
 <!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->
