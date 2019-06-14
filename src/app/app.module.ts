@@ -19,7 +19,12 @@ import { AlimentoComponent } from './components/alimento/alimento.component';
 import { CreateAlimentoComponent } from './components/alimento/create-alimento/create-alimento.component';
 import { VacunaComponent } from './components/vacuna/vacuna.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
+<<<<<<< HEAD
 import { GraphifComponent } from './components/graphif/graphif.component';
+=======
+import { GraphicComponent } from './components/graphic/graphic.component';
+
+>>>>>>> 6ffeb32011d563250223b5578d06408736a73a2f
 
 registerLocaleData(en);
 
@@ -35,7 +40,11 @@ registerLocaleData(en);
     CreateAlimentoComponent,
     VacunaComponent,
     CrearVacunaComponent,
+<<<<<<< HEAD
     GraphifComponent
+=======
+    GraphicComponent,
+>>>>>>> 6ffeb32011d563250223b5578d06408736a73a2f
   ],
   imports: [
     BrowserModule,

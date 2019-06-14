@@ -5,13 +5,19 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="nombre" class="ant-form-item-required letter-label-style">Nombre</label>
-                    <input [(ngModel)]="aliment.nombre" #nombre name="nombre" nz-input placeholder="Ingrese el nombre" required/>
+                    <input [(ngModel)]="aliment.nombre" #nombre name="nombre" nz-input placeholder="Ingrese el nombre"
+                        required />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
                     <label for="costoAlimento" class="ant-form-item-required letter-label-style">Costo Alimento</label>
-                    <input [(ngModel)]="aliment.costoAlimento" #costoAlimento name="costoAlimento" nz-input placeholder="Ingrese el costo del alimento" required (ngModelChange)="onChange($event)" (blur)="onBlur()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
+                        [nzTitle]="title">
+                        <input [(ngModel)]="aliment.costoAlimento" nz-tooltip #costoAlimento name="costoAlimento" nz-input
+                            placeholder="Ingrese el costo del alimento" required (ngModelChange)="onChange($event)"
+                            (blur)="onBlur()" />
+                    </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -19,8 +25,10 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="idTipoAlimento">Tipo Alimento</label><br>
-                    <nz-select [(ngModel)]="aliment.idTipoAlimento" #idTipoAlimento name="idTipoAlimento" style="width: 200px;" [nzSize]="size" required nzShowSearch>
-                        <nz-option *ngFor="let tipo of resTipoAlimento" [nzValue]="tipo.idtipoAlimento" [nzLabel]="tipo.nombreTipoAlimento">
+                    <nz-select [(ngModel)]="aliment.idTipoAlimento" #idTipoAlimento name="idTipoAlimento"
+                        style="width: 200px;" [nzSize]="size" required nzShowSearch>
+                        <nz-option *ngFor="let tipo of resTipoAlimento" [nzValue]="tipo.idtipoAlimento"
+                            [nzLabel]="tipo.nombreTipoAlimento">
 
                         </nz-option>
                     </nz-select>
@@ -29,8 +37,10 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="idUnidadMedida">Unidad de Medida</label><br>
-                    <nz-select [(ngModel)]="aliment.idUnidadMedida" #idUnidadMedida name="idUnidadMedida" style="width: 200px;" [nzSize]="size" required nzShowSearch>
-                        <nz-option *ngFor="let unidad of resUnidadMedida" [nzValue]="unidad.idUnidadMedida" [nzLabel]="unidad.nombre">
+                    <nz-select [(ngModel)]="aliment.idUnidadMedida" #idUnidadMedida name="idUnidadMedida"
+                        style="width: 200px;" [nzSize]="size" required nzShowSearch>
+                        <nz-option *ngFor="let unidad of resUnidadMedida" [nzValue]="unidad.idUnidadMedida"
+                            [nzLabel]="unidad.nombre">
                         </nz-option>
                     </nz-select>
                 </nz-form-control>
@@ -51,7 +61,8 @@
         <nz-form-item>
             <nz-form-control>
                 <br>
-                <button class="login-form-button" nz-button nzType="primary" [disabled]="!alimentForm.valid">Guardar</button>
+                <button class="login-form-button" nz-button nzType="primary"
+                    [disabled]="!alimentForm.valid">Guardar</button>
             </nz-form-control>
         </nz-form-item>
     </div>
