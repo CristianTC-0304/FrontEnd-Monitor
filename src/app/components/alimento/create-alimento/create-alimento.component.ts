@@ -70,7 +70,13 @@ export class CreateAlimentoComponent implements OnInit {
       this.alimentoService.createAlimento(this.aliment).subscribe((result: any) => {           
         let entorno = this;
         swal("Petición correcta!","","success").then(()=>{
-            entorno.aliment = new Object();
+            entorno.aliment = new Object();            
+            entorno.aliment.nombre =  null;
+            entorno.aliment.estado =  null;
+            entorno.aliment.costoAlimento =  null;
+            entorno.aliment.idTipoAlimento =  null;
+            entorno.aliment.idUnidadMedida =  null;
+            entorno.aliment.idprecioAlimento =  null;
             entorno.isResult.emit(true);
         });
       })

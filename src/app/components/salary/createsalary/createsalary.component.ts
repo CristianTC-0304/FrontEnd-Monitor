@@ -13,7 +13,10 @@ let domModalSalario;
 export class CreatesalaryComponent implements OnInit {
 
   title = 'Este campo es numerico';
-  value = '';
+  valueSalario = '';
+  valueAuxilio = '';
+  valuePrestacion = '';
+  valueYear = '';
   salary: any = new Object();
   isAlertVisible = false;
   date: any = new Date();
@@ -21,8 +24,7 @@ export class CreatesalaryComponent implements OnInit {
   @Output() isResult = new EventEmitter();
   @ViewChild('salaryBasic') salaryBasicElement: ElementRef;
   @ViewChild('auxilioTransporte') auxilioTransporteElement: ElementRef;
-  @ViewChild('prestacionSocial') prestacionSocialElement: ElementRef;
-  @ViewChild('year') yearElement: ElementRef;
+  @ViewChild('prestacionSocial') prestacionSocialElement: ElementRef;  
 
   constructor(
     private salaryService: SalaryService) { }
@@ -38,23 +40,23 @@ export class CreatesalaryComponent implements OnInit {
 
   saveSalary() {
 
-    console.log('full date', this.salary.periodo);
+    // console.log('full date', this.salary.periodo);
 
-    if(isNaN(this.salary.salario )) {
+    if (isNaN(this.salary.salario)) {
       swal("Advertencia!", "Campo salario solo permite numero.", "warning");
       return false;
     } else {
       this.salary.salario = Number(this.salary.salario);
     }
 
-    if(isNaN(this.salary.auxilioTransporte)){
+    if (isNaN(this.salary.auxilioTransporte)) {
       swal("Advertencia!", "Campo Auxilio Transporte solo permite numero.", "warning");
       return false;
     } else {
       this.salary.auxilioTransporte = Number(this.salary.auxilioTransporte);
     }
 
-    if(isNaN(this.salary.prestacionesSociales)){
+    if (isNaN(this.salary.prestacionesSociales)) {
       swal("Advertencia!", "Campo Prestaciones Sociales solo permite numero.", "warning");
       return false;
     } else {
@@ -66,15 +68,15 @@ export class CreatesalaryComponent implements OnInit {
       return false;
     } else {
       this.salary.periodo = Number(this.salary.periodo);
-    }*/     
+    }*/
 
     this.salaryService.createSalary(this.salary).subscribe((result: any) => {
       // this.isAlertVisible = true;
-        let entorno = this;
-          swal("Petición correcta!","","success").then(()=>{
-              entorno.salary = new Object();
-              entorno.isResult.emit(true);
-          });
+      let entorno = this;
+      swal("Petición correcta!", "", "success").then(() => {
+        entorno.salary = new Object();
+        entorno.isResult.emit(true);
+      });
     });
 
   }
@@ -97,29 +99,57 @@ export class CreatesalaryComponent implements OnInit {
 
   // '.' at the end or only '-' in the input box.
   onBlur(): void {
-    if (this.value.charAt(this.value.length - 1) === '.' || this.value === '-') {
-      this.updateValue(this.value.slice(0, -1));
+    if (this.valueSalario.charAt(this.valueSalario.length - 1) === '.' || this.valueSalario === '-') {
+      this.updateValue(this.valueSalario.slice(0, -1));
+    }
+  }
+
+  onBlurAuxilio(): void {
+    if (this.valueAuxilio.charAt(this.valueAuxilio.length - 1) === '.' || this.valueAuxilio === '-') {
+      this.updateValue(this.valueAuxilio.slice(0, -1));
+    }
+  }
+
+  onBlurPrestacion(): void {
+    if (this.valuePrestacion.charAt(this.valuePrestacion.length - 1) === '.' || this.valuePrestacion === '-') {
+      this.updateValue(this.valuePrestacion.slice(0, -1));
+    }
+  }
+
+  onBlurYear(): void {
+    if (this.valueYear.charAt(this.valueYear.length - 1) === '.' || this.valueYear === '-') {
+      this.updateValue(this.valueYear.slice(0, -1));
     }
   }
 
   updateValue(value: string, tipo?: number): void {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
-      this.value = value;
+      
+      switch (tipo) {
+        case 1:
+          this.valueSalario = value;
+          break;
+        case 2:
+          this.valueAuxilio = value;          
+          break;
+        case 3:
+          this.valuePrestacion = value;          
+          break;        
+        default:
+          break;
+      }
     }
     switch (tipo) {
       case 1:
-            this.salaryBasicElement.nativeElement.value = this.value;
+        this.salaryBasicElement.nativeElement.value = this.valueSalario;
         break;
-        case 2:
-            this.auxilioTransporteElement.nativeElement.value = this.value;
+      case 2:
+        this.auxilioTransporteElement.nativeElement.value = this.valueAuxilio;
         break;
-        case 3:
-            this.prestacionSocialElement.nativeElement.value = this.value;
-        break;
-        case 4:
-            this.yearElement.nativeElement.value = this.value;
-        break;
+      case 3:
+        this.prestacionSocialElement.nativeElement.value = this.valuePrestacion;
+        break;      
       default:
         break;
     }

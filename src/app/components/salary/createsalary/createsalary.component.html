@@ -5,11 +5,8 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="salaryBasic" class="ant-form-item-required letter-label-style">Salario básico</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
-                        [nzTitle]="title">
-                        <input [(ngModel)]="salary.salario" nz-tooltip #salaryBasic name="salaryBasic" nz-input
-                            placeholder="Ingrese el salario basico" required (ngModelChange)="onChange($event,1)"
-                            (blur)="onBlur()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="salary.salario" nz-tooltip #salaryBasic name="salaryBasic" nz-input placeholder="Ingrese el salario basico" required (ngModelChange)="onChange($event,1)" (blur)="onBlur()" style="border: 1px solid #d9d9d9 !important" />
                     </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
@@ -17,11 +14,9 @@
                 <nz-form-control>
                     <label for="auxilioTransporte" class="ant-form-item-required letter-label-style">Auxilio de
                         transporte</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
-                        [nzTitle]="title">
-                        <input [(ngModel)]="salary.auxilioTransporte" nz-tooltip #auxilioTransporte
-                            name="auxilioTransporte" nz-input placeholder="Ingrese valor auxilio de transporte" required
-                            (ngModelChange)="onChange($event,2)" (blur)="onBlur()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="salary.auxilioTransporte" nz-tooltip #auxilioTransporte name="auxilioTransporte" nz-input placeholder="Ingrese valor auxilio de transporte" required (ngModelChange)="onChange($event,2)" (blur)="onBlurAuxilio()" style="border: 1px solid #d9d9d9 !important"
+                        />
                     </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
@@ -31,19 +26,16 @@
                 <nz-form-control>
                     <label for="prestacionSocial" class="ant-form-item-required letter-label-style ">Prestación
                         social</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
-                        [nzTitle]="title">
-                        <input [(ngModel)]="salary.prestacionesSociales" nz-tooltip #prestacionSocial
-                            name="prestacionSocial" nz-input placeholder="Ingrese valor social" required
-                            (ngModelChange)="onChange($event,3)" (blur)="onBlur()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="salary.prestacionesSociales" nz-tooltip #prestacionSocial name="prestacionSocial" nz-input placeholder="Ingrese valor social" required (ngModelChange)="onChange($event,3)" (blur)="onBlurPrestacion()" style="border: 1px solid #d9d9d9 !important"
+                        />
                     </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
                     <label for="year" class="ant-form-item-required letter-label-style">Año</label><br>
-                    <nz-year-picker [nzPlaceHolder]="2019" [nzFormat]="yyyy" [(ngModel)]="salary.periodo" #periodo
-                        name="periodo"></nz-year-picker>
+                    <nz-year-picker [nzFormat]="yyyy" [(ngModel)]="salary.periodo" #periodo name="periodo"></nz-year-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>

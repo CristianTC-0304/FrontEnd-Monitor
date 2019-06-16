@@ -18,7 +18,6 @@ const routes: Routes = [
   {path: 'grafico', component: GraphicComponent},
   {path: 'alimento', component: AlimentoComponent},
   {path: 'vacuna', component: VacunaComponent},  
-
   {path: '**', pathMatch: 'full', redirectTo: ''},
 ];
 

@@ -5,17 +5,14 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="nombreVacuna" class="ant-form-item-required letter-label-style">Nombre Vacuna</label>
-                    <input [(ngModel)]="vacuna.nombreVacuna" #nombreVacuna name="nombreVacuna" nz-input
-                        placeholder="Ingrese el nombre de la vacuna" required />
+                    <input [(ngModel)]="vacuna.nombreVacuna" #nombreVacuna name="nombreVacuna" nz-input placeholder="Ingrese el nombre de la vacuna" required style="border: 1px solid #d9d9d9 !important" />
                 </nz-form-control>
             </nz-form-item>
             <nz-form-item>
                 <nz-form-control>
                     <label for="valor" class="ant-form-item-required letter-label-style">Valor:</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
-                        [nzTitle]="title">
-                        <input [(ngModel)]="vacuna.valor" nz-tooltip #valor name="valor" nz-input placeholder="Ingrese el valor"
-                            required (ngModelChange)="onChangeValor($event)" (blur)="onBlurValor()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="vacuna.valor" nz-tooltip #valor name="valor" nz-input placeholder="Ingrese el valor" required (ngModelChange)="onChangeValor($event)" (blur)="onBlurValor()" style="border: 1px solid #d9d9d9 !important" />
                     </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
@@ -25,18 +22,14 @@
                 <nz-form-control>
                     <label for="fechaVencimiento" class="ant-form-item-required letter-label-style">Fecha de
                         Vencimiento:</label>
-                    <nz-date-picker [(ngModel)]="vacuna.fechaVencimiento" #fechaVencimiento name="fechaVencimiento"
-                        placeholder="Ingrese la fecha de vencimiento" required [nzSize]="size"></nz-date-picker>
+                    <nz-date-picker [(ngModel)]="vacuna.fechaVencimiento" #fechaVencimiento name="fechaVencimiento" placeholder="Ingrese la fecha de vencimiento" [nzSize]="size"></nz-date-picker>
                 </nz-form-control>
             </nz-form-item>
-            <nz-form-item> 
+            <nz-form-item>
                 <nz-form-control>
                     <label for="cantidad" class="ant-form-item-required letter-label-style">Cantidad:</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
-                        [nzTitle]="title">
-                        <input [(ngModel)]="vacuna.cantidad" nz-tooltip #cantidad name="cantidad" nz-input
-                            placeholder="Ingrese la cantidad" required (ngModelChange)="onChange($event)"
-                            (blur)="onBlur()" />
+                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+                        <input [(ngModel)]="vacuna.cantidad" nz-tooltip #cantidad name="cantidad" nz-input placeholder="Ingrese la cantidad" required (ngModelChange)="onChange($event)" (blur)="onBlur()" style="border: 1px solid #d9d9d9 !important" />
                     </nz-tooltip>
                 </nz-form-control>
             </nz-form-item>
@@ -45,10 +38,8 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="idPresentacion">Presentación</label><br>
-                    <nz-select [(ngModel)]="vacuna.idPresentacion" #idPresentacion name="idPresentacion"
-                        style="width: 200px;" [nzSize]="size" required nzShowSearch>
-                        <nz-option *ngFor="let tipo of resTipoPresentacion" [nzValue]="tipo.idPresentacion"
-                            [nzLabel]="tipo.nombrePresentacion">
+                    <nz-select [(ngModel)]="vacuna.idPresentacion" #idPresentacion name="idPresentacion" style="width: 200px;" [nzSize]="size" nzShowSearch>
+                        <nz-option *ngFor="let tipo of resTipoPresentacion" [nzValue]="tipo.idPresentacion" [nzLabel]="tipo.nombrePresentacion">
 
                         </nz-option>
                     </nz-select>
@@ -67,8 +58,7 @@
         <nz-form-item>
             <nz-form-control>
                 <br>
-                <button class="login-form-button" nz-button nzType="primary"
-                    [disabled]="!vacunaForm.valid">Guardar</button>
+                <button class="login-form-button" nz-button nzType="primary" [disabled]="!vacunaForm.valid">Guardar</button>
             </nz-form-control>
         </nz-form-item>
     </div>
