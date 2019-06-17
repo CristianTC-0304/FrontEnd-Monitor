@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GraphifService } from '../../services/graphif.service';
 import { Chart } from 'chart.js';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-graphif',
@@ -8,62 +9,79 @@ import { Chart } from 'chart.js';
     styleUrls: ['./graphif.component.css']
   })
   export class GraphifComponent  implements OnInit {
-
-    data: any = {};
-
+    ex: Observable<any[]>
+    data$;
+    chart;
+    humidity = [];
+    temp = [];
+    date = []
 
     constructor(private graphifService: GraphifService) {}
 
     ngOnInit() {
-        this.getDataGraphif();
-        this.formatChart();
+      this.getDataGraphif();
     }
 
-    getDataGraphif() {
-        this.graphifService.getDataGraphif().subscribe(result => {
-            console.log('result graphif', result);
-        });
+    getDataGraphif = async () => {
+      this.data$ = this.graphifService.getData().subscribe(res => {
+        res.forEach(dato => {
+          (dato['humidity'] ? this.humidity.push(dato['humidity']) : []); 
+          (dato['temp'] ? this.temp.push(dato['temp']) : []);
+          (dato['Date'] ? this.date.push(dato['Date']): []);
+          console.log('dato',dato['humidity'])
+        })
+        this.getChart()
+        console.log('ex', res, this.humidity, this.temp)
+      })
     }
 
-    formatChart() {
-        const ex = document.getElementById('myChart');
-        console.log('example', ex);
-        const myChart = new Chart(ex, {
-            type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+    getChart() {
+      this.chart = new Chart('bar', {
+        type: 'line',
+        data: {
+          labels: this.date,
+          datasets: [
+            {label: 'Humedad',
+            borderColor: 'green',
+            backgroundColor: 'green',
+            fill: false,
+            data: this.humidity,
+          },
+            {label: 'Temperatura', 
+            borderColor: 'yellow',
+            backgroundColor: 'yellow',
+            fill: false,
+            data: this.temp,
+          },
+          ]
+        },
+        options: {
+					responsive: true,
+					hoverMode: 'index',
+					stacked: false,
+					title: {
+						display: true,
+						text: 'Grafica de Rapsberry'
+					},
+					scales: {
+						yAxes: [{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+							id: 'y-axis-1',
+						}, {
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'right',
+							id: 'y-axis-2',
+
+							// grid line settings
+							gridLines: {
+								drawOnChartArea: false, // only want the grid lines for one axis to show up
+							},
+						}],
+          }
         }
-    }
-        });
-        console.log('graphif', myChart);
+      });
     }
   }

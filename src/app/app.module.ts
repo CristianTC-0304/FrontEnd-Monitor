@@ -19,9 +19,11 @@ import { AlimentoComponent } from './components/alimento/alimento.component';
 import { CreateAlimentoComponent } from './components/alimento/create-alimento/create-alimento.component';
 import { VacunaComponent } from './components/vacuna/vacuna.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
-import { GraphicComponent } from './components/graphic/graphic.component';
+import { GraphifComponent } from './components/graphif/graphif.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
+import { environment } from '../environments/environment';
 
 registerLocaleData(en);
 
@@ -37,8 +39,8 @@ registerLocaleData(en);
     CreateAlimentoComponent,
     VacunaComponent,
     CrearVacunaComponent,
-    GraphicComponent,
-    LoginComponent,
+    GraphifComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +49,12 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [{ provide: NZ_I18N, useValue: en_US }, AngularFireDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
