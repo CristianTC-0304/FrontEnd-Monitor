@@ -59,7 +59,8 @@ export class CrearVacunaComponent implements OnInit {
       this.vacuna.valor = Number(this.vacuna.valor);
       this.vacuna.cantidad = Number(this.vacuna.cantidad);                 
       this.vacunaService.createVacuna(this.vacuna).subscribe((result: any) => {           
-          // this.isAlertVisible = true;          
+          // this.isAlertVisible = true;  
+          console.log(this.vacuna);        
           let entorno = this;
           swal("Petición correcta!","","success").then(()=>{
               entorno.vacuna = new Object();
@@ -111,6 +112,7 @@ export class CrearVacunaComponent implements OnInit {
       this.value = value;
     }
     this.inputElement.nativeElement.value = this.value;   
+    console.log(this.vacuna); 
   }  
   
   updateValueValor(value: string): void {

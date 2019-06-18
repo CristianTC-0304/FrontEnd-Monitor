@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GraphifService } from '../../services/graphif.service';
 import { Chart } from 'chart.js';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-graphif',
@@ -8,70 +9,78 @@ import { Chart } from 'chart.js';
     styleUrls: ['./graphif.component.css']
   })
   export class GraphifComponent  implements OnInit {
-
+    ex: Observable<any[]>
+    data$;
     chart;
-    humidity: [44.20000076293945, 44.20000076293945, 44.20000076293945, 44.20000076293945];
-    temp: {};
+    humidity = [];
+    temp = [];
+    date = [];
 
     constructor(private graphifService: GraphifService) {}
 
     ngOnInit() {
-      //this.getDataGraphif();
-      this.getChart();
+      this.getDataGraphif();
     }
 
-    getDataGraphif() {
-        this.graphifService.getDataGraphif().subscribe(result => {
-            console.log('result graphif', result);
-            result.forEach(res => {
-              console.log('res', res);
-              Object.keys(res).map(data => {
-                this.distributeData(data, res);
-                //this.getDataGraphif();
-              });
-            });
-        });
-    }
-
-    distributeData(type, res) {
-      let data = {
-        'humidity': (() => {
-          console.log('entro en humedity');
-          return this.humidity = res.humidity;
-        }),
-        'temp': (() => {
-          console.log('entro en temp');
-          return this.temp = res.temp;
-        }),
-        'default': (() => {
-          return 'default';
+    getDataGraphif = async () => {
+      this.data$ = this.graphifService.getData().subscribe(res => {
+        res.forEach(dato => {
+          (dato['humidity'] ? this.humidity.push(dato['humidity']) : []); 
+          (dato['temp'] ? this.temp.push(dato['temp']) : []);
+          (dato['Date'] ? this.date.push(dato['Date']): []);
+          console.log('dato',dato['humidity'])
         })
-      };
-      return (data[type] || data['default'])();
+        this.getChart()
+        console.log('ex', res, this.humidity, this.temp)
+      })
     }
 
     getChart() {
-      console.log('data humidity', this.humidity);
       this.chart = new Chart('bar', {
         type: 'line',
         data: {
-          labels: ['Humedad', 'Temperatura'],
+          labels: this.date,
           datasets: [
             {label: 'Humedad',
-            backgroundColor: 'black',
-            data: [{
-              x: -10,
-              y: 0
-          }, {
-              x: 0,
-              y: 10
-          }, {
-              x: 10,
-              y: 5
-          }]
+            borderColor: 'green',
+            backgroundColor: 'green',
+            fill: false,
+            data: this.humidity,
           },
-            {label: 'Temperatura'}
+            {label: 'Temperatura',
+            borderColor: 'yellow',
+            backgroundColor: 'yellow',
+            fill: false,
+            data: this.temp,
+          },
           ]
+        },
+        options: {
+					responsive: true,
+					hoverMode: 'index',
+					stacked: false,
+					title: {
+						display: true,
+						text: 'Grafica de Rapsberry'
+					},
+					scales: {
+						yAxes: [{
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'left',
+							id: 'y-axis-1',
+						}, {
+							type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+							display: true,
+							position: 'right',
+							id: 'y-axis-2',
+
+							// grid line settings
+							gridLines: {
+								drawOnChartArea: false, // only want the grid lines for one axis to show up
+							},
+						}],
+          }
         }
       });
     }

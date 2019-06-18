@@ -24,8 +24,10 @@ export class CreatestaffComponent implements OnInit {
   valueTelefono = '';
   valueCelular = '';
   title = 'Este campo es numerico';
+
   @Input() eventSave = new EventEmitter();
   @Output() isResult = new EventEmitter();
+
   //@ViewChild('inputElement') inputElement: ElementRef;
   @ViewChild('telefono') inputElement: ElementRef;
   @ViewChild('documento') documentoElement: ElementRef;
@@ -177,6 +179,7 @@ export class CreatestaffComponent implements OnInit {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
       this.valueTelefono = value;
+      this.inputElement.nativeElement.value = this.valueTelefono;
     }
     this.inputElement.nativeElement.value = this.valueTelefono;
   }
@@ -185,6 +188,7 @@ export class CreatestaffComponent implements OnInit {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
       this.valueDocumento = value;
+      this.documentoElement.nativeElement.value = this.valueDocumento;
     }
     this.documentoElement.nativeElement.value = this.valueDocumento;
   }
@@ -193,6 +197,7 @@ export class CreatestaffComponent implements OnInit {
     const reg = /^-?(0|[1-9][0-9]*)(\.[0-9]*)?$/;
     if ((!isNaN(+value) && reg.test(value)) || value === '' || value === '-') {
       this.valueCelular = value;
+      this.celularElement.nativeElement.value = this.valueCelular;
     }
     this.celularElement.nativeElement.value = this.valueCelular;
   }
