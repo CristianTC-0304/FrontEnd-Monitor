@@ -28,10 +28,8 @@ import { Observable } from 'rxjs';
           (dato['humidity'] ? this.humidity.push(dato['humidity']) : []); 
           (dato['temp'] ? this.temp.push(dato['temp']) : []);
           (dato['Date'] ? this.date.push(dato['Date']): []);
-          console.log('dato',dato['humidity'])
         })
         this.getChart()
-        console.log('ex', res, this.humidity, this.temp)
       })
     }
 
