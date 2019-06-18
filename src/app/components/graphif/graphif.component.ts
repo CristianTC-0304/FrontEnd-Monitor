@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
     chart;
     humidity = [];
     temp = [];
-    date = []
+    date = [];
 
     constructor(private graphifService: GraphifService) {}
 
@@ -45,7 +45,7 @@ import { Observable } from 'rxjs';
             fill: false,
             data: this.humidity,
           },
-            {label: 'Temperatura', 
+            {label: 'Temperatura',
             borderColor: 'yellow',
             backgroundColor: 'yellow',
             fill: false,

@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   host: "http://localhost",
-  port: "3000",
+  port: "8080",
   firebaseConfig: {
     apiKey: "AIzaSyDpH_q1XqhDLKyxHxFZOOkPKehoqXw4VFg",
     authDomain: "example-428ca.firebaseapp.com",
