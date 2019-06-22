@@ -1,13 +1,13 @@
 <nz-layout>
-    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
+    <nz-sider style="background:#fff" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
         <div class="logo">
-            <img src="../../../assets/img/logo.PNG" class="imgLogo" alt="Logo">
+            <img src="../../../assets/img/Captura.PNG" class="imgLogo" alt="Logo">
         </div>
-        <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+        <ul nz-menu [nzTheme]="'lite'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
             <li nz-submenu>
                 <span title>
-          <i nz-icon type="team"></i>
-          <span class="nav-text">Maestros</span>
+                    <i nz-icon type="team"></i>
+                    <span class="nav-text">Maestros</span>
                 </span>
                 <ul>
                     <li nz-menu-item routerLink="personal">
@@ -26,26 +26,26 @@
             </li>
             <li nz-menu-item>
                 <span title>
-          <i nz-icon type="calculator"></i>
-          <span class="nav-text">Costos Pollos</span>
+                    <i nz-icon type="calculator"></i>
+                    <span class="nav-text">Costos Pollos</span>
                 </span>
             </li>
             <li nz-menu-item>
                 <span>
-          <i nz-icon type="schedule"></i>
-          <span class="nav-text">Costos Huevos</span>
+                    <i nz-icon type="schedule"></i>
+                    <span class="nav-text">Costos Huevos</span>
                 </span>
             </li>
             <li nz-menu-item>
                 <span>
-          <i nz-icon type="file"></i>
-          <span class="nav-text">Reportes</span>
+                    <i nz-icon type="file"></i>
+                    <span class="nav-text">Reportes</span>
                 </span>
             </li>
             <li nz-menu-item>
                 <span>
-          <i nz-icon type="area-chart"></i>
-          <span class="nav-text" routerLink="grafico">Graficos</span>
+                    <i nz-icon type="area-chart"></i>
+                    <span class="nav-text" routerLink="grafico">Graficos</span>
                 </span>
             </li>
         </ul>
@@ -53,6 +53,9 @@
     <nz-layout>
         <nz-header style="background: #fff; padding:0;">
             <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+            <i class="avatar">
+                <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
+            </i>
         </nz-header>
         <nz-content style="margin:0 16px;">
             <nz-breadcrumb style="margin:16px 0;">

@@ -24,7 +24,7 @@ export class GraphifService {
   }
 
   getData() {
-    return this.db.list('/monitor', ref => ref.limitToFirst(100)).valueChanges()
+    return this.db.list('/monitor', ref => ref.limitToFirst(10)).valueChanges()
   }
 
 }

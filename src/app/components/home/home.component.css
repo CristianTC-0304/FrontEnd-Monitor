@@ -19,3 +19,12 @@
   .imgLogo {
       height: 45px;
   }
+  .avatar{
+    position: absolute;
+    right: 2%;
+  }
+
+  ul li:hover {
+    color: #fff;
+    background: #87d068;
+  }
