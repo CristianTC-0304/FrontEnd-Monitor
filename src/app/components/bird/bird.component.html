@@ -1,0 +1,41 @@
+<div nz-row class="tableStaff">
+  <div nz-col nzSpan="12">
+    <h1 class="text">Ave</h1>
+  </div>
+  <div nz-col nzSpan="12">
+    <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateStaff()">
+      <i nz-icon type="plus"></i>
+      Crear Ave
+    </button>
+  </div>
+  <nz-divider [nzType]="vertical"></nz-divider>
+</div>
+<nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
+  <thead>
+    <tr>
+      <th>Código ave</th>
+      <th>Tipo ave</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of resData">
+      <td>{{ data.idAve}}</td>
+      <td>{{ data.tipoAve}}</td>
+      <td>
+        <a>
+          <i nz-icon type="edit" (click)="editStaff(data)"></i>
+        </a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>
+          <i nz-icon type="delete" (click)="deleteStaff(data.idPersonal)"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-modal nzFooter=" " nzTitle="Crear Personal" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
+  <app-createstaff (isResult)="handleCancelTop()">
+  </app-createstaff>
+</nz-modal>
