@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/grafico', pathMatch: 'full' }, 
   {path: 'login', component: LoginComponent},
   {path: 'personal', component: StaffComponent},
-  {path: 'crear', component: CreatestaffComponent},
+  {path: 'crear-personal', component: CreatestaffComponent},
   {path: 'salario', component: SalaryComponent},
   {path: 'grafico', component: GraphifComponent},
   {path: 'alimento', component: AlimentoComponent},

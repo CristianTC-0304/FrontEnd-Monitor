@@ -1,3 +1,48 @@
+.inputForm {
+    width: 150%;
+}
+.inputDrop {
+    width: 170%;
+}
 
+.formstaff {
+    padding-left: 40px;
+}
+
+.inputCelular {
+    width: 185%;
+}
+
+.inputEmail {
+    width: 192%;
+}
+
+.inputDireccion {
+    width: 170%;
+}
+
+.inputDocument {
+    width: 165%;
+}
+
+.example {
+    width: 200%;
+}
+
+.formDrop {
+    width: 362% !important; 
+}
+
+.formDepar {
+    width: 415% !important;
+}
+
+.formMuni {
+    width: 580% !important;
+}
+
+.formCar {
+    width: 855% !important;
+}
 
     

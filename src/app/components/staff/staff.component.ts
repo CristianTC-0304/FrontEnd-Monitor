@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -52,9 +52,9 @@ export class StaffComponent implements OnInit {
   }
 
   showFormCreateStaff() {
-    window['domModalStaff'].isAlertVisible = false;
-    window['domModalStaff'].staff = new Object();
-    this.isModalVisible = true;
+    // window['domModalStaff'].isAlertVisible = false;
+    // window['domModalStaff'].staff = new Object();
+    this.router.navigate(['crear-personal']);
   }
 
   saveStaff() {
@@ -66,7 +66,7 @@ export class StaffComponent implements OnInit {
   editStaff(obj: any) {
     console.log('info Object', obj);
     this.dataEdit = obj;
-    this.isModalVisible = true;
+    this.router.navigate(['crear-personal']);
     window['domModalStaff'].infoEdit(this.dataEdit);
   }
 
@@ -94,8 +94,6 @@ export class StaffComponent implements OnInit {
           });
         }
       });
-    
-    // console.log('idStaff', idStaff);
   }
 
 }

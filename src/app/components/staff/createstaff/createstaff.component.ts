@@ -40,7 +40,8 @@ export class CreatestaffComponent implements OnInit {
     private documentTypeService: DocumentTypeService,
     private departamentService: DepartamentService,
     private staffService: StaffService,
-    private positionService: PositionService
+    private positionService: PositionService,
+    private router: Router
   ) {
   }
 
@@ -77,6 +78,8 @@ export class CreatestaffComponent implements OnInit {
   getDocumentType() {
     this.documentTypeService.getDocumentType().subscribe(result => {
       this.resDocumentType = result;
+      this.staff.idTipoDocumento = '1';
+      this.staff.documento = "1234456";
       console.log('documentType', result);
     });
   }
@@ -111,6 +114,7 @@ export class CreatestaffComponent implements OnInit {
             let entorno = this;
             swal("Petición correcta!", "", "success").then(() => {
               entorno.staff = new Object();
+              this.router.navigate(['personal']);
               entorno.isResult.emit(true);
             });
           });
@@ -124,25 +128,27 @@ export class CreatestaffComponent implements OnInit {
 
   }
 
-  infoEdit(dataEdit: any) {
-    console.log('dataEdit', dataEdit);
-    this.staff = new Object();
-    this.locationChange(dataEdit.idMunicipio.departamentoId.idDepartamento);
-    this.staff.idPersonal = dataEdit.idPersonal;
+  infoEdit(dataEdit) {
+    console.log('dataEdit example', dataEdit);
+    // this.staff = new Object();
+    // this.locationChange(dataEdit.idMunicipio.departamentoId.idDepartamento);
+    // this.staff = Object.assign(dataEdit);
     this.staff.idTipoDocumento = dataEdit.idTipoDocumento.idTipoDocumento;
-    this.staff.idCargo = dataEdit.idCargo.idCargo;
+    this.staff.documento = dataEdit.documento;
     this.staff.primerNombre = dataEdit.primerNombre;
+    this.staff.segundoNombre = dataEdit.segundoNombre;
+    this.staff.idPersonal = dataEdit.idPersonal;
+    this.staff.idCargo = dataEdit.idCargo.idCargo;
     this.staff.primerApellido = dataEdit.primerApellido;
     this.staff.correoElectronico = dataEdit.correoElectronico;
     this.staff.idDepartamento = dataEdit.idMunicipio.departamentoId.idDepartamento;
-    this.staff.documento = dataEdit.documento;
-    this.staff.segundoNombre = dataEdit.segundoNombre;
     this.staff.segundoApellido = dataEdit.segundoApellido;
     this.staff.celular = dataEdit.celular;
     this.staff.idMunicipio = dataEdit.idMunicipio.dto.idMunicipio;
     this.staff.direccion = dataEdit.direccion;
     this.staff.telefono = dataEdit.telefono;
     this.staff.estado = 1;
+    console.log('example staff', this.staff);
   }
 
   onChange(value: string): void {
