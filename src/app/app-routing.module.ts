@@ -9,6 +9,7 @@ import { GraphifComponent } from './components/graphif/graphif.component';
 import { LoginComponent } from './components/login/login.component';
 import { BirdComponent } from './components/bird/bird.component';
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
+import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
 
 const routes: Routes = [
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'personal', component: StaffComponent},
   {path: 'crear-personal', component: CreatestaffComponent},
   {path: 'editar-personal/:id', component: EditStaffComponent},
+  {path: 'crear-vacuna', component: CrearVacunaComponent},
   {path: 'salario', component: SalaryComponent},
   {path: 'grafico', component: GraphifComponent},
   {path: 'alimento', component: AlimentoComponent},
