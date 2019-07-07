@@ -1,67 +1,26 @@
-<form nz-form [nzLayout]="'inline'" #vacunaForm="ngForm" (ngSubmit)="savealiment()">
-
-    <div nz-row>
-        <div nz-col nzSpan="12">
-            <nz-form-item>
-                <nz-form-control>
-                    <label for="nombreVacuna" class="ant-form-item-required letter-label-style">Nombre Vacuna</label>
-                    <input [(ngModel)]="vacuna.nombreVacuna" #nombreVacuna name="nombreVacuna" nz-input placeholder="Ingrese el nombre de la vacuna" required style="border: 1px solid #d9d9d9 !important" />
-                </nz-form-control>
-            </nz-form-item>
-            <nz-form-item>
-                <nz-form-control>
-                    <label for="valor" class="ant-form-item-required letter-label-style">Valor:</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-                        <input [(ngModel)]="vacuna.valor" nz-tooltip #valor name="valor" nz-input placeholder="Ingrese el valor" required (ngModelChange)="onChangeValor($event)" (blur)="onBlurValor()" style="border: 1px solid #d9d9d9 !important" />
-                    </nz-tooltip>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-            <nz-form-item>
-                <nz-form-control>
-                    <label for="fechaVencimiento" class="ant-form-item-required letter-label-style">Fecha de
-                        Vencimiento:</label>
-                    <nz-date-picker [(ngModel)]="vacuna.fechaVencimiento" #fechaVencimiento name="fechaVencimiento" placeholder="Ingrese la fecha de vencimiento" [nzSize]="size"></nz-date-picker>
-                </nz-form-control>
-            </nz-form-item>
-            <nz-form-item>
-                <nz-form-control>
-                    <label for="cantidad" class="ant-form-item-required letter-label-style">Cantidad:</label>
-                    <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-                        <input [(ngModel)]="vacuna.cantidad" nz-tooltip #cantidad name="cantidad" nz-input placeholder="Ingrese la cantidad" required (ngModelChange)="onChange($event)" (blur)="onBlur()" style="border: 1px solid #d9d9d9 !important" />
-                    </nz-tooltip>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-            <nz-form-item>
-                <nz-form-control>
-                    <label for="idPresentacion">Presentación</label><br>
-                    <nz-select [(ngModel)]="vacuna.idPresentacion" #idPresentacion name="idPresentacion" style="width: 200px;" [nzSize]="size" nzShowSearch>
-                        <nz-option *ngFor="let tipo of resTipoPresentacion" [nzValue]="tipo.idPresentacion" [nzLabel]="tipo.nombrePresentacion">
-
-                        </nz-option>
-                    </nz-select>
-                </nz-form-control>
-            </nz-form-item>
-            <!-- <nz-form-item>
-                <nz-form-control>
-                    <label for="estado" class="ant-form-item-required letter-label-style">Estado</label><br>
-                    <nz-select [(ngModel)]="vacuna.estado" #estado name="estado" style="width: 200px;" [nzSize]="size" required nzShowSearch>
-                        <nz-option *ngFor="let item of [{id:1,nom:'Habilitado'},{id:0,nom:'Deshabilitado'}]" [nzLabel]="item.nom" [nzValue]="item.id"></nz-option>
-                        
-                    </nz-select>
-                </nz-form-control>
-            </nz-form-item> -->
-        </div>
-        <nz-form-item>
+<h1>Crear Vacuna</h1>
+<form class="formvacuna" nz-form [nzLayout]="inline" #vacunaForm="ngForm" (ngSubmit)="cresteVacuna()">
+    <div class="form-fields" fxLayout="row wrap" fxLayoutGap="40%" fxLayoutAlign="start center">
+        <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+            <nz-form-label for="codProducto">Código Producto</nz-form-label>
             <nz-form-control>
-                <br>
-                <button class="login-form-button" nz-button nzType="primary" [disabled]="!vacunaForm.valid">Guardar</button>
+                <input [(ngModel)]="vacuna.codProducto" #codProducto name="codProducto" nz-input placeholder="Ingresé código del producto" 
+                    required style="width: 400px; border: 1px solid #d9d9d9 !important" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+            <nz-form-label for="nombreProducto">Nombre Producto</nz-form-label>
+            <nz-form-control>
+                <input [(ngModel)]="vacuna.nombreProducto" #nombreProducto name="nombreProducto" nz-input placeholder="Ingresé el nombre del producto" 
+                    required style="width: 400px; border: 1px solid #d9d9d9 !important" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+            <nz-form-label for="marca">Marca Producto</nz-form-label>
+            <nz-form-control>
+                <input [(ngModel)]="vacuna.marca" #marca name="marca" nz-input placeholder="Ingresé la marca" 
+                    required style="width: 400px; border: 1px solid #d9d9d9 !important" />
             </nz-form-control>
         </nz-form-item>
     </div>
 </form>
-<br>
-<!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->
