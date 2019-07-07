@@ -41,7 +41,7 @@ export class AlimentoComponent implements OnInit {
 
   getDataAlimento() {
     this.alimentoServices.getAlimento().subscribe((data: any) => {
-      this.resData = data.filter(item => item.estado == 1);
+      this.resData = data.filter(item => item);
     });
   }
 

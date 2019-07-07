@@ -13,23 +13,21 @@
 <nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
     <thead>
         <tr>
-            <th>Nombre Vacuna</th>
-            <th>Valor</th>
+            <th>Código Producto</th>
+            <th>Nombre Producto</th>
+            <th>Marca Producto</th>
+            <th>Unidad de medida</th>
             <th>Fecha de Vencimiento</th>
-            <th>Cantidad</th>
-            <th>Presentación</th>
-            <!-- <th>Estado</th> -->
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of smallTable.data">
-            <td>{{ data.nombreVacuna}}</td>
-            <td>{{ data.valor | currency}}</td>
-            <td>{{ data.fechaVencimiento | date}}</td>
-            <td>{{ data.cantidad }}</td>
-            <td>{{data.idPresentacion.nombrePresentacion}}</td>
-            <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
+                <td>{{data.codProducto}}</td>
+                <td>{{data.nombreProducto}}</td>
+                <td>{{data.marcaProducto}}</td>
+                <td>{{data.unidadMedida}}</td>
+                <td>{{data.fechaVencimiento}}</td>
             <td>
                 <a>
                     <i nz-icon type="edit" (click)="editVacuna(data)"></i>

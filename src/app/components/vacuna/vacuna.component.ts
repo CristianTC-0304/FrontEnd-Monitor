@@ -41,7 +41,7 @@ export class VacunaComponent implements OnInit {
 
   getDataVacuna() {
     this.vacunaServices.getVacuna().subscribe((data: any) => {
-      this.resData = data.filter(item => item.estado == 1);
+      this.resData = data.filter(item => item);
     });
   }
 

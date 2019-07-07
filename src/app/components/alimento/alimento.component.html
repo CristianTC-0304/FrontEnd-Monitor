@@ -4,29 +4,30 @@
     </div>
     <div nz-col nzSpan="12">
         <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateAlimento()">
-          <i nz-icon type="plus"></i>
-          Crear Alimento
-      </button>
+            <i nz-icon type="plus"></i>
+            Crear Alimento
+        </button>
     </div>
     <nz-divider [nzType]="vertical"></nz-divider>
 </div>
 <nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
     <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Costo Alimento</th>
-            <th>Tipo Alimento</th>
-            <th>Unidad de Medida</th>
-            <!-- <th>Estado</th> -->
+            <th>Código Producto</th>
+            <th>Nombre Producto</th>
+            <th>Marca Producto</th>
+            <th>Unidad de medida</th>
+            <th>Fecha de Vencimiento</th>
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of smallTable.data">
-            <td>{{ data.nombre}}</td>
-            <td>{{ data.costoAlimento}}</td>
-            <td>{{ data.idTipoAlimento.nombreTipoAlimento}}</td>
-            <td>{{ data.idUnidadMedida.nombre }}</td>
+            <td>{{ data.codProducto}}</td>
+            <td>{{ data.nombreProducto}}</td>
+            <td>{{ data.marcaProducto}}</td>
+            <td>{{ data.unidadMedida}}</td>
+            <td>{{ data.fechaVencimiento}}</td>
             <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
             <td>
                 <a>
