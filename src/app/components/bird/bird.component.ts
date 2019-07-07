@@ -9,7 +9,6 @@ import { BirdService } from '../../services/bird.service';
 })
 export class BirdComponent implements OnInit {
 
-  
   resData = [];
   isModalVisible = false;
 
@@ -18,8 +17,10 @@ export class BirdComponent implements OnInit {
   dataSave = [];
   dataEdit: any = new Object();
   
-  constructor(private route: ActivatedRoute,
-    private router: Router, private birdService: BirdService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private birdService: BirdService) { }
 
   ngOnInit() {
 this.getDataBird();
@@ -27,8 +28,16 @@ this.getDataBird();
 
   getDataBird() {
     this.birdService.getBird().subscribe((data: any) => {
-      this.resData = data.filter(item => item.estado == 1);
+      console.log('data staff', data);
+      this.resData = data.filter(item => item);
     });
   }
 
+  showFormCreateSalary() {
+    // window["domModalSalario"].isAlertVisible = false;
+    window["domModalSalario"].salary = new Object();
+    this.isModalVisible = true;
+  }
+ 
+  
 }

@@ -34,7 +34,7 @@
             <td>{{ data.celular}}</td>
             <td>
                 <a>
-                    <i nz-icon type="edit" (click)="editStaff(data)"></i>
+                    <i nz-icon type="edit" [routerLink]="['/editar-personal', data.idPersonal]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <nz-divider nzType="vertical"></nz-divider>
@@ -46,5 +46,5 @@
     </tbody>
 </nz-table>
 <nz-modal nzFooter=" " nzTitle="Crear Personal" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
-    
+
 </nz-modal>

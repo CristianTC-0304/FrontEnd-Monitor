@@ -23,11 +23,8 @@ export class StaffService {
   }
 
   getStaffId(id: number): Observable<Staff> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<Staff>(url).pipe(
-      tap(_ => this.log(`fetched staff id=${id}`)),
-      catchError(this.handleError<Staff>(`getStaffId id=${id}`))
-    );
+    const url = `${environment.host}:${environment.port}/monitor/personalId`
+    return this.http.get<Staff>(url + `/${id}`).pipe(result => result);
   }
 
   createStaff(data): Observable<Staff> {
@@ -38,6 +35,10 @@ export class StaffService {
   deleteStaff(id): Observable<Staff> {
     const url =  `${this.url}/${id}`;
     return this.http.put<Staff>(url, {}).pipe(result => result);
+  }
+
+  updateStaff(data): Observable<Staff> {
+    return this.http.post<Staff>(this.url, data).pipe(result => result);
   }
 
   /**

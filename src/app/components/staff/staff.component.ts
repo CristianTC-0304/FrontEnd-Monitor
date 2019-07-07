@@ -63,13 +63,6 @@ export class StaffComponent implements OnInit {
     this.childSubmit.emit();
   }
 
-  editStaff(obj: any) {
-    console.log('info Object', obj);
-    this.dataEdit = obj;
-    this.router.navigate(['crear-personal']);
-    window['domModalStaff'].infoEdit(this.dataEdit);
-  }
-
   handleCancelTop() {
     console.log('cuando entro');
     this.isModalVisible = false;

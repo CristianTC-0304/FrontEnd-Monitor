@@ -25,7 +25,7 @@ export class CreatestaffComponent implements OnInit {
   valueCelular = '';
   title = 'Este campo es numerico';
 
-  @Input() eventSave = new EventEmitter();
+  @Input() dataEdit: Object;
   @Output() isResult = new EventEmitter();
 
   //@ViewChild('inputElement') inputElement: ElementRef;
@@ -49,12 +49,11 @@ export class CreatestaffComponent implements OnInit {
     this.getDocumentType();
     this.getDepartament();
     this.getPosition();
-    window['domModalStaff'] = this;
   }
 
-  // onChange(value: string): void {
-  //   this.validateInputNumeric(value);
-  // }
+  getOnChangeData() {
+    console.log('example message')
+  }
 
   validateInputNumeric(value): void {
     console.log('isValue', value)
@@ -126,29 +125,6 @@ export class CreatestaffComponent implements OnInit {
       });
     }
 
-  }
-
-  infoEdit(dataEdit) {
-    console.log('dataEdit example', dataEdit);
-    // this.staff = new Object();
-    // this.locationChange(dataEdit.idMunicipio.departamentoId.idDepartamento);
-    // this.staff = Object.assign(dataEdit);
-    this.staff.idTipoDocumento = dataEdit.idTipoDocumento.idTipoDocumento;
-    this.staff.documento = dataEdit.documento;
-    this.staff.primerNombre = dataEdit.primerNombre;
-    this.staff.segundoNombre = dataEdit.segundoNombre;
-    this.staff.idPersonal = dataEdit.idPersonal;
-    this.staff.idCargo = dataEdit.idCargo.idCargo;
-    this.staff.primerApellido = dataEdit.primerApellido;
-    this.staff.correoElectronico = dataEdit.correoElectronico;
-    this.staff.idDepartamento = dataEdit.idMunicipio.departamentoId.idDepartamento;
-    this.staff.segundoApellido = dataEdit.segundoApellido;
-    this.staff.celular = dataEdit.celular;
-    this.staff.idMunicipio = dataEdit.idMunicipio.dto.idMunicipio;
-    this.staff.direccion = dataEdit.direccion;
-    this.staff.telefono = dataEdit.telefono;
-    this.staff.estado = 1;
-    console.log('example staff', this.staff);
   }
 
   onChange(value: string): void {
