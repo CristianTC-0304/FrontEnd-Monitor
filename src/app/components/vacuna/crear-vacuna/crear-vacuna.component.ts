@@ -41,11 +41,12 @@ export class CrearVacunaComponent implements OnInit {
   }
 
   addRow() {
+    const date = new Date();
     this.listData = [
       ...this.listData,
       {
         id: `${this.i}`,
-        fechaMovimiento: "example",
+        fechaMovimiento: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
         descripcion: "example d",
         costoProducto: "example costos",
         entrada: "exmaple entrada",
