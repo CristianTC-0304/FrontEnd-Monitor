@@ -17,10 +17,18 @@ let domModalVacuna;
 export class CrearVacunaComponent implements OnInit {
 
   vacuna: any = new Object();
+  inventario: any = new Object();
   listData: any[] = [];
+  listTipoMovimiento = [];
+  listObservacion = [];
+  widthConfig = [];
+  scrollConfig = {};
   validateForm: FormControl;
   i = 0;
   editId: string | null;
+  isVisible = false;
+  isEntrada = false;
+  isSalida = false;
 
 
   @ViewChild(NzInputDirective, { read: ElementRef })
@@ -58,6 +66,14 @@ export class CrearVacunaComponent implements OnInit {
     this.i++;
   }
 
+  showFormVacuna() {
+    this.isVisible = true;
+  }
+
+  handleCancel() {
+    this.isVisible = false;
+  }
+
   startEdit(id: string, event: MouseEvent): void {
     console.log('example id', id)
     event.preventDefault();
@@ -70,11 +86,40 @@ export class CrearVacunaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.inventario.fechaIngreso
+    this.getDataInventario();
     this.addRow();
   }
 
+  getDataInventario() {
+    this.widthConfig = ['100px', '200px', '200px', '100px', '100px', '200px', '200px', '100px'];
+    this.scrollConfig = { x: '1600px', y: '260px' };
+    const date = new Date();
+    this.isEntrada = false;
+    this.isSalida = false;
+    this.inventario.fechaIngreso = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
+    this.listObservacion.push(
+      { name: 'Salida inicial', value: '1' },
+      { name: 'Compra', value: '2' },
+      { name: 'Salida', value: '3' },
+      { name: 'Devolución', value: '4' },
+      { name: 'Ventas', value: '5' }
+    )
+  }
+
+  movimientoChange($event) {
+    console.log('event change', $event)
+    $event == '1' ? this.isEntrada = true : this.isEntrada = false
+    $event == '2' ? this.isSalida = true : this.isSalida = false
+  }
+
   createVacuna() {
-    
+
+  }
+
+  createInventario(form) {
+    console.log('form inventario', form)
   }
 
 }
