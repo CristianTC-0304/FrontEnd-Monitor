@@ -1,5 +1,6 @@
 import { DtProducto } from './dtProducto.model';
 import {Marca} from './mark.model';
+import {TipoProducto} from './tipoProducto.model';
 
 export class Producto {
     idproducto: string;
@@ -7,8 +8,8 @@ export class Producto {
     nombreProducto: string;
     marcaProducto: Marca;
     unidadMedida: string;
-    fechaVencimiento: string;  
-    idtipoProducto: string;  
+    idtipoProducto: TipoProducto; 
+    estado:string; 
     listaDtProductoDTO: Array<DtProducto>   
 }
 

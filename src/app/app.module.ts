@@ -24,8 +24,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { environment } from '../environments/environment';
-import { BirdComponent } from './components/bird/bird.component';
-import { CreatebirdComponent } from './components/bird/createbird/createbird.component';
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
 
 
@@ -46,8 +44,7 @@ registerLocaleData(en);
     GraphifComponent,
     LoginComponent,
     EditStaffComponent,
-    BirdComponent,
-    CreatebirdComponent
+  
   ],
   imports: [
     BrowserModule,

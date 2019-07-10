@@ -7,7 +7,7 @@ import { AlimentoComponent } from  './components/alimento/alimento.component';
 import { VacunaComponent } from  './components/vacuna/vacuna.component';
 import { GraphifComponent } from './components/graphif/graphif.component';
 import { LoginComponent } from './components/login/login.component';
-import { BirdComponent } from './components/bird/bird.component';
+
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
 
@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'grafico', component: GraphifComponent},
   {path: 'alimento', component: AlimentoComponent},
   {path: 'vacuna', component: VacunaComponent},  
-  {path: 'ave', component: BirdComponent}, 
+
   {path: '**', pathMatch: 'full', redirectTo: ''},
 ];
 

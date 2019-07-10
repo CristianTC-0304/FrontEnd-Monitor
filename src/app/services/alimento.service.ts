@@ -16,7 +16,7 @@ export class AlimentoService {
   }
 
   getAlimento(): Observable<Array<Producto>> {
-    return this.http.get<Array<Producto>>(this.url)
+    return this.http.get<Array<Producto>>(this.url)   
     .pipe(
       catchError(this.handleError<Producto[]>('getAlimento', []))
     );
