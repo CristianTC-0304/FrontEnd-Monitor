@@ -21,6 +21,7 @@ export class CrearVacunaComponent implements OnInit {
   listData: any[] = [];
   listTipoMovimiento = [];
   listObservacion = [];
+  resUnidadMedida = [];
   widthConfig = [];
   scrollConfig = {};
   validateForm: FormControl;
@@ -48,24 +49,6 @@ export class CrearVacunaComponent implements OnInit {
     }
   }
 
-  addRow() {
-    const date = new Date();
-    this.listData = [
-      ...this.listData,
-      {
-        id: `${this.i}`,
-        fechaMovimiento: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
-        descripcion: "example d",
-        costoProducto: "example costos",
-        entrada: "exmaple entrada",
-        salida: "example salida",
-        cantidadTotal: "example catidadTotal",
-        valorTotal: "example valorTotal"
-      }
-    ]
-    this.i++;
-  }
-
   showFormVacuna() {
     this.isVisible = true;
   }
@@ -88,7 +71,46 @@ export class CrearVacunaComponent implements OnInit {
   ngOnInit() {
     this.inventario.fechaIngreso
     this.getDataInventario();
-    this.addRow();
+    this.getProducto();
+  }
+
+  getProducto() {
+    this.resUnidadMedida.push(
+      {name: 'Kilogramo', value: '1'},
+      {name: 'Tonelada', value: '2'},
+      {name: 'miligramo', value: '3'},
+      {name: 'gramos', value: '4'},
+      {name: 'litro', value: '5'},
+      {name: 'mililitro', value: '6'},
+      {name: 'centimetro', value: '7'},
+      {name: 'milímetro', value: '8'}
+    )
+
+    const date = new Date();
+    this.listData = [
+      {
+        id: `${this.i}`,
+        fechaMovimiento: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
+        codigo: "example d",
+        observacion: "example costos",
+        entrada: {
+          cantidad: '50',
+          promedio: '100',
+          total: '200'
+        },
+        salida: {
+          cantidad: '250',
+          promedio: '650',
+          total: '123'
+        },
+        saldo: {
+          cantidad: '250',
+          promedio: '650',
+          total: '123'
+        }
+      }
+    ]
+    this.i++;
   }
 
   getDataInventario() {
@@ -114,8 +136,8 @@ export class CrearVacunaComponent implements OnInit {
     $event == '2' ? this.isSalida = true : this.isSalida = false
   }
 
-  createVacuna() {
-
+  createVacuna(form) {
+    console.log('example create', form)
   }
 
   createInventario(form) {

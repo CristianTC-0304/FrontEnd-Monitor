@@ -41,7 +41,8 @@ export class VacunaComponent implements OnInit {
 
   getDataVacuna() {
     this.vacunaServices.getVacuna().subscribe((data: any) => {
-      this.resData = data.filter(item => item);
+      console.log('result vacuna', data)
+      this.resData = data
     });
   }
 
