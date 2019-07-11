@@ -1,0 +1,50 @@
+<div nz-row class="tableStaff">
+  <div nz-col nzSpan="12">
+      <h2 class="text"> Registro de consumos y cálculo de costos </h2>
+  </div>
+  <div nz-col nzSpan="12">
+      <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateConsumo()">
+          <i nz-icon type="plus"></i>
+          Crear registro 
+      </button>
+  </div>
+  <nz-divider [nzType]="vertical"></nz-divider>
+</div>
+<nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
+  <thead>
+      <tr>
+          <th>Código Producto</th>
+          <th>Nombre Producto</th>
+          <th>Marca Producto</th>
+          <th>Unidad de medida</th>
+          <th>Unidad de medida</th>
+          <th>Unidad de medida</th>
+          <th>Unidad de medida</th>
+          <th>Unidad de medida</th>
+          <th>Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let data of smallTable.data">
+      
+          <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
+          <td>
+              <a>
+                  <i nz-icon type="edit" (click)="editAlimento(data)"></i>
+              </a>
+              <nz-divider nzType="vertical"></nz-divider>
+
+              <a>
+                  <i nz-icon type="delete" (click)="eliminarAlimento(data.idprecioAlimento)"></i>
+              </a>
+          </td>
+      </tr>
+  </tbody>
+</nz-table>
+
+
+
+<nz-modal nzFooter=" " nzTitle="Crear Alimento" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
+  <app-create-alimento (isResult)="handleCancelTop()">
+  </app-create-alimento>
+</nz-modal>

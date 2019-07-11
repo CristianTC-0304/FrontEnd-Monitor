@@ -25,6 +25,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
+import { RegistroConsumosComponent } from './components/registro-consumos/registro-consumos.component';
+import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
 
 
 registerLocaleData(en);
@@ -44,6 +46,8 @@ registerLocaleData(en);
     GraphifComponent,
     LoginComponent,
     EditStaffComponent,
+    RegistroConsumosComponent,
+    CreateRegistroComponent,
   
   ],
   imports: [
