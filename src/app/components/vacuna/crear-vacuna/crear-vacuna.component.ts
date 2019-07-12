@@ -1,11 +1,12 @@
-import { Component, OnInit, HostListener, OnChanges, ElementRef, Output, Input, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
 import { UnidadMedidaService } from '../../../services/unidadMedida.service';
 import { VacunaService } from '../../../services/vacuna.service'
 import swal from 'sweetalert';
-import { NzInputDirective } from 'ng-zorro-antd';
+import { NzInputDirective, NzTableComponent, NzTabLabelDirective, NzTableModule } from 'ng-zorro-antd';
+import { DataSource } from '@angular/cdk/collections';
 
 let domModalVacuna;
 
@@ -33,12 +34,16 @@ export class CrearVacunaComponent implements OnInit {
 
 
   @ViewChild(NzInputDirective, { read: ElementRef })
+  @ViewChild(NzTableModule, { read: ElementRef })
+  @ViewChild("editRowTable") editRowTable: ElementRef
   inputElement: ElementRef;
+  //editRowTable: ElementRef
 
   validateFormModalContact: FormGroup;
 
   constructor(private fb: FormBuilder,
-    private vacunaService: VacunaService
+    private vacunaService: VacunaService,
+    private renderer: Renderer2
   ) {
   }
 
@@ -69,25 +74,27 @@ export class CrearVacunaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inventario.fechaIngreso
     this.getDataInventario();
     this.getProducto();
+    this.getInventario();
   }
 
   getProducto() {
+    console.log('example', this.listData.length)
     this.resUnidadMedida.push(
-      {name: 'Kilogramo', value: '1'},
-      {name: 'Tonelada', value: '2'},
-      {name: 'miligramo', value: '3'},
-      {name: 'gramos', value: '4'},
-      {name: 'litro', value: '5'},
-      {name: 'mililitro', value: '6'},
-      {name: 'centimetro', value: '7'},
-      {name: 'milímetro', value: '8'}
+      { name: 'Kilogramo', value: '1' },
+      { name: 'Tonelada', value: '2' },
+      { name: 'miligramo', value: '3' },
+      { name: 'gramos', value: '4' },
+      { name: 'litro', value: '5' },
+      { name: 'mililitro', value: '6' },
+      { name: 'centimetro', value: '7' },
+      { name: 'milímetro', value: '8' }
     )
 
     const date = new Date();
-    this.listData = [
+
+    /*this.listData = [
       {
         id: `${this.i}`,
         fechaMovimiento: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
@@ -110,12 +117,16 @@ export class CrearVacunaComponent implements OnInit {
         }
       }
     ]
-    this.i++;
+    this.i++;*/
+  }
+
+  getInventario() {
+    this.listData;
   }
 
   getDataInventario() {
-    this.widthConfig = ['100px', '200px', '200px', '100px', '100px', '200px', '200px', '100px'];
-    this.scrollConfig = { x: '1600px', y: '260px' };
+    /*this.widthConfig = ['100px', '200px', '200px', '100px', '100px', '200px', '200px', '100px'];
+    this.scrollConfig = { x: '1600px', y: '260px' };*/
     const date = new Date();
     this.isEntrada = false;
     this.isSalida = false;
@@ -130,10 +141,14 @@ export class CrearVacunaComponent implements OnInit {
     )
   }
 
+  validateSave() {
+
+  }
+
   movimientoChange($event) {
     console.log('event change', $event)
-    $event == '1' ? this.isEntrada = true : this.isEntrada = false
-    $event == '2' ? this.isSalida = true : this.isSalida = false
+    $event == 'Entrada' ? this.isEntrada = true : this.isEntrada = false
+    $event == 'Salida' ? this.isSalida = true : this.isSalida = false
   }
 
   createVacuna(form) {
@@ -141,7 +156,14 @@ export class CrearVacunaComponent implements OnInit {
   }
 
   createInventario(form) {
+    const date = new Date();
+    form['fechaIngreso'] = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    this.isVisible = false;
+    this.editRowTable.nativeElement = this.renderer.setAttribute(this.editRowTable.nativeElement, "nzData", "example data")
+    this.renderer.setAttribute(this.editRowTable.nativeElement, "[nzData]", "example");
     console.log('form inventario', form)
   }
+
+
 
 }

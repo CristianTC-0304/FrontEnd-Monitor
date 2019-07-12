@@ -1,10 +1,10 @@
 <form class="formstaff" nz-form [nzLayout]="'inline'" #vacunaForm="ngForm" (ngSubmit)="createVacuna(vacunaForm.value)">
     <div nz-row class="tableStaff">
         <div nz-col nzSpan="12">
-            <h2 class="text">Ingreso de producto</h2>
+            <h2 class="text">Ingreso de producto {{listData.length > 0}} {{vacunaForm.valid}} </h2>
         </div>
         <div nz-col nzSpan="12">
-            <button nz-button [disabled]="!vacunaForm.valid" [nzType]="'primary'" class="btnvacuna">
+            <button nz-button [disabled]="vacunaForm.invalid" [nzType]="'primary'" class="btnvacuna">
                 <i nz-icon type="save"></i>
                 Guardar
             </button>
@@ -18,10 +18,12 @@
             </nz-form-label>
             <br>
             <nz-form-control>
-                <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-                    <input class="inputDocument" pattern="[0-9]*" [(ngModel)]="vacuna.codProducto" (ngModelChange)="onChangeDocumento($event)"
-                        (blur)="onBlurDocumento()" nz-tooltip #codProducto name="codProducto" nz-input placeholder="Ingrese código producto"
-                        digitOnly required style="width: 200px; border: 1px solid #d9d9d9 !important;" />
+                <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input"
+                    [nzTitle]="title">
+                    <input class="inputDocument" pattern="[0-9]*" [(ngModel)]="vacuna.codProducto"
+                        (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #codProducto
+                        name="codProducto" nz-input placeholder="Ingrese código producto" digitOnly required
+                        style="width: 200px; border: 1px solid #d9d9d9 !important;" />
                 </nz-tooltip>
             </nz-form-control>
         </nz-form-item>
@@ -30,8 +32,9 @@
             </nz-form-label>
             <br>
             <nz-form-control>
-                <input class="inputForm" [(ngModel)]="vacuna.nombreProducto" #nombreProducto name="nombreProducto" nz-input placeholder="Ingrese nombre producto"
-                    required style="width: 200px; border: 1px solid #d9d9d9 !important" />
+                <input class="inputForm" [(ngModel)]="vacuna.nombreProducto" #nombreProducto name="nombreProducto"
+                    nz-input placeholder="Ingrese nombre producto" required
+                    style="width: 200px; border: 1px solid #d9d9d9 !important" />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
@@ -39,8 +42,8 @@
             </nz-form-label>
             <br>
             <nz-form-control>
-                <input class="inputForm" [(ngModel)]="vacuna.marcaProducto" #marcaProducto name="marcaProducto" nz-input placeholder="Ingrese marca producto"
-                    style="width: 200px; border: 1px solid #d9d9d9 !important" />
+                <input class="inputForm" [(ngModel)]="vacuna.marcaProducto" #marcaProducto name="marcaProducto" nz-input
+                    placeholder="Ingrese marca producto" style="width: 200px; border: 1px solid #d9d9d9 !important" />
             </nz-form-control>
         </nz-form-item>
         <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
@@ -48,9 +51,11 @@
             </nz-form-label>
             <br>
             <nz-form-control>
-                <nz-select (ngModelChange)="locationChange($event)" nzPlaceHolder="Unidad de medida" [(ngModel)]="vacuna.unidadMedida" class="formDepar"
-                    style="width: 150px;" #unidadMedida name="unidadMedida" [nzSize]="size">
-                    <nz-option *ngFor="let medida of resUnidadMedida" [nzLabel]="medida.name" [nzValue]="medida.value"></nz-option>
+                <nz-select (ngModelChange)="locationChange($event)" nzPlaceHolder="Unidad de medida"
+                    [(ngModel)]="vacuna.unidadMedida" class="formDepar" style="width: 150px;" #unidadMedida
+                    name="unidadMedida" [nzSize]="size">
+                    <nz-option *ngFor="let medida of resUnidadMedida" [nzLabel]="medida.name" [nzValue]="medida.value">
+                    </nz-option>
                 </nz-select>
             </nz-form-control>
         </nz-form-item>
@@ -60,13 +65,16 @@
                 Agregar
             </button>
             <nz-modal [(nzVisible)]="isVisible" nzTitle="Crear Inventario" nzFooter=" " (nzOnCancel)="handleCancel()">
-                <form nz-form fxLayout="column" nz-form [nzLayout]="'inline'" #inventarioForm="ngForm" (ngSubmit)="createInventario(inventarioForm.value)">
+                <form nz-form fxLayout="column" nz-form [nzLayout]="'inline'" #inventarioForm="ngForm"
+                    (ngSubmit)="createInventario(inventarioForm.value)">
                     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-                        <nz-form-label for="fechaIngreso" class="ant-form-item-required letter-label-style">Fecha Ingreso
+                        <nz-form-label for="fechaIngreso" class="ant-form-item-required letter-label-style">Fecha
+                            Ingreso
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" disabled [(ngModel)]="inventario.fechaIngreso" #fechaIngreso name="fechaIngreso" nz-input placeholder="Fecha ingreso"
+                            <input class="inputForm" disabled [(ngModel)]="inventario.fechaIngreso" #fechaIngreso
+                                name="fechaIngreso" nz-input placeholder="Fecha ingreso"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -75,8 +83,9 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.codigo" #codigo name="codigo" nz-input placeholder="Código producto" style="width: 200px; border: 1px solid #d9d9d9 !important"
-                            />
+                            <input class="inputForm" [(ngModel)]="inventario.codigo" #codigo name="codigo" nz-input
+                                placeholder="Código producto"
+                                style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
                     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
@@ -85,9 +94,11 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <nz-select nzPlaceHolder="Observación" [(ngModel)]="inventario.observacion" class="formDepar" style="width: 200px;" #observacion
-                                name="observacion" [nzSize]="size" required>
-                                <nz-option *ngFor="let tipoObservacion of listObservacion" [nzLabel]="tipoObservacion.name" [nzValue]="tipoObservacion.value"></nz-option>
+                            <nz-select nzPlaceHolder="Observación" [(ngModel)]="inventario.observacion"
+                                class="formDepar" style="width: 200px;" #observacion name="observacion" [nzSize]="size"
+                                required>
+                                <nz-option *ngFor="let tipoObservacion of listObservacion"
+                                    [nzLabel]="tipoObservacion.name" [nzValue]="tipoObservacion.name"></nz-option>
                             </nz-select>
                         </nz-form-control>
                     </nz-form-item>
@@ -97,37 +108,44 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <nz-select (ngModelChange)="movimientoChange($event)" nzPlaceHolder="Tipo movimiento" [(ngModel)]="inventario.tipoMovimiento"
-                                class="formDepar" style="width: 200px;" #tipoMovimiento name="tipoMovimiento" [nzSize]="size"
-                                required>
-                                <nz-option *ngFor="let tipoMovimiento of listTipoMovimiento" [nzLabel]="tipoMovimiento.name" [nzValue]="tipoMovimiento.value"></nz-option>
+                            <nz-select (ngModelChange)="movimientoChange($event)" nzPlaceHolder="Tipo movimiento"
+                                [(ngModel)]="inventario.tipoMovimiento" class="formDepar" style="width: 200px;"
+                                #tipoMovimiento name="tipoMovimiento" [nzSize]="size" required>
+                                <nz-option *ngFor="let tipoMovimiento of listTipoMovimiento"
+                                    [nzLabel]="tipoMovimiento.name" [nzValue]="tipoMovimiento.name"></nz-option>
                             </nz-select>
                         </nz-form-control>
                     </nz-form-item>
-                    <nz-form-item [hidden]="!isEntrada" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+                    <nz-form-item [hidden]="!isEntrada" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%"
+                        fxFlex.lt-sm="45">
                         <nz-form-label for="cantidadEntrada" class="ant-form-item-required letter-label-style">Cantidad
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" required [(ngModel)]="inventario.cantidadEntrada" #cantidadEntrada name="cantidadEntrada" nz-input
-                                placeholder="Cantidad" style="width: 200px; border: 1px solid #d9d9d9 !important" />
+                            <input class="inputForm" required [(ngModel)]="inventario.cantidadEntrada" #cantidadEntrada
+                                name="cantidadEntrada" nz-input placeholder="Cantidad"
+                                style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
-                    <nz-form-item [hidden]="!isEntrada" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+                    <nz-form-item [hidden]="!isEntrada" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%"
+                        fxFlex.lt-sm="45">
                         <nz-form-label for="promedio" class="ant-form-item-required letter-label-style">Promedio
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" required [(ngModel)]="inventario.promedio" #promedio name="promedio" nz-input placeholder="Promedio"
+                            <input class="inputForm" required [(ngModel)]="inventario.promedio" #promedio
+                                name="promedio" nz-input placeholder="Promedio"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
-                    <nz-form-item [hidden]="!isSalida" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+                    <nz-form-item [hidden]="!isSalida" fxLayout="column" fxLayoutAlign="start start" fxFlex="48%"
+                        fxFlex.lt-sm="45">
                         <nz-form-label for="cantidadSalida" class="ant-form-item-required letter-label-style">Cantidad
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.cantidadSalida" #cantidadSalida name="cantidadSalida" nz-input placeholder="Cantidad"
+                            <input class="inputForm" [(ngModel)]="inventario.cantidadSalida" #cantidadSalida
+                                name="cantidadSalida" nz-input placeholder="Cantidad"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -139,7 +157,8 @@
                     </nz-form-item>
                 </form>
             </nz-modal>
-            <nz-table #editRowTable nzSize="middle" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig" nzBordered [nzData]="listData">
+            <nz-table #editRowTable nzSize="middle" [nzWidthConfig]="widthConfig" [nzScroll]="scrollConfig" nzBordered
+                [nzData]="listData">
                 <thead>
                     <tr>
                         <th rowspan="4">Fecha movimiento</th>
@@ -148,7 +167,7 @@
                         <th colspan="3">Entrada</th>
                         <th colspan="3">Salida</th>
                         <th colspan="3">Saldo</th>
-                        <th colspan="4">Acción</th>
+                        <th rowspan="4">Acción</th>
                     </tr>
                     <tr>
                         <th rowspan="3">Cantidad</th>
@@ -176,6 +195,10 @@
                         <td>{{data.entrada.total}}</td>
                         <td>{{data.salida.cantidad}}</td>
                         <td>{{data.salida.promedio}}</td>
+                        <td>{{data.salida.total}}</td>
+                        <td>{{data.saldo.cantidad}}</td>
+                        <td>{{data.saldo.promedio}}</td>
+                        <td>{{data.saldo.total}}</td>
                         <td>example</td>
                     </tr>
                 </tbody>
