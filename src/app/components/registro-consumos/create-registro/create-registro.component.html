@@ -1,90 +1,109 @@
 <form class="formstaff" nz-form [nzLayout]="'inline'" #staffForm="ngForm" (ngSubmit)="updateStaff(staffForm.value)">
   <!--(createStaff)="eventSaveForm(staffForm)"-->
+  <h3 class="text"> Registro de consumos y cálculo de costos </h3>
   <div class="form-fields" fxLayout="row wrap" fxLayoutGap="40%" fxLayoutAlign="start center">
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="idTipoDocumento" class="ant-form-item-required letter-label-style">Tipo Documento
+      <nz-form-label for="idAve" class="ant-form-item-required letter-label-style">Línea
       </nz-form-label>
       <br>
       <nz-form-control>
-        <nz-select [(ngModel)]="staff.idTipoDocumento" class="formDrop" style="width: 400px;"
-          nzPlaceHolder="Seleccion tipo documento" #idTipoDocumento name="idTipoDocumento" [nzSize]="size">
-          <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.nombreTipoDocumento"
-            [nzValue]="document.idTipoDocumento"></nz-option>
+        <nz-select [(ngModel)]="costoAvicola.idAve" class="formDrop" style="width: 400px;"
+          nzPlaceHolder="Seleccion la línea" #idAve name="idAve" [nzSize]="size">
+          <nz-option *ngFor="let document of resDocumentType" [nzLabel]="document.tipoAve"
+            [nzValue]="document.idAve"></nz-option>
         </nz-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="documento" class="ant-form-item-required letter-label-style">Documento</nz-form-label>
+      <nz-form-label for="semanaPolla" class="ant-form-item-required letter-label-style">Semana</nz-form-label>
       <br>
       <nz-form-control>
         <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-          <input class="inputDocument" disabled pattern="[0-9]*" [(ngModel)]="staff.documento"
+          <input class="inputDocument" disabled pattern="[0-9]*" [(ngModel)]="costoAvicola.semanaPolla"
             (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #documento
-            name="documento" nz-input placeholder="Ingrese número documento" digitOnly required
+            name="semanaPolla" nz-input placeholder="Ingrese número de semanas" digitOnly required
             style="width: 400px; border: 1px solid #d9d9d9 !important;" />
         </nz-tooltip>
       </nz-form-control>
     </nz-form-item>
+    <h3 class="text"> Materiales </h3>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="primerNombre" class="ant-form-item-required letter-label-style">Primer nombre</nz-form-label>
+      <nz-form-label for="costoAlimento" class="ant-form-item-required letter-label-style">Costo alimento</nz-form-label>
       <br>
       <nz-form-control>
-        <input class="inputForm" [(ngModel)]="staff.primerNombre" #primerNombre name="primerNombre" nz-input
-          placeholder="Ingrese el primer nombre" required style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        <input class="inputForm" [(ngModel)]="costoAvicola.costoAlimento" #costoAlimento name="costoAlimento" nz-input
+          placeholder="Ingrese el costo del alimento" required style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="segundoNombre">Segundo nombre</nz-form-label>
+      <nz-form-label for="totalVacunas">Costo vacunas</nz-form-label>
       <br>
       <nz-form-control>
-        <input class="inputForm" [(ngModel)]="staff.segundoNombre" #segundoNombre name="segundoNombre" nz-input
-          placeholder="Ingrese segundo nombre" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        <input class="inputForm" [(ngModel)]="costoAvicola.totalVacunas" #totalVacunas name="totalVacunas" nz-input
+          placeholder="Ingrese el costo de las vacunas" style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
+
+    <h3 class="text"> Mano de obra </h3>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="primerApellido" class="ant-form-item-required letter-label-style">Primer apellido
+      <nz-form-label for="totalManoObra" class="ant-form-item-required letter-label-style">Mano de obra
       </nz-form-label>
       <br>
       <nz-form-control>
-        <input class="inputForm" [(ngModel)]="staff.primerApellido" #primerApellido name="primerApellido" nz-input
-          placeholder="Ingrese el primer apellido" required
+        <input class="inputForm" [(ngModel)]="costoAlimento.totalManoObra" #totalManoObra name="totalManoObra" nz-input
+          placeholder="Ingrese el valor de mano de obra" required
           style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="segundoApellido">Segundo apellido</nz-form-label>
+      <nz-form-label for="despique">Despique</nz-form-label>
       <br>
       <nz-form-control>
-        <input class="inputForm" [(ngModel)]="staff.segundoApellido" #segundoApellido name="segundoApellido" nz-input
-          placeholder="Ingrese segundo apellido" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        <input class="inputForm" [(ngModel)]="costoAlimento.despique" #despique name="despique" nz-input
+          placeholder="Ingrese el valor del despique" style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
+
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="idMDepartamento" class="ant-form-item-required letter-label-style">Departamento
-      </nz-form-label>
+      <nz-form-label for="empaque">Empaque</nz-form-label>
       <br>
       <nz-form-control>
-        <nz-select (ngModelChange)="locationChange($event)" nzPlaceHolder="Seleccione Departamento"
-          [(ngModel)]="staff.idDepartamento" class="formDepar" style="width: 400px;" #idMDepartamento
-          name="idMDepartamento" [nzSize]="size">
-          <nz-option *ngFor="let municipy of resDepartament" [nzLabel]="municipy.departamento"
-            [nzValue]="municipy.idDepartamento"></nz-option>
-        </nz-select>
+        <input class="inputForm" [(ngModel)]="costoAlimento.empaque" #empaque name="empaque" nz-input
+          placeholder="Ingrese el valor del empaque" style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="idMunicipio" class="ant-form-item-required letter-label-style">Municipio</nz-form-label>
+
+<nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+      <nz-form-label for="despique">Validar campo</nz-form-label>
       <br>
       <nz-form-control>
-        <nz-select class="example" style="width: 400px;" [(ngModel)]="staff.idMunicipio" class="formMuni"
-          nzPlaceHolder="Seleccione Municipio" #idMunicipio name="idMunicipio" [nzSize]="size" required nzShowSearch>
-          <nz-option *ngFor="let location of locations" [nzLabel]="location.municipio" [nzValue]="location.idMunicipio">
-          </nz-option>
-        </nz-select>
+        <input class="inputForm" [(ngModel)]="costoAlimento.despique" #despique name="despique" nz-input
+          placeholder="Ingrese el valor del despique" style="width: 400px; border: 1px solid #d9d9d9 !important" />
       </nz-form-control>
     </nz-form-item>
+ 
+    <h3 class="text"> Costos indirectos </h3>
+
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="telefono">Teléfono</nz-form-label>
+      <nz-form-label for="totalAlojamiento">Alojamiento</nz-form-label>
+      <br>
+      <nz-form-control>
+        <input class="inputForm" [(ngModel)]="costoAlimento.totalAlojamiento" #totalAlojamiento name="totalAlojamiento" nz-input
+          placeholder="Ingrese el valor del alojamiento" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+      </nz-form-control>
+    </nz-form-item>
+
+<nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+      <nz-form-label for="calefacion">Calefación</nz-form-label>
+      <br>
+      <nz-form-control>
+        <input class="inputForm" [(ngModel)]="costoAlimento.despique" #despique name="despique" nz-input
+          placeholder="Ingrese el valor del despique" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+      </nz-form-control>
+    </nz-form-item>
+   
+    <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+      <nz-form-label for="telefono">Servicios publicos</nz-form-label>
       <br>
       <nz-form-control>
         <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
@@ -95,7 +114,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="celular" class="ant-form-item-required letter-label-style">Celular</nz-form-label>
+      <nz-form-label for="celular" class="ant-form-item-required letter-label-style">Depresiación</nz-form-label>
       <br>
       <nz-form-control>
         <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
@@ -107,7 +126,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="idCargo" class="ant-form-item-required letter-label-style">Cargo</nz-form-label>
+      <nz-form-label for="idCargo" class="ant-form-item-required letter-label-style">Amortización</nz-form-label>
       <br>
       <nz-form-control>
         <nz-select [(ngModel)]="staff.idCargo" class="formCar" style="width: 400px;" nzPlaceHolder="Seleccion Cargo"
@@ -118,7 +137,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="correoElectronico" class="ant-form-item-required letter-label-style">Email</nz-form-label>
+      <nz-form-label for="correoElectronico" class="ant-form-item-required letter-label-style">Mortalidad</nz-form-label>
       <br>
       <nz-form-control>
         <input class="inputEmail" [(ngModel)]="staff.correoElectronico" #correoElectronico name="correoElectronico"
@@ -126,7 +145,7 @@
       </nz-form-control>
     </nz-form-item>
     <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
-      <nz-form-label for="direccion" class="ant-form-item-required letter-label-style">Dirección</nz-form-label>
+      <nz-form-label for="direccion" class="ant-form-item-required letter-label-style">Total</nz-form-label>
       <br>
       <nz-form-control>
         <input class="inputDireccion" [(ngModel)]="staff.direccion" #direccion name="direccion" nz-input

@@ -13,20 +13,28 @@
 <nz-table #smallTable nzSize="small" [nzData]="resData" class="table">
   <thead>
       <tr>
-          <th>Código Producto</th>
-          <th>Nombre Producto</th>
-          <th>Marca Producto</th>
-          <th>Unidad de medida</th>
-          <th>Unidad de medida</th>
-          <th>Unidad de medida</th>
-          <th>Unidad de medida</th>
-          <th>Unidad de medida</th>
+          <th>Código costo</th>
+          <th>Semanas ave</th>
+          <th>Fecha creación</th>
+          <th>Planta</th>
+          <th>Costo alimento</th>
+          <th>Costo vacunas</th>
+          <th>Subtotal</th>
+          <th>Total</th>
           <th>Acciones</th>
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let data of smallTable.data">
-      
+        <td>{{ data.idcostoAvicola}}</td>
+        <td>{{ data.semanaPolla}}</td>
+        <td>{{ data.fechaCreacion}}</td>
+        <td>{{ data.planta}}</td>
+        <td>{{ data.costoAlimento}}</td>
+        <td>{{ data.totalVacunas}}</td>
+        <td>{{ data.subTotal}}</td>
+        <td>{{ data.granTotal}}</td>
+        
           <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
           <td>
               <a>
