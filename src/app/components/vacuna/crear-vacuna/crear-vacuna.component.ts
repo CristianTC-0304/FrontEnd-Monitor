@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
 import { UnidadMedidaService } from '../../../services/unidadMedida.service';
 import { VacunaService } from '../../../services/vacuna.service'
+import { MarcaService } from '../../../services/marca.service';
 import swal from 'sweetalert';
 import { NzInputDirective, NzTableComponent, NzTabLabelDirective, NzTableModule } from 'ng-zorro-antd';
 import { DataSource } from '@angular/cdk/collections';
@@ -22,7 +23,9 @@ export class CrearVacunaComponent implements OnInit {
   listData: any[] = [];
   listTipoMovimiento = [];
   listObservacion = [];
+  listMarca = [];
   resUnidadMedida = [];
+  listaDtProductoDTO = [];
   widthConfig = [];
   scrollConfig = {};
   validateForm: FormControl;
@@ -43,15 +46,10 @@ export class CrearVacunaComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private vacunaService: VacunaService,
-    private renderer: Renderer2
+    private marcaService: MarcaService,
+    private renderer: Renderer2,
+    private router: Router
   ) {
-  }
-
-  //@HostListener('window:click', ['$event'])
-  handleClick(e: MouseEvent): void {
-    if (this.editId && this.inputElement && this.inputElement.nativeElement !== e.target) {
-      this.editId = null;
-    }
   }
 
   showFormVacuna() {
@@ -60,27 +58,22 @@ export class CrearVacunaComponent implements OnInit {
 
   handleCancel() {
     this.isVisible = false;
-  }
-
-  startEdit(id: string, event: MouseEvent): void {
-    console.log('example id', id)
-    event.preventDefault();
-    event.stopPropagation();
-    this.editId = id;
-  }
-
-  deleteRow(id: string): void {
-    this.listData = this.listData.filter(d => d.id !== id);
+    this.inventario = {};
   }
 
   ngOnInit() {
     this.getDataInventario();
-    this.getProducto();
-    this.getInventario();
+    this.getMarca();
+    this.getUnidadMedida();
   }
 
-  getProducto() {
-    console.log('example', this.listData.length)
+  getMarca() {
+    this.marcaService.getMarca().subscribe(result => {
+      this.listMarca = result;
+    })
+  }
+
+  getUnidadMedida() {
     this.resUnidadMedida.push(
       { name: 'Kilogramo', value: '1' },
       { name: 'Tonelada', value: '2' },
@@ -91,77 +84,76 @@ export class CrearVacunaComponent implements OnInit {
       { name: 'centimetro', value: '7' },
       { name: 'milímetro', value: '8' }
     )
-
-    const date = new Date();
-
-    /*this.listData = [
-      {
-        id: `${this.i}`,
-        fechaMovimiento: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
-        codigo: "example d",
-        observacion: "example costos",
-        entrada: {
-          cantidad: '50',
-          promedio: '100',
-          total: '200'
-        },
-        salida: {
-          cantidad: '250',
-          promedio: '650',
-          total: '123'
-        },
-        saldo: {
-          cantidad: '250',
-          promedio: '650',
-          total: '123'
-        }
-      }
-    ]
-    this.i++;*/
-  }
-
-  getInventario() {
-    this.listData;
   }
 
   getDataInventario() {
-    /*this.widthConfig = ['100px', '200px', '200px', '100px', '100px', '200px', '200px', '100px'];
-    this.scrollConfig = { x: '1600px', y: '260px' };*/
     const date = new Date();
     this.isEntrada = false;
     this.isSalida = false;
-    this.inventario.fechaIngreso = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    //this.inventario.fechaMovimiento = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
     this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
-    this.listObservacion.push(
-      { name: 'Salida inicial', value: '1' },
-      { name: 'Compra', value: '2' },
-      { name: 'Salida', value: '3' },
-      { name: 'Devolución', value: '4' },
-      { name: 'Ventas', value: '5' }
-    )
-  }
-
-  validateSave() {
-
   }
 
   movimientoChange($event) {
-    console.log('event change', $event)
-    $event == 'Entrada' ? this.isEntrada = true : this.isEntrada = false
-    $event == 'Salida' ? this.isSalida = true : this.isSalida = false
+    this.listObservacion = []
+    $event == 'Entrada' ? (this.isEntrada = true, this.listObservacion.push(
+      { name: 'Saldo inicial', value: '1' },
+      { name: 'Compra', value: '2' }
+    )) : this.isEntrada = false
+    $event == 'Salida' ? (this.isSalida = true, this.listObservacion.push(
+      { name: 'Salida', value: '3' },
+      { name: 'Devolución', value: '4' },
+    )) : this.isSalida = false
   }
 
-  createVacuna(form) {
-    console.log('example create', form)
+  createVacuna(event, form) {
+    const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
+    this.vacuna.marcaDTO = marca
+    this.vacuna.unidadMedida = form.unidadMedida
+    if (!event.invalid) {
+      this.vacunaService.createVacuna(this.vacuna).subscribe(result => {
+        this.listData = result.listaDtProductoDTO
+        let entorno = this;
+            swal("Petición correcta!", "", "success").then(() => {
+              this.router.navigate(['vacuna']);
+            });
+      })
+    }
   }
 
   createInventario(form) {
-    const date = new Date();
-    form['fechaIngreso'] = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    this.validateOperation(form.descripcion, form)
+    this.vacuna.tipoProductoDTO = { idtipoProducto: '1', nombreProducto: 'Vacuna' }
+    form['fechaMovimiento'] = new Date()
     this.isVisible = false;
-    this.editRowTable.nativeElement = this.renderer.setAttribute(this.editRowTable.nativeElement, "nzData", "example data")
-    this.renderer.setAttribute(this.editRowTable.nativeElement, "[nzData]", "example");
-    console.log('form inventario', form)
+  }
+
+  validateOperation(type, data) {
+    const obc = {
+      'Saldo inicial': () => {
+        const multi = data.cantidadUnitaria * data.promedioUnitario
+        this.listaDtProductoDTO.push(
+          Object.assign(data,
+            { totalUnitario: multi },
+            { cantidadTotal: data.cantidadUnitaria },
+            { promedioTotal: data.promedioUnitario },
+            { valorTotal: multi }
+          )
+        )
+        this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO;
+      },
+      'Compra': () => {
+        console.log('compra')
+      },
+      'Salida': () => {
+        console.log('salida')
+      },
+      'Devolución': () => {
+        console.log('devolución')
+      }
+    }
+
+    return obc[type]()
   }
 
 

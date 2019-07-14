@@ -13,6 +13,7 @@ import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vac
 import { RegistroConsumosComponent } from './components/registro-consumos/registro-consumos.component';
 import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
 
+import { EditarVacunaComponent } from './components/vacuna/editar-vacuna/editar-vacuna.component';
 const routes: Routes = [
 
   { path: '', redirectTo: '/grafico', pathMatch: 'full' }, 
@@ -26,7 +27,8 @@ const routes: Routes = [
   {path: 'alimento', component: AlimentoComponent},
   {path: 'vacuna', component: VacunaComponent},  
   {path: 'registroConsumo', component: RegistroConsumosComponent},  
-  {path: 'crear-consumo', component: CreateRegistroComponent},  
+  {path: 'crear-consumo', component: CreateRegistroComponent}, 
+  {path: 'editar-vacuna/:id', component: EditarVacunaComponent}, 
 
   {path: '**', pathMatch: 'full', redirectTo: ''},
 ];

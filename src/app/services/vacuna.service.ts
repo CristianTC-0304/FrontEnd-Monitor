@@ -39,7 +39,8 @@ export class VacunaService {
   }
 
   createVacuna(data): Observable<Producto> {  
-    return this.http.post<Producto>(this.url, data).pipe(response => response);
+    const url = `${environment.host}:${environment.port}/monitor/producto`
+    return this.http.post<Producto>(url, data).pipe(response => response);
   }
 
   deleteVacuna(id): Observable<Producto> {

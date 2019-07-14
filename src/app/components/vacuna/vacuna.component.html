@@ -28,7 +28,7 @@
             <td>{{data.unidadMedida}}</td>
             <td>
                 <a>
-                    <i nz-icon type="edit" (click)="editVacuna(data)"></i>
+                    <i nz-icon type="edit"  [routerLink]="['/editar-vacuna', data.idproducto]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
 
