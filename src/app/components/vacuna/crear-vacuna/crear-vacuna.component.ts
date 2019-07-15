@@ -28,8 +28,6 @@ export class CrearVacunaComponent implements OnInit {
   listaDtProductoDTO = [];
   widthConfig = [];
   scrollConfig = {};
-  validateForm: FormControl;
-  i = 0;
   editId: string | null;
   isVisible = false;
   isEntrada = false;
@@ -114,9 +112,9 @@ export class CrearVacunaComponent implements OnInit {
       this.vacunaService.createVacuna(this.vacuna).subscribe(result => {
         this.listData = result.listaDtProductoDTO
         let entorno = this;
-            swal("Petición correcta!", "", "success").then(() => {
-              this.router.navigate(['vacuna']);
-            });
+        swal("Petición correcta!", "", "success").then(() => {
+          this.router.navigate(['vacuna']);
+        });
       })
     }
   }
