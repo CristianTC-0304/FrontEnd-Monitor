@@ -5,7 +5,7 @@
     <div nz-col nzSpan="12">
         <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateAlimento()">
             <i nz-icon type="plus"></i>
-            Crear Alimento
+            Crear alimento
         </button>
     </div>
     <nz-divider [nzType]="vertical"></nz-divider>
@@ -22,28 +22,20 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of smallTable.data">
-            <td>{{ data.codProducto}}</td>
-            <td>{{ data.nombreProducto}}</td>
-            <td>{{ data.marcaProducto}}</td>
-            <td>{{ data.unidadMedida}}</td>
-            <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
+            <td>{{data.codProducto}}</td>
+            <td>{{data.nombreProducto}}</td>
+            <td>{{data.marcaDTO.nombreMarca}}</td>
+            <td>{{data.unidadMedida}}</td>
             <td>
                 <a>
-                    <i nz-icon type="edit" (click)="editAlimento(data)"></i>
+                    <i nz-icon type="edit"  [routerLink]="['/editar-alimento', data.idproducto]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
 
                 <a>
-                    <i nz-icon type="delete" (click)="eliminarAlimento(data.idprecioAlimento)"></i>
+                    <i nz-icon type="delete" (click)="eliminarVacuna(data.idDrogaVacuna)"></i>
                 </a>
             </td>
         </tr>
     </tbody>
 </nz-table>
-
-
-
-<nz-modal nzFooter=" " nzTitle="Crear Alimento" [(nzVisible)]="isModalVisible" (nzOnCancel)="handleCancelTop()">
-    <app-create-alimento (isResult)="handleCancelTop()">
-    </app-create-alimento>
-</nz-modal>

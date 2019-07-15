@@ -46,10 +46,10 @@ export class AlimentoComponent implements OnInit {
     });
   }
 
+  
+
   showFormCreateAlimento() {
-    // window["domModalAlimento"].isAlertVisible = false;
-    window["domModalAlimento"].alimento = new Object();
-    this.isModalVisible = true;
+    this.router.navigate(['crear-alimento'])
   }
 
   saveEmitAlimento(event) {
