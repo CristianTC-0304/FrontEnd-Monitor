@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Producto } from '../models/producto.model';
 import { catchError, map, tap } from 'rxjs/operators';
+import { TipoProducto } from '../models/tipoProducto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,12 @@ export class AlimentoService {
     );
   }
 
+  getPresentacion(): Observable<Array<TipoProducto>> {
+    return this.http.get<Array<TipoProducto>>(`${environment.host}:${environment.port}/monitor/presentacion`)
+    .pipe(
+      catchError(this.handleError<TipoProducto[]>('getPresentacion', []))
+    );
+  }
   getAlimentoId(id: number): Observable<Producto> {
     const url = `${this.url}/${id}`;
     return this.http.get<Producto>(url).pipe(
@@ -30,7 +37,8 @@ export class AlimentoService {
     );
   }
 
-  createAlimento(data): Observable<Producto> {    
+  createAlimento(data): Observable<Producto> {   
+    const url = `${environment.host}:${environment.port}/monitor/producto` 
     return this.http.post<Producto>(this.url, data).pipe(response => response);
   }
 
