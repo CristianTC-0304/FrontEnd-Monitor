@@ -88,28 +88,16 @@ export class EditarVacunaComponent implements OnInit {
             console.log('params router', params)
             this.vacunaService.getVacunaId(params['id']).subscribe(result => {
                 console.log('result vacuna', result)
+                this.vacuna.idproducto = params['id']
                 this.vacuna.codProducto = result.codProducto
                 this.vacuna.nombreProducto = result.nombreProducto
                 this.vacuna.marcaProducto = result['marcaDTO'].idMarca
                 this.vacuna.unidadMedida = result.unidadMedida
-                this.listData = result.listaDtProductoDTO
-                this.listaDtProductoDTO = result.listaDtProductoDTO
                 this.listData = [
-                    ...this.listData,
-                    {
-                        cantidadTotal: 2,
-                        cantidadUnitaria: 2,
-                        codigo: "03456",
-                        descripcion: "Saldo inicial",
-                        dtProductoDTOS: null,
-                        fechaMovimiento: "2019-07-13",
-                        iddtProducto: 377,
-                        promedioTotal: 34567,
-                        promedioUnitario: 34567,
-                        tipoMovimiento: "Entrada",
-                        totalUnitario: 69034,
-                        valorTotal: 69045
-                    }
+                    ...result.listaDtProductoDTO
+                ]
+                this.listaDtProductoDTO = [
+                    ...result.listaDtProductoDTO
                 ]
             })
         })
@@ -149,21 +137,37 @@ export class EditarVacunaComponent implements OnInit {
                 this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO;
             },
             'Compra': () => {
-                const multi = (parseInt(data.cantidadUnitaria) * parseInt(data.promedioUnitario)) 
-               const dataPop = this.listData.pop()
-               this.listaDtProductoDTO.push(
-                   Object.assign(data,
-                   { totalUnitario: multi},
-                   { cantidadTotal: (parseInt(dataPop.cantidadTotal) + parseInt(data.cantidadUnitaria))},
-                   { valorTotal: (parseInt(dataPop.valorTotal) + parseInt(data.promedioUnitario))},
-                   { promedioTotal: (parseInt(dataPop.valorTotal) + parseInt(data.promedioUnitario)) % (parseInt(dataPop.cantidadTotal) + parseInt(data.cantidadUnitaria))} 
+                const multi = (parseInt(data.cantidadUnitaria) * parseFloat(data.promedioUnitario))
+                const dataPop = this.listData.pop()
+                const v1 = ((parseFloat(dataPop.valorTotal) + multi));
+                const v2 = ((parseFloat(dataPop.cantidadTotal) + parseFloat(data.cantidadUnitaria)));
+                this.listaDtProductoDTO.push(
+                    Object.assign(data,
+                        { totalUnitario: multi },
+                        { cantidadTotal: (parseFloat(dataPop.cantidadTotal) + parseFloat(data.cantidadUnitaria)) },
+                        { valorTotal: (parseFloat(dataPop.valorTotal) + multi) },
+                        { promedioTotal: (v1 / v2) }
+                    )
                 )
-               )
-               console.log('log exaample', this.listaDtProductoDTO)
-               this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO
+                console.log('log exaample', this.listaDtProductoDTO)
+                this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO
             },
             'Salida': () => {
-                console.log('salida')
+                const dataPop = this.listData.pop()
+                const mul = (parseFloat(data.cantidadUnitaria) * parseFloat(data.promedioTotal))
+                const res = (parseFloat(dataPop.cantidadTotal) - parseFloat(data.cantidadUnitaria))
+                this.listaDtProductoDTO.push(
+                    Object.assign(data,
+                        { cantidadUnitaria: data.cantidadUnitaria },
+                        { promedioUnitario: dataPop.promedioTotal },
+                        { valorUnitario: mul },
+                        { cantidadTotal: res },
+                        { valorTotal: (parseFloat(dataPop.valorTotal) - mul)},
+                        { promedioTotal: (mul / res) }
+                    )
+                )
+                console.log('salida', this.listaDtProductoDTO)
+                this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO
             },
             'Devolución': () => {
                 console.log('devolución')
@@ -177,16 +181,17 @@ export class EditarVacunaComponent implements OnInit {
         const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
         this.vacuna.marcaDTO = marca
         this.vacuna.unidadMedida = form.unidadMedida
-        if (!event.invalid) {
-          console.log('example save vacuna edit', this.vacuna) 
-          this.vacunaService.createVacuna(this.vacuna).subscribe(result => {
-            this.listData = result.listaDtProductoDTO
-            console.log('result save', result);
-            /*let entorno = this;
-            swal("Petición correcta!", "", "success").then(() => {
-              this.router.navigate(['vacuna']);
-            });*/
-          })
+        if (this.vacuna.listaDtProductoDTO) {
+            console.log('example save vacuna edit', this.vacuna)
+            this.vacunaService.createVacuna(this.vacuna).subscribe(result => {
+                this.listData = result.listaDtProductoDTO
+                this.inventario = new Object()
+                console.log('result save', result);
+                /*let entorno = this;
+                swal("Petición correcta!", "", "success").then(() => {
+                  this.router.navigate(['vacuna']);
+                });*/
+            })
         }
-      }
+    }
 }
