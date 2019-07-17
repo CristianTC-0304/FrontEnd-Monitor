@@ -154,16 +154,16 @@ export class EditarVacunaComponent implements OnInit {
             },
             'Salida': () => {
                 const dataPop = this.listData.pop()
-                const mul = (parseFloat(data.cantidadUnitaria) * parseFloat(data.promedioTotal))
+                const mul = (parseFloat(data.cantidadUnitaria) * parseFloat(dataPop.promedioTotal))
                 const res = (parseFloat(dataPop.cantidadTotal) - parseFloat(data.cantidadUnitaria))
                 this.listaDtProductoDTO.push(
                     Object.assign(data,
                         { cantidadUnitaria: data.cantidadUnitaria },
                         { promedioUnitario: dataPop.promedioTotal },
-                        { valorUnitario: mul },
+                        { totalUnitario: mul },
                         { cantidadTotal: res },
                         { valorTotal: (parseFloat(dataPop.valorTotal) - mul)},
-                        { promedioTotal: (mul / res) }
+                        { promedioTotal: ((parseFloat(dataPop.valorTotal) - mul) / res) }
                     )
                 )
                 console.log('salida', this.listaDtProductoDTO)

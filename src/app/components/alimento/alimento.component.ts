@@ -40,10 +40,10 @@ export class AlimentoComponent implements OnInit {
   }
 
   getDataAlimento() {
-    this.alimentoServices.getAlimento().subscribe((data: any) => {
+    /*this.alimentoServices.getAlimento().subscribe((data: any) => {
       this.resData = data.filter(item => item);
       console.log(data);
-    });
+    });*/
   }
 
   
@@ -80,11 +80,11 @@ export class AlimentoComponent implements OnInit {
       closeOnEsc: false
     }).then(willDelete => {
       if (willDelete) {
-        this.alimentoServices.deleteAlimento(id).subscribe(result => {
+        /*this.alimentoServices.deleteAlimento(id).subscribe(result => {
           swal("Petición correcta!", "Se elimino correctamente", "success").then(() => {
             this.getDataAlimento();
           });
-        });
+        });*/
       }
     });
   }

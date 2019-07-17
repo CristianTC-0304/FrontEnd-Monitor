@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { CostoAvicola } from '../models/costoAvicola.model';
 import { catchError } from 'rxjs/operators';
+import { Ave } from '../models/ave.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,13 @@ export class CostoAvicolaService {
     );
   }
 
+
+  getAve(): Observable<Array<Ave>> {
+    return this.http.get<Array<Ave>>(`${environment.host}:${environment.port}/monitor/ave`)
+    .pipe(
+      catchError(this.handleError<Ave[]>('getAve', []))
+    );
+  }
 
   createCostoAvicola(data): Observable<CostoAvicola> {  
     return this.http.post<CostoAvicola>(this.url, data).pipe(response => response);

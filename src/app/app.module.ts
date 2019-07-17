@@ -28,6 +28,7 @@ import { EditStaffComponent } from './components/staff/editstaff/editstaff.compo
 import { RegistroConsumosComponent } from './components/registro-consumos/registro-consumos.component';
 import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
 import { EditarVacunaComponent } from './components/vacuna/editar-vacuna/editar-vacuna.component';
+import { EditarAlimentoComponent } from './components/alimento/editar-alimento/editar-alimento.component';
 
 registerLocaleData(en);
 
@@ -48,7 +49,8 @@ registerLocaleData(en);
     EditStaffComponent,
     RegistroConsumosComponent,
     CreateRegistroComponent,
-    EditarVacunaComponent
+    EditarVacunaComponent,
+    EditarAlimentoComponent
   
   ],
   imports: [
