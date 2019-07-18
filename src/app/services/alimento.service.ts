@@ -16,10 +16,10 @@ export class AlimentoService {
 
   }
 
-  getAlimento(): Observable<Array<Producto>> {
-    return this.http.get<Array<Producto>>(this.url)   
+  getVacuna(): Observable<Array<Producto>> {
+    return this.http.get<Array<Producto>>(this.url)
     .pipe(
-      catchError(this.handleError<Producto[]>('getAlimento', []))
+      catchError(this.handleError<Producto[]>('getVacuna', []))
     );
   }
 
@@ -29,22 +29,20 @@ export class AlimentoService {
       catchError(this.handleError<TipoProducto[]>('getPresentacion', []))
     );
   }
-  getAlimentoId(id: number): Observable<Producto> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<Producto>(url).pipe(
-      tap(_ => this.log(`fetched alimento id=${id}`)),
-      catchError(this.handleError<Producto>(`getStagetAlimentoId id=${id}`))
-    );
+
+  getVacunaId(id: number): Observable<Producto> {
+    const url = `${environment.host}:${environment.port}/monitor/product/${id}`;
+    return this.http.get<Producto>(url).pipe(result => result);
   }
 
-  createAlimento(data): Observable<Producto> {   
-    const url = `${environment.host}:${environment.port}/monitor/producto` 
-    return this.http.post<Producto>(this.url, data).pipe(response => response);
+  createVacuna(data): Observable<Producto> {  
+    const url = `${environment.host}:${environment.port}/monitor/producto`
+    return this.http.post<Producto>(url, data).pipe(response => response);
   }
 
-  deleteAlimento(id): Observable<Producto>{
+  deleteVacuna(id): Observable<Producto> {
       const url = `${this.url}/${id}`;
-      return this.http.put<Producto>(url,{}).pipe(result => result);
+      return this.http.put<Producto>(url, {}).pipe(result => result);
   }
 
   /**

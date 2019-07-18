@@ -28,8 +28,6 @@ export class CrearVacunaComponent implements OnInit {
   listaDtProductoDTO = [];
   widthConfig = [];
   scrollConfig = {};
-  validateForm: FormControl;
-  i = 0;
   editId: string | null;
   isVisible = false;
   isEntrada = false;
@@ -52,7 +50,7 @@ export class CrearVacunaComponent implements OnInit {
   ) {
   }
 
-  showFormVacuna() {
+  showFormVacuna($event) {
     this.isVisible = true;
   }
 
@@ -110,13 +108,13 @@ export class CrearVacunaComponent implements OnInit {
     const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
     this.vacuna.marcaDTO = marca
     this.vacuna.unidadMedida = form.unidadMedida
-    if (!event.invalid) {
+    if (this.vacuna.listaDtProductoDTO) {
       this.vacunaService.createVacuna(this.vacuna).subscribe(result => {
         this.listData = result.listaDtProductoDTO
         let entorno = this;
-            swal("Petición correcta!", "", "success").then(() => {
-              this.router.navigate(['vacuna']);
-            });
+        swal("Petición correcta!", "", "success").then(() => {
+          this.router.navigate(['vacuna']);
+        });
       })
     }
   }
@@ -134,13 +132,14 @@ export class CrearVacunaComponent implements OnInit {
         const multi = data.cantidadUnitaria * data.promedioUnitario
         this.listaDtProductoDTO.push(
           Object.assign(data,
-            { totalUnitario: multi },
+            { totalUnitario: multi},
             { cantidadTotal: data.cantidadUnitaria },
             { promedioTotal: data.promedioUnitario },
             { valorTotal: multi }
           )
         )
         this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO;
+        console.log('this.vacuna', this.vacuna);
       },
       'Compra': () => {
         console.log('compra')

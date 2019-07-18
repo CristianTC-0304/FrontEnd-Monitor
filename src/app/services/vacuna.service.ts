@@ -31,11 +31,8 @@ export class VacunaService {
   }
 
   getVacunaId(id: number): Observable<Producto> {
-    const url = `${this.url}/${id}`;
-    return this.http.get<Producto>(url).pipe(
-      tap(_ => this.log(`fetched alimento id=${id}`)),
-      catchError(this.handleError<Producto>(`getStagetVacunaId id=${id}`))
-    );
+    const url = `${environment.host}:${environment.port}/monitor/product/${id}`;
+    return this.http.get<Producto>(url).pipe(result => result);
   }
 
   createVacuna(data): Observable<Producto> {  
@@ -44,8 +41,8 @@ export class VacunaService {
   }
 
   deleteVacuna(id): Observable<Producto> {
-      const url = `${this.url}/${id}`;
-      return this.http.put<Producto>(url, {}).pipe(result => result);
+      const url = `${environment.host}:${environment.port}/monitor/dtProducto/${id}`;
+      return this.http.delete<Producto>(url).pipe(result => result);
   }
 
   /**

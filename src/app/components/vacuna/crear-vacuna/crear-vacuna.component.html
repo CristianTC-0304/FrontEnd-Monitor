@@ -19,7 +19,7 @@
             <br>
             <nz-form-control>
                 <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-                    <input class="inputDocument" pattern="[0-9]*" [(ngModel)]="vacuna.codProducto" required (ngModelChange)="onChangeDocumento($event)"
+                    <input class="inputDocument" [(ngModel)]="vacuna.codProducto" required
                         (blur)="onBlurDocumento()" nz-tooltip #codProducto name="codProducto" nz-input placeholder="Ingrese código producto"
                         digitOnly required style="width: 200px; border: 1px solid #d9d9d9 !important;" />
                 </nz-tooltip>
@@ -59,7 +59,7 @@
             </nz-form-control>
         </nz-form-item>
         <div class="tableDynamic">
-            <button nz-button class="btnAgregar" (click)="showFormVacuna()" nzType="primary">
+            <button nz-button class="btnAgregar" (click)="showFormVacuna($event)" nzType="primary">
                 <i nz-icon type="plus"></i>
                 Agregar
             </button>

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { AveService } from '../../../services/ave.service';
+import { CostoAvicolaService } from '../../../services/costo-avicola.service';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-create-registro',
@@ -12,6 +16,11 @@ export class CreateRegistroComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getAve();
+  }
+
+  getAve() {
+    
   }
 
 }

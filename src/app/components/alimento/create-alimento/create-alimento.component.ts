@@ -113,13 +113,13 @@ export class CreateAlimentoComponent implements OnInit {
     this.vacuna.marcaDTO = marca
     this.vacuna.unidadMedida = form.unidadMedida
     if (!event.invalid) {
-      this.alimentoService.createAlimento(this.vacuna).subscribe(result => {
+      /*this.alimentoService.createAlimento(this.vacuna).subscribe(result => {
         this.listData = result.listaDtProductoDTO
         let entorno = this;
             swal("Petición correcta!", "", "success").then(() => {
               this.router.navigate(['alimento']);
             });
-      })
+      })*/
     }
   }
 
