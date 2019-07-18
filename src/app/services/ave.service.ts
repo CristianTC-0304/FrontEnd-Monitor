@@ -16,10 +16,7 @@ export class AveService {
   }
 
   getAve(): Observable<Array<Ave>> {
-    return this.http.get<Array<Ave>>(this.url)
-    .pipe(
-      catchError(this.handleError<Ave[]>('Ave', []))
-    );
+    return this.http.get<Array<Ave>>(this.url).pipe(res => res)
   }
 
   /**
