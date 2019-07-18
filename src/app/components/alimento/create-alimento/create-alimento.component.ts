@@ -1,12 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter , ViewChild, ElementRef, Renderer2} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoAlimentoService } from '../../../services/tipoAlimento.service';
 import { UnidadMedidaService } from '../../../services/unidadMedida.service';
-import { AlimentoService }  from '../../../services/alimento.service'
+import { AlimentoService } from '../../../services/alimento.service'
 import swal from 'sweetalert';
 import { MarcaService } from '../../../services/marca.service';
-
 import { NzInputDirective, NzTableComponent, NzTabLabelDirective, NzTableModule } from 'ng-zorro-antd';
 import { DataSource } from '@angular/cdk/collections';
 
@@ -30,8 +29,6 @@ export class CreateAlimentoComponent implements OnInit {
   listaDtProductoDTO = [];
   widthConfig = [];
   scrollConfig = {};
-  validateForm: FormControl;
-  i = 0;
   editId: string | null;
   isVisible = false;
   isEntrada = false;
@@ -54,7 +51,7 @@ export class CreateAlimentoComponent implements OnInit {
   ) {
   }
 
-  showFormVacuna() {
+  showFormVacuna($event) {
     this.isVisible = true;
   }
 
@@ -79,12 +76,12 @@ export class CreateAlimentoComponent implements OnInit {
     this.resUnidadMedida.push(
       { name: 'Kilogramo', value: '1' },
       { name: 'Tonelada', value: '2' },
-      { name: 'miligramo', value: '3' },
-      { name: 'gramos', value: '4' },
-      { name: 'litro', value: '5' },
-      { name: 'mililitro', value: '6' },
-      { name: 'centimetro', value: '7' },
-      { name: 'milímetro', value: '8' }
+      { name: 'Miligramo', value: '3' },
+      { name: 'Gramos', value: '4' },
+      { name: 'Litro', value: '5' },
+      { name: 'Mililitro', value: '6' },
+      { name: 'Centimetro', value: '7' },
+      { name: 'Milímetro', value: '8' }
     )
   }
 
@@ -112,14 +109,14 @@ export class CreateAlimentoComponent implements OnInit {
     const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
     this.vacuna.marcaDTO = marca
     this.vacuna.unidadMedida = form.unidadMedida
-    if (!event.invalid) {
-      /*this.alimentoService.createAlimento(this.vacuna).subscribe(result => {
+    if (this.vacuna.listaDtProductoDTO) {
+      this.alimentoService.createVacuna(this.vacuna).subscribe(result => {
         this.listData = result.listaDtProductoDTO
         let entorno = this;
-            swal("Petición correcta!", "", "success").then(() => {
-              this.router.navigate(['alimento']);
-            });
-      })*/
+        swal("Petición correcta!", "", "success").then(() => {
+          this.router.navigate(['alimento']);
+        });
+      })
     }
   }
 
@@ -143,6 +140,7 @@ export class CreateAlimentoComponent implements OnInit {
           )
         )
         this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO;
+        console.log('this.vacuna', this.vacuna);
       },
       'Compra': () => {
         console.log('compra')
@@ -157,4 +155,5 @@ export class CreateAlimentoComponent implements OnInit {
 
     return obc[type]()
   }
+
 }

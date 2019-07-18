@@ -1,43 +1,43 @@
 .numeric-input .ant-tooltip-inner {
-    min-width: 32px;
-    min-height: 37px;
-  }
+  min-width: 32px;
+  min-height: 37px;
+}
 
-  .numeric-input .numeric-input-title {
-    font-size: 14px;
-  }
+.numeric-input .numeric-input-title {
+  font-size: 14px;
+}
 
-  .btnvacuna{
-    margin: 10px;
-    text-align: center;
-    margin-left: 75%;
-    background: #87d068;
-    border: #87d068;
-    color: #fff;
-  }
+.btnvacuna{
+  margin: 10px;
+  text-align: center;
+  margin-left: 75%;
+  background: #87d068;
+  border: #87d068;
+  color: #fff;
+}
 
-  .tableDynamic {
-    margin-top: 20px;
-  }
+.tableDynamic {
+  margin-top: 20px;
+}
 
-  .btnAgregar {
-    margin: 10px;
-    background: #87d068;
-    border: #87d068;
-    color: #fff;
-  }
+.btnAgregar {
+  margin: 10px;
+  background: #87d068;
+  border: #87d068;
+  color: #fff;
+}
 
-  .editable-cell {
-    position: relative;
-  }
+.editable-cell {
+  position: relative;
+}
 
-  .editable-cell-value-wrap {
-    padding: 5px 12px;
-    cursor: pointer;
-  }
+.editable-cell-value-wrap {
+  padding: 5px 12px;
+  cursor: pointer;
+}
 
-  .editable-row:hover .editable-cell-value-wrap {
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    padding: 4px 11px;
-  }
+.editable-row:hover .editable-cell-value-wrap {
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 4px 11px;
+}

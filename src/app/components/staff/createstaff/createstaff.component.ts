@@ -77,8 +77,7 @@ export class CreatestaffComponent implements OnInit {
   getDocumentType() {
     this.documentTypeService.getDocumentType().subscribe(result => {
       this.resDocumentType = result;
-      this.staff.idTipoDocumento = '1';
-      this.staff.documento = "1234456";
+     
       console.log('documentType', result);
     });
   }
