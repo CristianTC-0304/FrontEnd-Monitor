@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRegistroComponent implements OnInit {
 
+  costoAvicola: any = new Object();
+
   constructor() { }
 
   ngOnInit() {

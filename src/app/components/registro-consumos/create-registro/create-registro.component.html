@@ -1,4 +1,4 @@
-<form class="formstaff" nz-form [nzLayout]="'inline'" #staffForm="ngForm" (ngSubmit)="updateStaff(staffForm.value)">
+<form class="formstaff" nz-form [nzLayout]="'inline'" #consumoForm="ngForm" (ngSubmit)="createConsumo(consumoForm.value)">
   <!--(createStaff)="eventSaveForm(staffForm)"-->
   <h3 class="text"> Registro de consumos y cálculo de costos </h3>
   <div class="form-fields" fxLayout="row wrap" fxLayoutGap="40%" fxLayoutAlign="start center">
@@ -20,7 +20,7 @@
       <nz-form-control>
         <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
           <input class="inputDocument" disabled pattern="[0-9]*" [(ngModel)]="costoAvicola.semanaPolla"
-            (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #documento
+            (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #semanaPolla
             name="semanaPolla" nz-input placeholder="Ingrese número de semanas" digitOnly required
             style="width: 400px; border: 1px solid #d9d9d9 !important;" />
         </nz-tooltip>
