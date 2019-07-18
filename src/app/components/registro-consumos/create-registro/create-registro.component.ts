@@ -11,22 +11,32 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class CreateRegistroComponent implements OnInit {
 
-  resAve = [];
-  constructor(private fb: FormBuilder,
-    private aveService: AveService,
-    private costoAvicola: CostoAvicolaService,
-    private router: Route
-  ) { }
+  costoAvicola: any = new Object();
+  sumTotalMaterial: string;
+  resListAve: [];
+
+  constructor(
+    private aveService: AveService
+  ) { 
+
+  }
 
   ngOnInit() {
     this.getAve();
   }
 
   getAve() {
-    this.aveService.getAve().subscribe(result => {
-      this.resAve = result;
-      console.log('documentType', result);
-    });
+    this.aveService.getAve().subscribe(result => console.log('example list aver', result))
   }
 
+
+  createConsumo(form) {
+    console.log('example form registro', form)
+  }
+
+  sumMaterial(event) {
+    console.log('event', event)
+    this.sumTotalMaterial = event + this.costoAvicola.totalVacunas;
+    console.log('exmaple', this.sumTotalMaterial, this.costoAvicola.totalVacunas)
+  }
 }

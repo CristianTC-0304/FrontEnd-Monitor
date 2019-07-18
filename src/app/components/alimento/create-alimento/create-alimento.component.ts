@@ -105,7 +105,7 @@ export class CreateAlimentoComponent implements OnInit {
     )) : this.isSalida = false
   }
 
-  createVacuna(event, form) {
+  createAlimento(event, form) {
     const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
     this.vacuna.marcaDTO = marca
     this.vacuna.unidadMedida = form.unidadMedida
