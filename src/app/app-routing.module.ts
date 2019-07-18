@@ -11,7 +11,8 @@ import { LoginComponent } from './components/login/login.component';
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
 import { CrearVacunaComponent } from './components/vacuna/crear-vacuna/crear-vacuna.component';
 import { RegistroConsumosComponent } from './components/registro-consumos/registro-consumos.component';
-//import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
+import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
+import { EditarRegistroComponent } from './components/registro-consumos/editar-registro/editar-registro.component';
 
 import { EditarVacunaComponent } from './components/vacuna/editar-vacuna/editar-vacuna.component';
 import { CreateAlimentoComponent } from './components/alimento/create-alimento/create-alimento.component';
@@ -30,9 +31,10 @@ const routes: Routes = [
   {path: 'alimento', component: AlimentoComponent},
   {path: 'vacuna', component: VacunaComponent},  
   {path: 'registroConsumo', component: RegistroConsumosComponent},  
-  //{path: 'crear-consumo', component: CreateRegistroComponent}, 
+  {path: 'crear-consumo', component: CreateRegistroComponent}, 
   {path: 'editar-vacuna/:id', component: EditarVacunaComponent}, 
   {path: 'editar-alimento/:id', component: EditarAlimentoComponent}, 
+  {path: 'editar-registro/:id', component: EditarRegistroComponent},
   {path: '**', pathMatch: 'full', redirectTo: ''},
 ];
 

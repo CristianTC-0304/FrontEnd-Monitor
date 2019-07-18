@@ -25,9 +25,7 @@ export class RegistroConsumosComponent implements OnInit {
   }
 
   getCostoAvicola() {
-    console.log("entro 3333");
      this.costoAvicola.getCostoAvicola().subscribe((data: any) => {
-      console.log('data staff', data);
       this.resData = data
     });
   }

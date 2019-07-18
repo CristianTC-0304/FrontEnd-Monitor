@@ -38,13 +38,13 @@
           <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
           <td>
               <a>
-                  <i nz-icon type="edit" (click)="editAlimento(data)"></i>
+                  <i nz-icon type="edit" [routerLink]="['/editar-registro', data.idcostoAvicola]" (click)="editAlimento(data)"></i>
               </a>
               <nz-divider nzType="vertical"></nz-divider>
 
-              <a>
+              <!--<a>
                   <i nz-icon type="delete" (click)="eliminarAlimento(data.idprecioAlimento)"></i>
-              </a>
+              </a>-->
           </td>
       </tr>
   </tbody>

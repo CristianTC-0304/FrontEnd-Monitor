@@ -1,0 +1,139 @@
+<form class="formstaff" nz-form [nzLayout]="'inline'" #consumoForm="ngForm" (ngSubmit)="editConsumo(consumoForm.value)">
+    <!--(createStaff)="eventSaveForm(staffForm)"-->
+    <h3 class="text"> Registro de consumos y cálculo de costos </h3>
+    <div class="form-fields" fxLayout="row wrap" fxLayoutGap="40%" fxLayoutAlign="start center">
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="idAve" class="ant-form-item-required letter-label-style">Línea
+        </nz-form-label>
+        <br>
+        <nz-form-control>
+          <nz-select [(ngModel)]="costoAvicola.idAve" class="formDrop" style="width: 400px;"
+            nzPlaceHolder="Seleccion la línea" #idAve name="idAve" [nzSize]="size">
+            <nz-option *ngFor="let ave of resListAve" [nzLabel]="ave.tipoAve"
+              [nzValue]="ave.idAve"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="semanaPolla" class="ant-form-item-required letter-label-style">Semana</nz-form-label>
+        <br>
+        <nz-form-control>
+          <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
+            <input class="inputDocument" pattern="[0-9]*" [(ngModel)]="costoAvicola.semanaPolla"
+              (ngModelChange)="onChangeDocumento($event)" (blur)="onBlurDocumento()" nz-tooltip #semanaPolla
+              name="semanaPolla" nz-input placeholder="Ingrese número de semanas" digitOnly required
+              style="width: 400px; border: 1px solid #d9d9d9 !important;" />
+          </nz-tooltip>
+        </nz-form-control>
+      </nz-form-item>
+      <h3 class="text"> Materiales {{(costoAvicola.costoAlimento + costoAvicola.totalVacunas) || " "}} </h3>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="costoAlimento" class="ant-form-item-required letter-label-style">Costo alimento</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.costoAlimento" #costoAlimento name="costoAlimento" nz-input
+            placeholder="Ingrese el costo del alimento" required style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="totalVacunas" class="ant-form-item-required letter-label-style">Costo vacunas</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.totalVacunas" #totalVacunas name="totalVacunas" nz-input
+            placeholder="Ingrese el costo de las vacunas" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+  
+      <h3 class="text"> Mano de obra {{((costoAvicola.totalManoObra + costoAvicola.despique) + costoAvicola.empaque) || " "}} </h3>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="totalManoObra" class="ant-form-item-required letter-label-style">Mano de obra
+        </nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.totalManoObra" #totalManoObra name="totalManoObra" nz-input
+            placeholder="Ingrese el valor de mano de obra" required
+            style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="despique" class="ant-form-item-required letter-label-style">Despique</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.despique" #despique name="despique" nz-input
+            placeholder="Ingrese el valor del despique" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+  
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="empaque" class="ant-form-item-required letter-label-style">Empaque</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.empaque" #empaque name="empaque" nz-input
+            placeholder="Ingrese el valor del empaque" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+   
+      <h3 class="text"> Costos indirectos {{((costoAvicola.totalAlojamiento + costoAvicola.calefacion) + (costoAvicola.serviciosPublicos + costoAvicola.depresiacion) + 
+        (costoAvicola.amortizacion + costoAvicola.mortalidad)) || " "}}</h3>
+  
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="totalAlojamiento" class="ant-form-item-required letter-label-style">Alojamiento</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.totalAlojamiento" #totalAlojamiento name="totalAlojamiento" nz-input
+            placeholder="Ingrese el valor del alojamiento" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+  
+  <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="calefacion" class="ant-form-item-required letter-label-style">Calefacción</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputForm" type="number" [(ngModel)]="costoAvicola.calefacion" #calefacion name="calefacion" nz-input
+            placeholder="Ingrese calefacción" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+     
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="serviciosPublicos" class="ant-form-item-required letter-label-style">Servicios publicos</nz-form-label>
+        <br>
+        <nz-form-control>
+            <input class="inputCelular" type="number" [(ngModel)]="costoAvicola.serviciosPublicos" #serviciosPublicos name="serviciosPublicos" nz-input
+              placeholder="Ingrese servicios publicos" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="depresiacion" class="ant-form-item-required letter-label-style">Depreciación</nz-form-label>
+        <br>
+        <nz-form-control>
+            <input class="inputCelular" type="number" [(ngModel)]="costoAvicola.depresiacion" #depresiacion name="depresiacion"
+              nz-input required placeholder="Ingrese Depreciación" style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="amortizacion" class="ant-form-item-required letter-label-style">Amortización</nz-form-label>
+        <br>
+        <nz-form-control>
+            <input class="inputDireccion" type="number" [(ngModel)]="costoAvicola.amortizacion" #amortizacion name="amortizacion" nz-input
+            placeholder="Ingrese amortización" required
+            style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-label for="mortalidad" class="ant-form-item-required letter-label-style">Mortalidad</nz-form-label>
+        <br>
+        <nz-form-control>
+          <input class="inputEmail" type="number" [(ngModel)]="costoAvicola.mortalidad" #mortalidad name="mortalidad"
+            nz-input placeholder="Ingrese mortalidad" required style="width: 400px; border: 1px solid #d9d9d9 !important" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item fxLayout="column" fxLayoutAlign="start start" fxFlex="48%" fxFlex.lt-sm="45">
+        <nz-form-control [nzSpan]="5" [nzOffset]="5">
+          <br>
+          <button nz-button nzType="primary" [disabled]="!consumoForm.valid">Guardar</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </form>
+  <!-- <nz-alert nzType="success" *ngIf="isAlertVisible == true" nzMessage="Operación Exitosa!" nzShowIcon></nz-alert> -->
+  

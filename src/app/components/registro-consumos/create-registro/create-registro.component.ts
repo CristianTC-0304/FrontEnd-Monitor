@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AveService } from '../../../services/ave.service';
 import { CostoAvicolaService } from '../../../services/costo-avicola.service';
-import { Route } from '@angular/compiler/src/core';
-
+import swal from 'sweetalert';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-create-registro',
   templateUrl: './create-registro.component.html',
@@ -13,11 +13,14 @@ export class CreateRegistroComponent implements OnInit {
 
   costoAvicola: any = new Object();
   sumTotalMaterial: string;
-  resListAve: [];
+  resListAve = [];
 
   constructor(
-    private aveService: AveService
-  ) { 
+    private route: ActivatedRoute,
+    private router: Router,
+    private aveService: AveService,
+    private costoAvicolaService: CostoAvicolaService
+  ) {
 
   }
 
@@ -26,17 +29,32 @@ export class CreateRegistroComponent implements OnInit {
   }
 
   getAve() {
-    this.aveService.getAve().subscribe(result => console.log('example list aver', result))
+    this.aveService.getAve().subscribe(result => {
+      this.resListAve = result;
+    })
   }
 
 
   createConsumo(form) {
-    console.log('example form registro', form)
+    const summ = ((form.costoAlimento + form.totalVacunas) +
+      ((form.totalManoObra + form.despique) + form.empaque) +
+      ((form.totalAlojamiento + form.calefacion) + (form.serviciosPublicos + form.depresiacion) +
+        (form.amortizacion + form.mortalidad))
+    )
+    console.log('summ', summ)
+    form.ave = this.resListAve.find(res => res.idAve == form.idAve)
+    form.granTotal = summ
+    form.subTotal = "0"
+    form.valorMortalidad = "0"
+    form.viruta = "0"
+    form.cantidadKg = 0
+    form.planta = "0"
+    form.fechaCreacion = new Date()
+    this.costoAvicolaService.createCostoAvicola(form).subscribe(result => {
+      swal("Petición correcta!", "", "success").then(() => {
+        this.router.navigate(['/registroConsumo']);
+      });
+    })
   }
 
-  sumMaterial(event) {
-    console.log('event', event)
-    this.sumTotalMaterial = event + this.costoAvicola.totalVacunas;
-    console.log('exmaple', this.sumTotalMaterial, this.costoAvicola.totalVacunas)
-  }
 }

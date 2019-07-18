@@ -26,9 +26,10 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/da
 import { environment } from '../environments/environment';
 import { EditStaffComponent } from './components/staff/editstaff/editstaff.component';
 import { RegistroConsumosComponent } from './components/registro-consumos/registro-consumos.component';
-//import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
+import { CreateRegistroComponent } from './components/registro-consumos/create-registro/create-registro.component';
 import { EditarVacunaComponent } from './components/vacuna/editar-vacuna/editar-vacuna.component';
 import { EditarAlimentoComponent } from './components/alimento/editar-alimento/editar-alimento.component';
+import { EditarRegistroComponent } from './components/registro-consumos/editar-registro/editar-registro.component';
 
 registerLocaleData(en);
 
@@ -48,10 +49,10 @@ registerLocaleData(en);
     LoginComponent,
     EditStaffComponent,
     RegistroConsumosComponent,
-    //CreateRegistroComponent,
+    CreateRegistroComponent,
     EditarVacunaComponent,
-    EditarAlimentoComponent
-  
+    EditarAlimentoComponent,
+    EditarRegistroComponent,
   ],
   imports: [
     BrowserModule,

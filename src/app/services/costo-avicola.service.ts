@@ -23,6 +23,11 @@ export class CostoAvicolaService {
     );
   }
 
+  getIdCostoAvicola(id): Observable<Array<CostoAvicola>> {
+    const url = this.url + `/${id}`
+    return this.http.get<Array<CostoAvicola>>(url).pipe(result => result)
+  }
+
 
   getAve(): Observable<Array<Ave>> {
     return this.http.get<Array<Ave>>(`${environment.host}:${environment.port}/monitor/ave`)
