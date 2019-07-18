@@ -132,7 +132,7 @@ export class CrearVacunaComponent implements OnInit {
         const multi = data.cantidadUnitaria * data.promedioUnitario
         this.listaDtProductoDTO.push(
           Object.assign(data,
-            { totalUnitario: multi },
+            { totalUnitario: multi},
             { cantidadTotal: data.cantidadUnitaria },
             { promedioTotal: data.promedioUnitario },
             { valorTotal: multi }

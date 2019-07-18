@@ -19,7 +19,7 @@
             <br>
             <nz-form-control>
                 <nz-tooltip nzTrigger="focus" nzPlacement="topLeft" nzOverlayClassName="numeric-input" [nzTitle]="title">
-                    <input class="inputDocument" pattern="[0-9]*" [(ngModel)]="vacuna.codProducto" required (ngModelChange)="onChangeDocumento($event)"
+                    <input class="inputDocument" [(ngModel)]="vacuna.codProducto" required (ngModelChange)="onChangeDocumento($event)"
                         (blur)="onBlurDocumento()" nz-tooltip #codProducto name="codProducto" nz-input placeholder="Ingrese código producto"
                         digitOnly required style="width: 200px; border: 1px solid #d9d9d9 !important;" />
                 </nz-tooltip>
@@ -188,7 +188,7 @@
                             <button nz-button class="btnEdit" (click)="editVacuna(data)" nzType="primary" nzShape="circle">
                                 <i nz-icon nzType="edit"></i>
                             </button>
-                            <button nz-button nzType="primary" (click)="removeVacuna(data)" nzShape="circle">
+                            <button nz-button nzType="primary" [disabled]="!data.isEdit" (click)="removeVacuna(data)" nzShape="circle">
                                 <i nz-icon nzType="delete"></i>
                             </button>
                         </td>

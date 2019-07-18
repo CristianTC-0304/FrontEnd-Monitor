@@ -87,7 +87,10 @@ export class EditarVacunaComponent implements OnInit {
         this.route.params.subscribe(params => {
             console.log('params router', params)
             this.vacunaService.getVacunaId(params['id']).subscribe(result => {
-                console.log('result vacuna', result)
+                if (result.listaDtProductoDTO.length > 0) {
+                    const count = result.listaDtProductoDTO.length;
+                    result.listaDtProductoDTO[count - 1]['isEdit'] = true
+                }
                 this.vacuna.idproducto = params['id']
                 this.vacuna.codProducto = result.codProducto
                 this.vacuna.nombreProducto = result.nombreProducto
@@ -101,8 +104,8 @@ export class EditarVacunaComponent implements OnInit {
                 ]
             })
         })
-
-        console.log('this.listdata', this.listData.length)
+        const dataList = this.listData.pop()
+        console.log('this.listdata', dataList, this.listData)
     }
 
     createInventario(form) {
@@ -118,6 +121,8 @@ export class EditarVacunaComponent implements OnInit {
     }
 
     removeVacuna(id) {
+        this.listData = this.listData.filter(form => form.iddtProducto !== id.iddtProducto)
+        this.vacunaService.deleteVacuna(id.iddtProducto).subscribe(result => result);
         console.log('id vacuna', id);
     }
 
@@ -145,7 +150,7 @@ export class EditarVacunaComponent implements OnInit {
                     Object.assign(data,
                         { totalUnitario: multi },
                         { cantidadTotal: (parseFloat(dataPop.cantidadTotal) + parseFloat(data.cantidadUnitaria)) },
-                        { valorTotal: (parseFloat(dataPop.valorTotal) + multi) },
+                        { valorTotal: (parseFloat(dataPop.valorTotal) + multi)},
                         { promedioTotal: (v1 / v2) }
                     )
                 )
@@ -160,9 +165,9 @@ export class EditarVacunaComponent implements OnInit {
                     Object.assign(data,
                         { cantidadUnitaria: data.cantidadUnitaria },
                         { promedioUnitario: dataPop.promedioTotal },
-                        { totalUnitario: mul },
+                        { totalUnitario: mul},
                         { cantidadTotal: res },
-                        { valorTotal: (parseFloat(dataPop.valorTotal) - mul)},
+                        { valorTotal: (parseFloat(dataPop.valorTotal) - mul) },
                         { promedioTotal: ((parseFloat(dataPop.valorTotal) - mul) / res) }
                     )
                 )
