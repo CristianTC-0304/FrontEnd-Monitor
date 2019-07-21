@@ -29,9 +29,21 @@
     right: 2%;
   }
 
+  ul li:visited {
+    color: #fff;
+  }
+
   ul li:hover {
     color: #fff;
     background: #87d068;
+  }
+
+  ul li:hover span i {
+    color: #fff;
+  }
+
+  ul li:hover span {
+    color: #fff;
   }
 
   .ant-menu-item-selected {

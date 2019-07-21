@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  //host: "http://localhost",
-  host: "https://monitor-back.herokuapp.com",
+  host: "http://localhost",
+  //host: "https://monitor-back.herokuapp.com",
   port: "8080",
   firebaseConfig: {
     apiKey: "AIzaSyDpH_q1XqhDLKyxHxFZOOkPKehoqXw4VFg",

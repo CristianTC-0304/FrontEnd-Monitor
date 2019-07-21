@@ -38,7 +38,6 @@ export class EditStaffComponent implements OnInit {
 
     ngOnInit() {
         this.getData();
-        this.getDepartament();
         this.getDocumentType();
         this.getPosition();
     }
@@ -56,12 +55,13 @@ export class EditStaffComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.id = params['id'];
             this.staffServices.getStaffId(params['id']).subscribe(result => {
-                console.log('que hacce acá', params['id'], result);
                 this.staff = result;
                 this.staff.idTipoDocumento = result.idTipoDocumento['idTipoDocumento'];
-                this.staff.idMDepartamento = result.idMunicipio['departamentoId'].idDepartamento;
+                this.staff.idDepartamento = result.idMunicipio['departamentoId'].idDepartamento;
                 this.staff.idMunicipio = result.idMunicipio['idMunicipio'];
                 this.staff.idCargo = result.idCargo['idCargo'];
+                this.getDepartament();
+                this.locationChange(event)
             })
         })
     }
@@ -75,6 +75,9 @@ export class EditStaffComponent implements OnInit {
     getDepartament() {
         this.departamentService.getDepartament().subscribe(result => {
             this.resDepartament = result;
+            result.forEach(res => {
+                this.locations = res.municipioList
+            })
         });
     }
 
@@ -94,7 +97,6 @@ export class EditStaffComponent implements OnInit {
     }
 
     updateStaff(staff) {
-        console.log('staff', staff)
         this.staffServices.updateStaff(this.staff).subscribe(result => {
             let entorno = this;
             swal("Petición correcta!", "", "success").then(() => {

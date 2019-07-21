@@ -24,6 +24,7 @@ export class StaffService {
 
   getStaffId(id: number): Observable<Staff> {
     const url = `${environment.host}:${environment.port}/monitor/personalId`
+    console.log('example url', url + `/${id}`);
     return this.http.get<Staff>(url + `/${id}`).pipe(result => result);
   }
 

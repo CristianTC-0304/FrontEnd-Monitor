@@ -3,7 +3,7 @@
         <h1 class="text">Personal</h1>
     </div>
     <div nz-col nzSpan="12">
-        <button nz-button [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateStaff()">
+        <button nz-button style="margin-left: 65%;" [disabled]="false" [nzType]="'primary'" class="btnpersonal" (click)="showFormCreateStaff()">
             <i nz-icon type="plus"></i>
             Crear Personal
         </button>
@@ -33,12 +33,12 @@
             <td>{{ data.segundoApellido}}</td>
             <td>{{ data.celular}}</td>
             <td>
-                <a>
+                <a style="color: #87d068;">
                     <i nz-icon type="edit" [routerLink]="['/editar-personal', data.idPersonal]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a>
+                <a style="color: #87d068">
                     <i nz-icon type="delete" (click)="deleteStaff(data.idPersonal)"></i>
                 </a>
             </td>
