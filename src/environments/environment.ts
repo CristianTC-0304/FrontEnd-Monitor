@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-   host: "http://localhost",
-  //host: "https://monitor-back.herokuapp.com",
+  // host: "http://localhost",
+  host: "https://monitor-back.herokuapp.com",
   
   port: "8080",
   firebaseConfig: {
