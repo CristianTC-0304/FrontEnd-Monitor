@@ -39,7 +39,7 @@ export class CreateRegistroComponent implements OnInit {
     const summ = ((form.costoAlimento + form.totalVacunas) +
       ((form.totalManoObra + form.despique) + form.empaque) +
       ((form.totalAlojamiento + form.calefacion) + (form.serviciosPublicos + form.depresiacion) +
-        (form.amortizacion + form.mortalidad))
+        (form.amortizacion - form.mortalidad))
     )
     console.log('summ', summ)
     form.ave = this.resListAve.find(res => res.idAve == form.idAve)
@@ -48,7 +48,7 @@ export class CreateRegistroComponent implements OnInit {
     form.valorMortalidad = "0"
     form.viruta = "0"
     form.cantidadKg = 0
-    form.planta = "0"
+    form.planta = "Politecnico"
     form.fechaCreacion = new Date()
     this.costoAvicolaService.createCostoAvicola(form).subscribe(result => {
       swal("Petición correcta!", "", "success").then(() => {

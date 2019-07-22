@@ -64,9 +64,10 @@ export class EditarAlimentoComponent implements OnInit {
   }
 
   getDataInventario() {
+      const date = new Date().toLocaleDateString('COT')
       this.isEntrada = false;
       this.isSalida = false;
-      //this.inventario.fechaMovimiento = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+      this.inventario.fechaMovimiento = date
       this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
   }
 

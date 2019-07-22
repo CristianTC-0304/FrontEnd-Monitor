@@ -125,7 +125,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input placeholder="Promedio"
+                            <input class="inputForm" type="text" ([ngModel])="inventario.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input placeholder="Promedio"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -181,23 +181,34 @@
                         <td>{{data.codigo}}</td>
                         <td>{{data.descripcion}}</td>
                         <td>{{data.tipoMovimiento == 'Entrada' ? data.cantidadUnitaria: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Entrada' ? data.promedioUnitario: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Entrada' ? data.totalUnitario: ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Entrada' ? (data.promedioUnitario | currency): ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Entrada' ? (data.totalUnitario | currency): ' '}}</td>
                         <td>{{data.tipoMovimiento == 'Salida' ? data.cantidadUnitaria: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Salida' ? data.promedioUnitario: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Salida' ? data.totalUnitario : ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Salida' ? (data.promedioUnitario | currency): ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Salida' ? (data.totalUnitario| currency): ' '}}</td>
                         <td>{{data.cantidadTotal}}</td>
-                        <td>{{data.promedioTotal}}</td>
-                        <td>{{data.valorTotal}}</td>
+                        <td>{{data.promedioTotal | currency}}</td>
+                        <td>{{data.valorTotal | currency}}</td>
                         <td>
                             <!--<button nz-button class="btnEdit" (click)="editVacuna(data)" nzType="primary" nzShape="circle">
                                 <i nz-icon nzType="edit" ></i>
                             </button>-->
                             <button style="background: #87d068;
                             border: #87d068;
-                            color: #fff;" nz-button nzType="primary" [disabled]="!data.isEdit" (click)="removeVacuna(data)" nzShape="circle">
-                                <i nz-icon nzType="delete"></i>
+                            color: #fff; " nz-popconfirm
+                            nzTitle="¿Esta seguro de eliminar este dato?"
+                            (nzOnConfirm)="removeVacuna(data)"
+                            nzCancelText="Cancelar"
+                            nzOkText="Aceptar"
+                            (nzOnCancel)="cancel()"
+                            nzPlacement="topLeft"
+                            nz-button nzType="primary" 
+                            [nzSize]="small" 
+                            [disabled]="!data.isEdit"  
+                            nzShape="circle">
+                            <i nz-icon nzType="delete"></i>
                             </button>
+                            
                         </td>
                     </tr>
                 </tbody>

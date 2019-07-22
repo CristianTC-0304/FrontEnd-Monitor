@@ -33,6 +33,7 @@ export class EditarRegistroComponent implements OnInit {
     }
 
     getData() {
+        this.costoAvicola = {}
         this.route.params.subscribe(params => {
             this.costoAvicolaService.getIdCostoAvicola(params['id']).subscribe(result => {
                 this.costoAvicola = Object.assign(result)
@@ -46,7 +47,7 @@ export class EditarRegistroComponent implements OnInit {
         const summ = ((form.costoAlimento + form.totalVacunas) +
             ((form.totalManoObra + form.despique) + form.empaque) +
             ((form.totalAlojamiento + form.calefacion) + (form.serviciosPublicos + form.depresiacion) +
-                (form.amortizacion + form.mortalidad))
+                (form.amortizacion - form.mortalidad))
         )
         console.log('sum', summ)
         form.ave = this.resListAve.find(res => res.idAve == form.idAve)
@@ -55,7 +56,7 @@ export class EditarRegistroComponent implements OnInit {
         form.valorMortalidad = "0"
         form.viruta = "0"
         form.cantidadKg = 0
-        form.planta = "0"
+        form.planta = "Politecnico"
         form.fechaCreacion = new Date()
         form.idcostoAvicola = this.costoAvicola.idcostoAvicola;
         this.costoAvicolaService.createCostoAvicola(form).subscribe(result => {

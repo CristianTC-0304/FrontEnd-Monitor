@@ -16,7 +16,7 @@
           <th>Código costo</th>
           <th>Semanas ave</th>
           <th>Fecha creación</th>
-          <th>Planta</th>
+          <!--<th>Planta</th>-->
           <th>Costo alimento</th>
           <th>Costo vacunas</th>
           <th>Subtotal</th>
@@ -29,16 +29,16 @@
         <td>{{ data.idcostoAvicola}}</td>
         <td>{{ data.semanaPolla}}</td>
         <td>{{ data.fechaCreacion}}</td>
-        <td>{{ data.planta}}</td>
-        <td>{{ data.costoAlimento}}</td>
-        <td>{{ data.totalVacunas}}</td>
-        <td>{{ data.subTotal}}</td>
-        <td>{{ data.granTotal}}</td>
+        <!--<td>{{ data.planta}}</td>-->
+        <td>{{ data.costoAlimento | currency}}</td>
+        <td>{{ data.totalVacunas | currency}}</td>
+        <td>{{ data.subTotal | currency}}</td>
+        <td>{{ data.granTotal | currency}}</td>
         
           <!-- <td>{{ data.estado == 1 ? "Habilitado" : "Inhabilitado" }}</td> -->
           <td>
-              <a>
-                  <i nz-icon type="edit" [routerLink]="['/editar-registro', data.idcostoAvicola]" (click)="editAlimento(data)"></i>
+              <a style="color: #87d068;">
+                  <i nz-icon type="edit" [routerLink]="['/editar-registro', data.idcostoAvicola]"></i>
               </a>
               <nz-divider nzType="vertical"></nz-divider>
 

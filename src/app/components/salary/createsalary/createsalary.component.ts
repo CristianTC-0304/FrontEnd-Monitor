@@ -3,6 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { SalaryService } from '../../../services/salary.service';
 import swal from 'sweetalert';
+import { DatePipe } from '@angular/common';
 
 let domModalSalario;
 @Component({
@@ -30,7 +31,7 @@ export class CreatesalaryComponent implements OnInit {
     private salaryService: SalaryService) { }
 
   ngOnInit() {
-    this.date = this.date.getUTCFullYear().toString();
+    //this.date = this.date.getUTCFullYear().toString();
     console.log('example', this.date);
     console.log("Info a editar==>", this.eventEdit);
     window["domModalSalario"] = this;
@@ -83,14 +84,18 @@ export class CreatesalaryComponent implements OnInit {
 
   /**Cargar Información a la modal */
   infoEdit(dataEdit: any) {
+    console.log('example list', dataEdit)
     this.salary = new Object();
+    const date = Date.parse(dataEdit.periodo)
     // console.log("INFO A EDITAR", dataEdit);
     this.salary.idsalario = dataEdit.idsalario;
     this.salary.salario = dataEdit.salario;
     this.salary.auxilioTransporte = dataEdit.auxilioTransporte;
     this.salary.prestacionesSociales = dataEdit.prestacionesSociales;
-    this.salary.periodo = dataEdit.periodo;
+    this.salary.periodo = '2019';
     this.salary.estado = dataEdit.estado;
+
+    console.log('thisn salary', this.salary)
   }
 
   onChange(value: string, tipo: number): void {

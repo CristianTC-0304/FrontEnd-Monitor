@@ -7,7 +7,7 @@
             <li nz-submenu>
                 <span title>
                     <i nz-icon type="team"></i>
-                    <span class="nav-text">Maestros</span>
+                    <span >Maestros</span>
                 </span>
                 <ul>
                     <li nz-menu-item routerLink="personal">
@@ -30,7 +30,7 @@
                     <span class="nav-text" routerLink="registroConsumo">Costos avicola</span>
                 </span>
             </li>
-            <li nz-menu-item>
+            <!--<li nz-menu-item>
                 <span>
                     <i nz-icon type="schedule"></i>
                     <span class="nav-text">Costos Huevos</span>
@@ -41,7 +41,7 @@
                     <i nz-icon type="file"></i>
                     <span class="nav-text">Reportes</span>
                 </span>
-            </li>
+            </li>-->
             <li nz-menu-item>
                 <span>
                     <i nz-icon type="area-chart"></i>
@@ -51,7 +51,7 @@
         </ul>
     </nz-sider>
     <nz-layout>
-        <nz-header style="background: #fff; padding:0;">
+        <nz-header class="primary-navbar">
             <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
             <i class="avatar">
                 <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>

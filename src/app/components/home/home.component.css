@@ -1,18 +1,18 @@
-.trigger {
+/*.trigger {
     font-size: 18px;
     line-height: 64px;
     padding: 0 24px;
     cursor: pointer;
     transition: color 0.3s;
-  }
+  }*/
 
   .navbar {
     background-color: white;
   }
 
-  .trigger:hover {
+  /*.trigger:hover {
     color: #1890ff;
-  }
+  }*/
 
   .logo {
     height: 40px;
@@ -29,7 +29,7 @@
     right: 2%;
   }
 
-  ul li:visited {
+  /*ul li:visited {
     color: #fff;
   }
 
@@ -57,4 +57,4 @@
 
   ul li:visited {
     color: #87d068;
-  }
+  }*/

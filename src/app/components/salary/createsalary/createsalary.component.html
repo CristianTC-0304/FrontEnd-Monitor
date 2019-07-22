@@ -35,7 +35,7 @@
             <nz-form-item>
                 <nz-form-control>
                     <label for="year" class="ant-form-item-required letter-label-style">Año</label><br>
-                    <nz-year-picker [nzFormat]="yyyy" [(ngModel)]="salary.periodo" #periodo name="periodo"></nz-year-picker>
+                    <nz-year-picker [nzFormat]="yyyy" [ngModel]="salary.periodo" #periodo name="periodo"></nz-year-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>
@@ -43,7 +43,7 @@
             <nz-form-item>
                 <nz-form-control [nzSpan]="5" [nzOffset]="5">
                     <br>
-                    <button nz-button nzType="primary" [disabled]="!salaryForm.valid">Guardar</button>
+                    <button style="color: #fff; background: #87d068; border: #87d068;" nz-button nzType="primary" [disabled]="!salaryForm.valid">Guardar</button>
                 </nz-form-control>
             </nz-form-item>
         </div>

@@ -27,11 +27,11 @@
             <td>{{data.marcaDTO.nombreMarca}}</td>
             <td>{{data.unidadMedida}}</td>
             <td>
-                <a style="color: #87d068;">
+                <a>
                     <i nz-icon type="edit"  [routerLink]="['/editar-vacuna', data.idproducto]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a style="color: #87d068;">
+                <a>
                     <i nz-icon type="delete" (click)="eliminarVacuna(data.idDrogaVacuna)"></i>
                 </a>
             </td>

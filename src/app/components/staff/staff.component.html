@@ -33,12 +33,12 @@
             <td>{{ data.segundoApellido}}</td>
             <td>{{ data.celular}}</td>
             <td>
-                <a style="color: #87d068;">
+                <a>
                     <i nz-icon type="edit" [routerLink]="['/editar-personal', data.idPersonal]"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a style="color: #87d068">
+                <a>
                     <i nz-icon type="delete" (click)="deleteStaff(data.idPersonal)"></i>
                 </a>
             </td>
