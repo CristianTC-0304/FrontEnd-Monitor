@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PositionService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/cargo`;
+  url: string = `${environment.host}/monitor/cargo`;
   constructor(private http: HttpClient) {
 
   }

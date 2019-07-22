@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AveService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/ave`;
+  url: string = `${environment.host}/monitor/ave`;
   constructor(private http: HttpClient) {
 
   }
