@@ -14,7 +14,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class GraphifService {
   
 
-  url: string = `${environment.host}:${environment.port}/monitor/nodos`;
+  url: string = `${environment.host}/monitor/nodos`;
   constructor(private http: HttpClient, private db: AngularFireDatabase) {
 
   }

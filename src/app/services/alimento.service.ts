@@ -11,7 +11,9 @@ import { TipoProducto } from '../models/tipoProducto.model';
 })
 export class AlimentoService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/productos/2`;
+  //url: string = `${environment.host}:${environment.port}/monitor/productos/2`;
+  url: string = `${environment.host}/monitor/productos/2`;
+  
   constructor(private http: HttpClient) {
 
   }
@@ -24,19 +26,19 @@ export class AlimentoService {
   }
 
   getPresentacion(): Observable<Array<TipoProducto>> {
-    return this.http.get<Array<TipoProducto>>(`${environment.host}:${environment.port}/monitor/presentacion`)
+    return this.http.get<Array<TipoProducto>>(`${environment.host}/monitor/presentacion`)
     .pipe(
       catchError(this.handleError<TipoProducto[]>('getPresentacion', []))
     );
   }
 
   getVacunaId(id: number): Observable<Producto> {
-    const url = `${environment.host}:${environment.port}/monitor/product/${id}`;
+    const url = `${environment.host}/monitor/product/${id}`;
     return this.http.get<Producto>(url).pipe(result => result);
   }
 
   createVacuna(data): Observable<Producto> {  
-    const url = `${environment.host}:${environment.port}/monitor/producto`
+    const url = `${environment.host}/monitor/producto`
     return this.http.post<Producto>(url, data).pipe(response => response);
   }
 
