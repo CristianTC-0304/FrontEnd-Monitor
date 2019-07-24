@@ -11,9 +11,11 @@ import { TipoProducto } from '../models/tipoProducto.model';
 })
 export class AlimentoService {
 
+
   //url: string = `${environment.host}:${environment.port}/monitor/productos/2`;
   url: string = `${environment.host}/monitor/productos/2`;
   
+
   constructor(private http: HttpClient) {
 
   }
