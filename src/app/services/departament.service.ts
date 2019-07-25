@@ -8,7 +8,7 @@ import { Departament } from '../models/departament.model';
     providedIn: 'root'
 })
 export class DepartamentService {
-    url: string = `${environment.host}:${environment.port}/monitor/departamento`;
+    url: string = `${environment.host}/monitor/departamento`;
 
     constructor(private http: HttpClient) {
 

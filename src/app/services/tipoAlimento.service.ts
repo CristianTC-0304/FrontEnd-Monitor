@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class TipoAlimentoService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/tipoAlimento`;
+  url: string = `${environment.host}/monitor/tipoAlimento`;
   constructor(private http: HttpClient) {
 
   }

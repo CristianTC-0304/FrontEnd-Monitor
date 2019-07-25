@@ -86,10 +86,11 @@ export class CreateAlimentoComponent implements OnInit {
   }
 
   getDataInventario() {
-    const date = new Date();
+    const date = new Date().toLocaleDateString('COT')
     this.isEntrada = false;
     this.isSalida = false;
-    //this.inventario.fechaMovimiento = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    this.inventario.fechaMovimiento = date 
+    console.log("fecha movimiento", this.inventario.fechaMovimiento)
     this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
   }
 
@@ -105,7 +106,7 @@ export class CreateAlimentoComponent implements OnInit {
     )) : this.isSalida = false
   }
 
-  createAlimento(event, form) {
+  createVacuna(event, form) {
     const marca = this.listMarca.find(result => (result.idMarca === form.marcaProducto, delete result.dto))
     this.vacuna.marcaDTO = marca
     this.vacuna.unidadMedida = form.unidadMedida

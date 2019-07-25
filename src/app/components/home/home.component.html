@@ -1,26 +1,30 @@
 <nz-layout>
     <nz-sider class="navbar" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="triggerTemplate">
-        <div class="logo">
+        <div class="logo" style="
+        margin-top: 10px;
+        margin-bottom: 25px;">
             <img src="../../../assets/img/Captura.PNG" class="imgLogo" alt="Logo">
+            <img src="../../../assets/img/logo-ces.png" class="imgLogo" alt="Logo" style="margin-left: 45px;
+        ">
         </div>
         <ul nz-menu [nzTheme]="'lite'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
             <li nz-submenu>
                 <span title>
                     <i nz-icon type="team"></i>
-                    <span class="primary-color">Maestros</span>
+                    <span >Maestros</span>
                 </span>
                 <ul>
                     <li nz-menu-item routerLink="personal">
                         <i nz-icon type='user-add'></i> Personal
                     </li>
                     <li nz-menu-item routerLink="vacuna">
-                        <i nz-icon type='medicine-box'></i> Vacunación
+                        <i nz-icon type='medicine-box'></i> Insumos
                     </li>
                     <li nz-menu-item routerLink="alimento">
                         <i nz-icon type='dash'></i> Alimento
                     </li>
                     <li nz-menu-item routerLink="salario">
-                        <i nz-icon type='solution'></i> Prestaciones
+                        <i nz-icon type='solution'></i> Salarios
                     </li>
                 </ul>
             </li>
@@ -30,7 +34,7 @@
                     <span class="nav-text" routerLink="registroConsumo">Costos avicola</span>
                 </span>
             </li>
-            <li nz-menu-item>
+            <!--<li nz-menu-item>
                 <span>
                     <i nz-icon type="schedule"></i>
                     <span class="nav-text">Costos Huevos</span>
@@ -41,7 +45,7 @@
                     <i nz-icon type="file"></i>
                     <span class="nav-text">Reportes</span>
                 </span>
-            </li>
+            </li>-->
             <li nz-menu-item>
                 <span>
                     <i nz-icon type="area-chart"></i>
@@ -51,8 +55,8 @@
         </ul>
     </nz-sider>
     <nz-layout>
-        <nz-header style="background: #fff; padding:0;">
-            <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
+        <nz-header class="primary-navbar">
+           <!-- <i class="trigger" nz-icon [type]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>-->
             <i class="avatar">
                 <nz-avatar nzIcon="user" style="background-color:#87d068;"></nz-avatar>
             </i>
@@ -68,6 +72,6 @@
                 <router-outlet></router-outlet>
             </div>
         </nz-content>
-        <nz-footer style="text-align: center;">Ant Design ©2019 Implement By Angular</nz-footer>
+        <!--<nz-footer style="text-align: center;">Ant Design ©2019 Implement By Angular</nz-footer>-->
     </nz-layout>
 </nz-layout>

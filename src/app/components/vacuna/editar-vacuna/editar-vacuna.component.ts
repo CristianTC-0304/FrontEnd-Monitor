@@ -55,19 +55,21 @@ export class EditarVacunaComponent implements OnInit {
         this.resUnidadMedida.push(
             { name: 'Kilogramo', value: '1' },
             { name: 'Tonelada', value: '2' },
-            { name: 'miligramo', value: '3' },
-            { name: 'gramos', value: '4' },
-            { name: 'litro', value: '5' },
-            { name: 'mililitro', value: '6' },
-            { name: 'centimetro', value: '7' },
-            { name: 'milímetro', value: '8' }
+            { name: 'Miligramo', value: '3' },
+            { name: 'Gramos', value: '4' },
+            { name: 'Litro', value: '5' },
+            { name: 'Mililitro', value: '6' },
+            { name: 'Centimetro', value: '7' },
+            { name: 'Milímetro', value: '8' }
         )
     }
+    cancel(): void {}
 
     getDataInventario() {
+        const date = new Date().toLocaleDateString('COT')
         this.isEntrada = false;
         this.isSalida = false;
-        //this.inventario.fechaMovimiento = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+        this.inventario.fechaMovimiento = date
         this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
     }
 
@@ -102,6 +104,9 @@ export class EditarVacunaComponent implements OnInit {
                 this.listaDtProductoDTO = [
                     ...result.listaDtProductoDTO
                 ]
+                const formatter = new Intl.NumberFormat()
+    formatter.format(parseFloat(result['totalUnitario']))  
+                console.log('exmaplme', this.listData)
             })
         })
         const dataList = this.listData.pop()
@@ -115,6 +120,12 @@ export class EditarVacunaComponent implements OnInit {
         form['fechaMovimiento'] = new Date()
         this.isVisible = false;
     }
+
+    currencyInputChanged(value) {
+        console.log('value', value)
+        var num = value.replace(/[$,]/g, "");
+        return Number(num);
+      }
 
     editVacuna(data) {
         console.log('data', data)

@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class UnidadMedidaService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/medida`;
+  url: string = `${environment.host}/monitor/medida`;
   constructor(private http: HttpClient) {
 
   }

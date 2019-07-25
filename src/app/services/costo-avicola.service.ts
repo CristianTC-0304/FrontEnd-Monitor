@@ -11,7 +11,7 @@ import { Ave } from '../models/ave.model';
 })
 export class CostoAvicolaService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/costoavicola`;  
+  url: string = `${environment.host}/monitor/costoavicola`;  
   constructor(private http: HttpClient) {
 
   }
@@ -30,7 +30,7 @@ export class CostoAvicolaService {
 
 
   getAve(): Observable<Array<Ave>> {
-    return this.http.get<Array<Ave>>(`${environment.host}:${environment.port}/monitor/ave`)
+    return this.http.get<Array<Ave>>(`${environment.host}/monitor/ave`)
     .pipe(
       catchError(this.handleError<Ave[]>('getAve', []))
     );

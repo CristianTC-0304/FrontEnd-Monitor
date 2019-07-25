@@ -1,7 +1,4 @@
-.gutter-box {
-    background: #00a0e9;
-    padding: 5px 0;
-}
+
 
 .table {
     padding-left: 45px;
@@ -13,9 +10,6 @@
     text-align: center;
     margin-left: 65%;
     margin: 10px;
-    background: #87d068;
-    border: #87d068;
-    color: #fff;
 }
 
 .text {

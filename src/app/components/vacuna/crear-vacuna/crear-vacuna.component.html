@@ -1,7 +1,7 @@
 <form class="formstaff" nz-form [nzLayout]="'inline'" #vacunaForm="ngForm" (ngSubmit)="createVacuna(vacunaForm, vacunaForm.value)">
     <div nz-row class="tableStaff">
         <div nz-col nzSpan="12">
-            <h2 class="text">Ingreso de producto</h2>
+            <h2 class="text">Ingreso de Insumos</h2>
         </div>
         <div nz-col nzSpan="12">
             <button nz-button  [disabled]="vacunaForm.invalid" [nzType]="'primary'" class="btnvacuna">
@@ -122,7 +122,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" required [(ngModel)]="inventario.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input
+                            <input class="inputForm" (ngModelChange)="validateMoney($event)" required [(ngModel)]="inventario.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input
                                 placeholder="Promedio" style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -175,14 +175,14 @@
                         <td>{{data.codigo}}</td>
                         <td>{{data.descripcion}}</td>
                         <td>{{data.tipoMovimiento == 'Entrada' ? data.cantidadUnitaria: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Entrada' ? data.promedioUnitario: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Entrada' ? data.totalUnitario: ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Entrada' ? (data.promedioUnitario | currency): ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Entrada' ? (data.totalUnitario | currency): ' '}}</td>
                         <td>{{data.tipoMovimiento == 'Salida'  ? data.cantidadUnitaria: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Salida'  ? data.promedioUnitario: ' '}}</td>
-                        <td>{{data.tipoMovimiento == 'Salida'  ? data.totalUnitario : ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Salida'  ? (data.promedioUnitario | currency): ' '}}</td>
+                        <td>{{data.tipoMovimiento == 'Salida'  ? (data.totalUnitario | currency): ' '}}</td>
                         <td>{{data.cantidadTotal}}</td>
-                        <td>{{data.promedioTotal}}</td>
-                        <td>{{data.valorTotal}}</td>
+                        <td>{{data.promedioTotal | currency}}</td>
+                        <td>{{data.valorTotal | currency}}</td>
                     </tr>
                 </tbody>
             </nz-table>

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MarcaService {
-    url: string = `${environment.host}:${environment.port}/monitor/marca`;
+    url: string = `${environment.host}/monitor/marca`;
     constructor(private http: HttpClient) {}
 
     getMarca(): Observable<Array<Marca>> {

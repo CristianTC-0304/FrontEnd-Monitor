@@ -11,7 +11,7 @@ import { Salary } from '../models/salary.model';
 })
 export class SalaryService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/salario`;
+  url: string = `${environment.host}/monitor/salario`;
   constructor(private http: HttpClient) {
 
   }

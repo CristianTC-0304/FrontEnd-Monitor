@@ -11,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class VacunaService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/productos/1`;  
+  url: string = `${environment.host}/monitor/productos/1`;  
   constructor(private http: HttpClient) {
 
   }
@@ -24,24 +24,24 @@ export class VacunaService {
   }
 
   getPresentacion(): Observable<Array<TipoProducto>> {
-    return this.http.get<Array<TipoProducto>>(`${environment.host}:${environment.port}/monitor/presentacion`)
+    return this.http.get<Array<TipoProducto>>(`${environment.host}/monitor/presentacion`)
     .pipe(
       catchError(this.handleError<TipoProducto[]>('getPresentacion', []))
     );
   }
 
   getVacunaId(id: number): Observable<Producto> {
-    const url = `${environment.host}:${environment.port}/monitor/product/${id}`;
+    const url = `${environment.host}/monitor/product/${id}`;
     return this.http.get<Producto>(url).pipe(result => result);
   }
 
   createVacuna(data): Observable<Producto> {  
-    const url = `${environment.host}:${environment.port}/monitor/producto`
+    const url = `${environment.host}/monitor/producto`
     return this.http.post<Producto>(url, data).pipe(response => response);
   }
 
   deleteVacuna(id): Observable<Producto> {
-      const url = `${environment.host}:${environment.port}/monitor/dtProducto/${id}`;
+      const url = `${environment.host}/monitor/dtProducto/${id}`;
       return this.http.delete<Producto>(url).pipe(result => result);
   }
 

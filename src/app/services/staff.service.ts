@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class StaffService {
 
-  url: string = `${environment.host}:${environment.port}/monitor/personal`;
+  url: string = `${environment.host}/monitor/personal`;
   constructor(private http: HttpClient) {
 
   }
@@ -23,7 +23,7 @@ export class StaffService {
   }
 
   getStaffId(id: number): Observable<Staff> {
-    const url = `${environment.host}:${environment.port}/monitor/personalId`
+    const url = `${environment.host}/monitor/personalId`
     console.log('example url', url + `/${id}`);
     return this.http.get<Staff>(url + `/${id}`).pipe(result => result);
   }

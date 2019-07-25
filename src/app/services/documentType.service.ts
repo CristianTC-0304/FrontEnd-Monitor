@@ -9,7 +9,7 @@ import { TipoDocumento } from '../models/documentType.model';
 })
 export class DocumentTypeService {
     
-  url: string = `${environment.host}:${environment.port}/monitor/tipodocumento`;
+  url: string = `${environment.host}/monitor/tipodocumento`;
   constructor(private http: HttpClient) {
 
   }

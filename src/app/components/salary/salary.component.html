@@ -22,16 +22,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let data of smallTable.data">
-            <td>{{ data.salario}}</td>
-            <td>{{ data.auxilioTransporte}}</td>
+            <td>{{ data.salario | currency}}</td>
+            <td>{{ data.auxilioTransporte | currency}}</td>
             <td>{{ data.prestacionesSociales}}</td>
             <td>{{ data.periodo}}</td>
             <td>
-                <a>
+                <a style="color: #87d068;">
                     <i nz-icon type="edit" (click)="editSalary(data)"></i>
                 </a>
                 <nz-divider nzType="vertical"></nz-divider>
-                <a>
+                <a  style="color: #87d068;">
                     <i nz-icon type="delete" (click)="eliminarSalary(data.idsalario)"></i>
                 </a>
             </td>

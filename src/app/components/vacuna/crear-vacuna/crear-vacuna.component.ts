@@ -75,20 +75,20 @@ export class CrearVacunaComponent implements OnInit {
     this.resUnidadMedida.push(
       { name: 'Kilogramo', value: '1' },
       { name: 'Tonelada', value: '2' },
-      { name: 'miligramo', value: '3' },
-      { name: 'gramos', value: '4' },
-      { name: 'litro', value: '5' },
-      { name: 'mililitro', value: '6' },
-      { name: 'centimetro', value: '7' },
-      { name: 'milímetro', value: '8' }
+      { name: 'Miligramo', value: '3' },
+      { name: 'Gramos', value: '4' },
+      { name: 'Litro', value: '5' },
+      { name: 'Mililitro', value: '6' },
+      { name: 'Centimetro', value: '7' },
+      { name: 'Milímetro', value: '8' }
     )
   }
 
   getDataInventario() {
-    const date = new Date();
+    const date = new Date().toLocaleDateString('COT')
     this.isEntrada = false;
     this.isSalida = false;
-    //this.inventario.fechaMovimiento = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear()
+    this.inventario.fechaMovimiento = date
     this.listTipoMovimiento.push({ name: 'Entrada', value: '1' }, { name: 'Salida', value: '2' })
   }
 
@@ -126,6 +126,13 @@ export class CrearVacunaComponent implements OnInit {
     this.isVisible = false;
   }
 
+  validateMoney(event) {
+    console.log('validate', event)
+    const formatter = new Intl.NumberFormat()
+    formatter.format(parseFloat(event))    
+  }
+
+
   validateOperation(type, data) {
     const obc = {
       'Saldo inicial': () => {
@@ -154,7 +161,6 @@ export class CrearVacunaComponent implements OnInit {
 
     return obc[type]()
   }
-
-
+ 
 
 }
