@@ -176,6 +176,21 @@ export class EditarAlimentoComponent implements OnInit {
           },
           'Devolución': () => {
               console.log('devolución')
+              const dataPop = this.listData.pop()
+              const mul = (parseFloat(data.cantidadUnitaria) * parseFloat(dataPop.promedioTotal))
+              const res = (parseFloat(dataPop.cantidadTotal) - parseFloat(data.cantidadUnitaria))
+              this.listaDtProductoDTO.push(
+                  Object.assign(data,
+                      { cantidadUnitaria: data.cantidadUnitaria },
+                      { promedioUnitario: dataPop.promedioTotal },
+                      { totalUnitario: mul},
+                      { cantidadTotal: res },
+                      { valorTotal: (parseFloat(dataPop.valorTotal) - mul) },
+                      { promedioTotal: ((parseFloat(dataPop.valorTotal) - mul) / res) }
+                  )
+              )
+              console.log('salida', this.listaDtProductoDTO)
+              this.vacuna.listaDtProductoDTO = this.listaDtProductoDTO
           }
       }
 

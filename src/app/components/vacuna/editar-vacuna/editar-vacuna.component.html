@@ -73,7 +73,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" disabled [(ngModel)]="inventario.fechaMovimiento" #fechaMovimiento name="fechaMovimiento" nz-input
+                            <input class="inputForm" disabled [(ngModel)]="vacuna.fechaMovimiento" #fechaMovimiento name="fechaMovimiento" nz-input
                                 placeholder="Fecha ingreso" style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -82,7 +82,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.codigo" #codigo name="codigo" nz-input placeholder="Código producto" style="width: 200px; border: 1px solid #d9d9d9 !important"
+                            <input class="inputForm" [(ngModel)]="vacuna.codigo" #codigo name="codigo" nz-input placeholder="Código producto" style="width: 200px; border: 1px solid #d9d9d9 !important"
                             />
                         </nz-form-control>
                     </nz-form-item>
@@ -92,7 +92,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <nz-select (ngModelChange)="movimientoChange($event)" nzPlaceHolder="Tipo movimiento" [(ngModel)]="inventario.tipoMovimiento"
+                            <nz-select (ngModelChange)="movimientoChange($event)" nzPlaceHolder="Tipo movimiento" [(ngModel)]="vacuna.tipoMovimiento"
                                 class="formDepar" style="width: 200px;" #tipoMovimiento name="tipoMovimiento" [nzSize]="size"
                                 required>
                                 <nz-option *ngFor="let tipoMovimiento of listTipoMovimiento" [nzLabel]="tipoMovimiento.name" [nzValue]="tipoMovimiento.name"></nz-option>
@@ -105,7 +105,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <nz-select nzPlaceHolder="Observación" [(ngModel)]="inventario.descripcion" class="formDepar" style="width: 200px;" #descripcion
+                            <nz-select nzPlaceHolder="Observación" [(ngModel)]="vacuna.descripcion" class="formDepar" style="width: 200px;" #descripcion
                                 name="descripcion" [nzSize]="size" required>
                                 <nz-option *ngFor="let tipoObservacion of listObservacion" [nzLabel]="tipoObservacion.name" [nzValue]="tipoObservacion.name"></nz-option>
                             </nz-select>
@@ -116,7 +116,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.cantidadUnitaria" #cantidadUnitaria name="cantidadUnitaria" nz-input placeholder="Cantidad"
+                            <input class="inputForm" [(ngModel)]="vacuna.cantidadUnitaria" #cantidadUnitaria name="cantidadUnitaria" nz-input placeholder="Cantidad"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -125,7 +125,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" type="text" ([ngModel])="inventario.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input placeholder="Promedio"
+                            <input class="inputForm" type="text" ([ngModel])="vacuna.promedioUnitario" #promedioUnitario name="promedioUnitario" nz-input placeholder="Promedio"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>
@@ -134,7 +134,7 @@
                         </nz-form-label>
                         <br>
                         <nz-form-control>
-                            <input class="inputForm" [(ngModel)]="inventario.cantidadUnitaria" #cantidadUnitaria name="cantidadUnitaria" nz-input placeholder="Cantidad"
+                            <input class="inputForm" [(ngModel)]="vacuna.cantidadUnitaria" #cantidadUnitaria name="cantidadUnitaria" nz-input placeholder="Cantidad"
                                 style="width: 200px; border: 1px solid #d9d9d9 !important" />
                         </nz-form-control>
                     </nz-form-item>

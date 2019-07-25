@@ -31,17 +31,14 @@ export class CreatesalaryComponent implements OnInit {
     private salaryService: SalaryService) { }
 
   ngOnInit() {
-    //this.date = this.date.getUTCFullYear().toString();
-    console.log('example', this.date);
-    console.log("Info a editar==>", this.eventEdit);
+    this.date = this.date.getUTCFullYear().toString();
+    //this.salary.periodo = this.date;
     window["domModalSalario"] = this;
-    this.salary.periodo = this.date;
-    console.log('salary', this.salary);
   }
 
   saveSalary() {
-
-    // console.log('full date', this.salary.periodo);
+    //this.salary.periodo = this.date;
+    console.log('full date', this.salary);
 
     if (isNaN(this.salary.salario)) {
       swal("Advertencia!", "Campo salario solo permite numero.", "warning");
@@ -92,7 +89,7 @@ export class CreatesalaryComponent implements OnInit {
     this.salary.salario = dataEdit.salario;
     this.salary.auxilioTransporte = dataEdit.auxilioTransporte;
     this.salary.prestacionesSociales = dataEdit.prestacionesSociales;
-    this.salary.periodo = '2019';
+    this.salary.periodo = dataEdit.periodo;
     this.salary.estado = dataEdit.estado;
 
     console.log('thisn salary', this.salary)
